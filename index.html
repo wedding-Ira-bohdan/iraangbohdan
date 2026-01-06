@@ -5,7 +5,6 @@
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
@@ -79,16 +78,43 @@
       animation-delay: 3.2s;
     }
 
-    /* Дата біла */
     .subtitle .date {
       display: inline-block;
       margin-left: 10px;
       font-weight: 500;
       font-size: 14px;
-      color: #fff; /* білий колір */
+      color: #fff;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.5s;
+    }
+
+    /* Стилі для таймера */
+    .countdown {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 4s; /* З'являється після дати */
+    }
+
+    .timer-item {
+      text-align: center;
+    }
+
+    .timer-num {
+      display: block;
+      font-size: 24px;
+      font-weight: 400;
+      min-width: 40px;
+    }
+
+    .timer-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
     }
 
     @keyframes fadeUp {
@@ -116,15 +142,12 @@
         font-size: 42px;
       }
 
-      .subtitle {
-        font-size: 14px;
+      .countdown {
+        justify-content: center;
       }
 
-      .subtitle .date {
-        font-size: 12px;
-        margin-left: 5px;
-        display: inline-block;
-        color: #fff; /* білий колір */
+      .subtitle {
+        font-size: 14px;
       }
     }
   </style>
@@ -143,45 +166,29 @@
       <div class="subtitle">
         Wedding Day <span class="date">17.07.2026</span>
       </div>
+
+      <div class="countdown" id="timer">
+        <div class="timer-item">
+          <span class="timer-num" id="days">00</span>
+          <span class="timer-label">днів</span>
+        </div>
+        <div class="timer-item">
+          <span class="timer-num" id="hours">00</span>
+          <span class="timer-label">год</span>
+        </div>
+        <div class="timer-item">
+          <span class="timer-num" id="minutes">00</span>
+          <span class="timer-label">хв</span>
+        </div>
+        <div class="timer-item">
+          <span class="timer-num" id="seconds">00</span>
+          <span class="timer-label">сек</span>
+        </div>
+      </div>
     </div>
- 
-  <h1>Подія відбудеться 17.07.2026</h1>
-
-<div id="countdown">
-    <span id="days">0</span> днів, 
-    <span id="hours">0</span> годин, 
-    <span id="minutes">0</span> хвилин, 
-    <span id="seconds">0</span> секунд
-</div>
-
-<script>
-    const targetDate = new Date("July 17, 2026 00:00:00").getTime();
-
-    const timer = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        // Математичний розрахунок
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Оновлення тексту в HTML
-        document.getElementById("days").innerText = days;
-        document.getElementById("hours").innerText = hours;
-        document.getElementById("minutes").innerText = minutes;
-        document.getElementById("seconds").innerText = seconds;
-
-        if (distance < 0) {
-            clearInterval(timer);
-            document.getElementById("countdown").innerText = "Час вичерпано!";
-        }
-    }, 1000);
-</script>    
   </section>
 
-  
-
-</body>
-</html>
+  <script>
+    function updateCountdown() {
+      const targetDate = new Date("July 17, 2026 00:00:00").
+        
