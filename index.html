@@ -5,44 +5,32 @@
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,fill,GRAD@24,400,1,0" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      font-family: 'Montserrat', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; background: #000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
     .hero {
       position: relative;
       width: 100%;
       height: 100vh;
       background: url('https://i.ibb.co/vChsmpGR/dfc21227-a5c2-4fd4-b6ec-60e0284f76fd.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
+    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
 
     .content {
-      position: absolute;
-      right: 20%;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: left;
-      color: #fff;
+      position: relative;
       z-index: 2;
+      margin-right: 15%;
+      color: #fff;
+      text-align: left;
+      width: 320px;
     }
 
     .name {
@@ -50,86 +38,96 @@
       font-size: 64px;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeUp 1.3s ease forwards;
+      animation: fadeUp 1s ease forwards;
     }
-
-    .and {
-      font-size: 22px;
-      margin: 10px 0;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 1.6s;
-    }
-
-    .name.first {
-      animation-delay: 0.6s;
-    }
-
-    .name.second {
-      animation-delay: 2.2s;
-    }
+    .name.first { animation-delay: 0.5s; }
+    .name.second { animation-delay: 1.5s; }
+    .and { font-size: 22px; margin: 10px 0; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1s; }
 
     .subtitle {
       margin-top: 25px;
       font-size: 16px;
       letter-spacing: 1px;
       opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3.2s;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 2s;
     }
 
-    /* Дата біла */
-    .subtitle .date {
-      display: inline-block;
-      margin-left: 10px;
-      font-weight: 500;
-      font-size: 14px;
-      color: #fff; /* білий колір */
+    /* ПЛЕЄР */
+    .player-section {
+      margin-top: 40px;
       opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3.5s;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 2.5s;
     }
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .progress-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      cursor: pointer;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .progress-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.25);
+      position: relative;
     }
 
-    /* 📱 Мобільна версія */
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #fff;
+      position: absolute;
+    }
+
+    .dot {
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .time { font-size: 13px; min-width: 35px; font-weight: 300; }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5px;
+    }
+
+    .btn { background: none; border: none; color: #fff; cursor: pointer; transition: 0.3s; }
+    
+    .play-btn {
+      width: 65px;
+      height: 65px;
+      background: #fff;
+      border-radius: 50%;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn span { font-size: 40px; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+
     @media (max-width: 768px) {
-      .content {
-        right: 50%;
-        transform: translate(50%, -50%);
-        text-align: center;
-      }
-
-      .name {
-        font-size: 42px;
-      }
-
-      .subtitle {
-        font-size: 14px;
-      }
-
-      .subtitle .date {
-        font-size: 12px;
-        margin-left: 5px;
-        display: inline-block;
-        color: #fff; /* білий колір */
-      }
+      .hero { justify-content: center; }
+      .content { margin-right: 0; text-align: center; width: 280px; }
+      .controls { justify-content: center; gap: 20px; }
     }
   </style>
 </head>
-
 <body>
 
   <section class="hero">
@@ -141,10 +139,15 @@
       <div class="name second">Богдан</div>
 
       <div class="subtitle">
-        Ми створюємо нашу спільну історію <span class="date">17.07.2026</span>
+        Ми створюємо нашу спільну історію <br> <b>17.07.2026</b>
       </div>
-    </div>
-  </section>
 
-</body>
-</html>
+      <div class="player-section">
+        <div class="progress-container" id="progress-wrapper">
+          <span class="time" id="current">0:00</span>
+          <div class="progress-bar">
+            <div class="progress-fill" id="fill"></div>
+            <div class="dot" id="dot"></div>
+          </div>
+          <span class="time" id="total">0:00</span>
+        </div>
