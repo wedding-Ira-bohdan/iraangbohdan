@@ -79,6 +79,18 @@
       animation-delay: 3.2s;
     }
 
+    /* Дата біла */
+    .subtitle .date {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #fff; /* білий колір */
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -92,7 +104,7 @@
       }
     }
 
-    /* 📱 мобільна версія */
+    /* 📱 Мобільна версія */
     @media (max-width: 768px) {
       .content {
         right: 50%;
@@ -102,6 +114,17 @@
 
       .name {
         font-size: 42px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      .subtitle .date {
+        font-size: 12px;
+        margin-left: 5px;
+        display: inline-block;
+        color: #fff; /* білий колір */
       }
     }
   </style>
@@ -118,17 +141,10 @@
       <div class="name second">Богдан</div>
 
       <div class="subtitle">
-  Ми створюємо нашу спільну історію <span class="date">17.07.2026</span>
+        Ми створюємо нашу спільну історію <span class="date">17.07.2026</span>
       </div>
     </div>
   </section>
 
-<section class="about">
-  <div class="container">
-    <h2>Про нас</h2>
-    <p>Тут можна написати щось про Ірину та Богдана, нашу історію чи будь-яку іншу інформацію.</p>
-  </div>
-</section>
-  
 </body>
 </html>
