@@ -114,12 +114,13 @@
       }
     }
 
+    /* 📱 Мобільна версія */
     @media (max-width: 768px) {
       .content {
         right: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        text-align: center;
+        text-align: center; /* весь текст по центру */
       }
 
       .name {
@@ -132,11 +133,15 @@
 
       .subtitle .date {
         font-size: 12px;
-        margin-left: 5px;
+        margin-left: 0;
+        display: block; /* під датою */
+        margin-top: 5px;
       }
 
       .timer {
         font-size: 16px;
+        display: block; /* завжди під датою */
+        margin-top: 10px; /* трохи відступу */
       }
     }
   </style>
@@ -157,16 +162,13 @@
       </div>
 
       <!-- Таймер -->
-      <div class="timer" id="countdown">
-        Завантаження таймера...
-      </div>
+      <div class="timer" id="countdown">Завантаження таймера...</div>
     </div>
   </section>
 
   <script>
-    // Таймер зворотного відліку
     const countdown = document.getElementById('countdown');
-    const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
+    const weddingDate = new Date("2026-07-17T00:00:00").getTime(); // ISO формат
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -181,7 +183,4 @@
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = ${days} днів ${hours} год ${minutes} хв ${seconds} сек;
-    }
+      const seconds = Math.
