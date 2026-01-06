@@ -5,6 +5,7 @@
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
@@ -19,8 +20,6 @@
       height: 100%;
       background: #000;
       font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      overflow: hidden;
     }
 
     .hero {
@@ -28,9 +27,6 @@
       width: 100%;
       height: 100vh;
       background: url('https://i.ibb.co/vChsmpGR/dfc21227-a5c2-4fd4-b6ec-60e0284f76fd.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
     }
 
     .overlay {
@@ -40,11 +36,13 @@
     }
 
     .content {
-      position: relative;
+      position: absolute;
+      right: 30%;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: left;
+      color: #fff;
       z-index: 2;
-      margin-right: 10%;
-      max-width: 600px;
-      padding: 20px;
     }
 
     .name {
@@ -55,76 +53,95 @@
       animation: fadeUp 1.3s ease forwards;
     }
 
-    .name.first { animation-delay: 0.5s; }
-    .name.second { animation-delay: 1.5s; }
-
     .and {
       font-size: 22px;
       margin: 10px 0;
       letter-spacing: 2px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
-      animation-delay: 1.2s;
+      animation-delay: 1.6s;
+    }
+
+    .name.first {
+      animation-delay: 0.6s;
+    }
+
+    .name.second {
+      animation-delay: 2.2s;
     }
 
     .subtitle {
-      margin-top: 20px;
-      font-size: 18px;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 2.5s;
-    }
-
-    /* Стилі таймера */
-    .countdown {
-      display: flex;
-      gap: 25px;
-      margin-top: 40px;
+      margin-top: 25px;
+      font-size: 16px;
+      letter-spacing: 1px;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3s;
+      animation-delay: 3.2s;
     }
 
-    .time-item {
-      text-align: center;
-      min-width: 70px;
+    .subtitle .date {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #fff;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.5s;
     }
 
-    .time-item span {
-      display: block;
-      font-size: 36px;
-      font-weight: 300;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      padding-bottom: 5px;
-      margin-bottom: 8px;
-    }
-
-    .time-item p {
-      font-size: 10px;
-      text-transform: uppercase;
+    /* Таймер */
+    .timer {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 400;
       letter-spacing: 1px;
-      color: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.8s;
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeIn {
-      to { opacity: 1; }
+      to {
+        opacity: 1;
+      }
     }
 
-    /* Адаптація для мобільних */
     @media (max-width: 768px) {
-      .hero { justify-content: center; }
-      .content { margin-right: 0; text-align: center; }
-      .name { font-size: 46px; }
-      .countdown { justify-content: center; gap: 15px; }
-      .time-item span { font-size: 28px; min-width: 60px; }
+      .content {
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .name {
+        font-size: 42px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      .subtitle .date {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+
+      .timer {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <section class="hero">
@@ -136,41 +153,35 @@
       <div class="name second">Богдан</div>
 
       <div class="subtitle">
-        WEDDING DAY — 17.07.2026
+        Wedding Day <span class="date">17.07.2026</span>
       </div>
 
-      <div id="countdown" class="countdown">
-        <div class="time-item">
-          <span id="days">00</span>
-          <p>днів</p>
-        </div>
-        <div class="time-item">
-          <span id="hours">00</span>
-          <p>год</p>
-        </div>
-        <div class="time-item">
-          <span id="minutes">00</span>
-          <p>хв</p>
-        </div>
-        <div class="time-item">
-          <span id="seconds">00</span>
-          <p>сек</p>
-        </div>
+      <!-- Таймер -->
+      <div class="timer" id="countdown">
+        Завантаження таймера...
       </div>
     </div>
   </section>
 
   <script>
-    function updateTimer() {
-      // Дата весілля у форматі ISO (працює всюди)
-      const weddingDate = new Date("2026-07-17T15:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
+    // Таймер зворотного відліку
+    const countdown = document.getElementById('countdown');
+    const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
 
-      if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "<h3>ЦЕЙ ДЕНЬ НАСТАВ!</h3>";
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "Весілля вже відбулося!";
+        clearInterval(timerInterval);
         return;
       }
 
-      // Розрахунок часу
-      const d = Math.
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = ${days} днів ${hours} год ${minutes} хв ${seconds} сек;
+    }
