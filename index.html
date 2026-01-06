@@ -5,7 +5,6 @@
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
@@ -20,19 +19,22 @@
       height: 100%;
       background: #000;
       font-family: 'Montserrat', sans-serif;
+      overflow: hidden; /* Щоб не було зайвої прокрутки */
     }
 
     .hero {
       position: relative;
       width: 100%;
       height: 100vh;
-      background: url('PHOTO_URL_HERE') center/cover no-repeat;
+      /* Вказуємо назву вашого файлу тут */
+      background: url('wedding.png') center center/cover no-repeat;
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.35);
+      /* Трохи посилив затемнення для кращого читання тексту */
+      background: rgba(0,0,0,0.4);
     }
 
     .content {
@@ -40,7 +42,7 @@
       right: 8%;
       top: 50%;
       transform: translateY(-50%);
-      text-align: left;
+      text-align: right; /* Змінив на правий край для композиції */
       color: #fff;
       z-index: 2;
     }
@@ -48,6 +50,7 @@
     .name {
       font-family: 'Playfair Display', serif;
       font-size: 64px;
+      line-height: 1.1;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
@@ -55,25 +58,22 @@
 
     .and {
       font-size: 22px;
-      margin: 10px 0;
-      letter-spacing: 2px;
+      margin: 15px 0;
+      letter-spacing: 4px;
+      text-transform: uppercase;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
     }
 
-    .name.first {
-      animation-delay: 0.6s;
-    }
-
-    .name.second {
-      animation-delay: 2.2s;
-    }
+    .name.first { animation-delay: 0.6s; }
+    .name.second { animation-delay: 2.2s; }
 
     .subtitle {
-      margin-top: 25px;
-      font-size: 16px;
-      letter-spacing: 1px;
+      margin-top: 30px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
@@ -87,21 +87,26 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
-    /* 📱 мобільна версія */
+    /* Адаптація для мобільних */
     @media (max-width: 768px) {
+      .hero {
+        background-position: center top; /* Піднімаємо фото вище на телефонах */
+      }
       .content {
-        right: 50%;
-        transform: translate(50%, -50%);
+        right: 0;
+        left: 0;
+        top: auto;
+        bottom: 10%; /* Текст знизу, щоб не закривати руки */
+        transform: none;
         text-align: center;
+        padding: 0 20px;
       }
 
       .name {
-        font-size: 42px;
+        font-size: 48px;
       }
     }
   </style>
@@ -114,11 +119,11 @@
 
     <div class="content">
       <div class="name first">Ірина</div>
-      <div class="and">and</div>
+      <div class="and">&</div>
       <div class="name second">Богдан</div>
 
       <div class="subtitle">
-        Ми створюємо нашу спільну історію
+        Наша спільна історія
       </div>
     </div>
   </section>
