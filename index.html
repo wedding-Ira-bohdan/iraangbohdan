@@ -2,64 +2,106 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
+  <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: "Arial", sans-serif;
-      background: #ffffff;
-      color: #000;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* МЕНЮ */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      font-size: 14px;
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    nav a {
-      text-decoration: none;
-      color: #000;
-      letter-spacing: 1px;
-    }
-
-    /* ПЕРШИЙ ЕКРАН */
     .hero {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('PHOTO_URL_HERE') center/cover no-repeat;
     }
 
-    .hero h1 {
-      font-size: 42px;
-      font-weight: normal;
-      margin: 0;
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
     }
 
-    .hero p {
-      margin-top: 15px;
+    .content {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: left;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.3s ease forwards;
+    }
+
+    .and {
+      font-size: 22px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1.6s;
+    }
+
+    .name.first {
+      animation-delay: 0.6s;
+    }
+
+    .name.second {
+      animation-delay: 2.2s;
+    }
+
+    .subtitle {
+      margin-top: 25px;
       font-size: 16px;
       letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.2s;
     }
 
-    /* АДАПТИВ */
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 30px;
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 📱 мобільна версія */
+    @media (max-width: 768px) {
+      .content {
+        right: 50%;
+        transform: translate(50%, -50%);
+        text-align: center;
       }
 
-      nav {
-        flex-wrap: wrap;
-        gap: 15px;
+      .name {
+        font-size: 42px;
       }
     }
   </style>
@@ -67,18 +109,18 @@
 
 <body>
 
-  <!-- МЕНЮ -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Event Details</a>
-    <a href="#">Contact</a>
-    <a href="#">Заходи</a>
-  </nav>
-
-  <!-- ПЕРШИЙ ЕКРАН -->
   <section class="hero">
-    <h1>Ми створюємо нашу спільну історію разом</h1>
-    <p>Wedding Invitation Website</p>
+    <div class="overlay"></div>
+
+    <div class="content">
+      <div class="name first">Ірина</div>
+      <div class="and">and</div>
+      <div class="name second">Богдан</div>
+
+      <div class="subtitle">
+        Ми створюємо нашу спільну історію
+      </div>
+    </div>
   </section>
 
 </body>
