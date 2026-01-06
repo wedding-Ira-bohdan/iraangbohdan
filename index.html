@@ -144,97 +144,44 @@
         Wedding Day <span class="date">17.07.2026</span>
       </div>
     </div>
+ 
+  <h1>Подія відбудеться 17.07.2026</h1>
+
+<div id="countdown">
+    <span id="days">0</span> днів, 
+    <span id="hours">0</span> годин, 
+    <span id="minutes">0</span> хвилин, 
+    <span id="seconds">0</span> секунд
+</div>
+
+<script>
+    const targetDate = new Date("July 17, 2026 00:00:00").getTime();
+
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Математичний розрахунок
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Оновлення тексту в HTML
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerText = "Час вичерпано!";
+        }
+    }, 1000);
+</script>    
   </section>
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Зворотний відлік до 17.07.2026</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f2f5;
-            margin: 0;
-        }
-        #countdown {
-            display: flex;
-            gap: 20px;
-            text-align: center;
-        }
-        .time-section {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            min-width: 80px;
-        }
-        .number {
-            display: block;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .label {
-            font-size: 1rem;
-            color: #7f8c8d;
-            text-transform: uppercase;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="countdown">
-        <div class="time-section">
-            <span class="number" id="days">00</span>
-            <span class="label">Днів</span>
-        </div>
-        <div class="time-section">
-            <span class="number" id="hours">00</span>
-            <span class="label">Годин</span>
-        </div>
-        <div class="time-section">
-            <span class="number" id="minutes">00</span>
-            <span class="label">Хвилин</span>
-        </div>
-        <div class="time-section">
-            <span class="number" id="seconds">00</span>
-            <span class="label">Секунд</span>
-        </div>
-    </div>
-
-    <script>
-        // Встановлюємо цільову дату: 17 липня 2026 року
-        const targetDate = new Date("July 17, 2026 00:00:00").getTime();
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            // Розрахунок часу для днів, годин, хвилин і секунд
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Виведення результату в елементи з відповідними id
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-
-            // Якщо відлік завершено
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "Цей день настав!";
-            }
-        }, 1000);
-    </script>
+  
 
 </body>
 </html>
-  
