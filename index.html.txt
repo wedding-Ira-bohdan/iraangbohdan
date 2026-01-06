@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Мій сайт</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Вітаю 👋</h1>
+  <p>Це мій односторінковий сайт на GitHub Pages</p>
+  <a href="https://instagram.com" class="btn">Написати</a>
+</header>
+
+<section>
+  <h2>Про мене</h2>
+  <p>
+    Тут буде текст про тебе / бізнес.  
+    Можеш змінити його будь-коли.
+  </p>
+</section>
+
+<section>
+  <h2>Послуги</h2>
+  <ul>
+    <li>Послуга 1</li>
+    <li>Послуга 2</li>
+    <li>Послуга 3</li>
+  </ul>
+</section>
+
+<footer>
+  © 2026 Всі права захищені
+</footer>
+
+</body>
+</html>
