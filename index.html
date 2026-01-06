@@ -19,6 +19,7 @@
       height: 100%;
       background: #000;
       font-family: 'Montserrat', sans-serif;
+      color: #fff;
     }
 
     .hero {
@@ -40,7 +41,6 @@
       top: 50%;
       transform: translateY(-50%);
       text-align: left;
-      color: #fff;
       z-index: 2;
     }
 
@@ -61,13 +61,8 @@
       animation-delay: 1.6s;
     }
 
-    .name.first {
-      animation-delay: 0.6s;
-    }
-
-    .name.second {
-      animation-delay: 2.2s;
-    }
+    .name.first { animation-delay: 0.6s; }
+    .name.second { animation-delay: 2.2s; }
 
     .subtitle {
       margin-top: 25px;
@@ -83,20 +78,19 @@
       margin-left: 10px;
       font-weight: 500;
       font-size: 14px;
-      color: #fff;
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3.5s;
     }
 
-    /* Стилі для таймера */
-    .countdown {
-      margin-top: 20px;
-      display: flex;
-      gap: 15px;
+    /* Стилі таймера */
+    .timer-wrapper {
+      margin-top: 30px;
       opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 4s; /* З'являється після дати */
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 4s; /* З'являється після всього тексту */
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
     }
 
     .timer-item {
@@ -105,50 +99,36 @@
 
     .timer-num {
       display: block;
-      font-size: 24px;
-      font-weight: 400;
-      min-width: 40px;
+      font-size: 28px;
+      font-weight: 300;
+      margin-bottom: 5px;
     }
 
     .timer-label {
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      opacity: 0.7;
+      letter-spacing: 2px;
+      opacity: 0.6;
     }
 
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
-    /* 📱 Мобільна версія */
+    /* Мобільна версія */
     @media (max-width: 768px) {
       .content {
         right: 50%;
         transform: translate(50%, -50%);
         text-align: center;
+        width: 100%;
       }
-
-      .name {
-        font-size: 42px;
-      }
-
-      .countdown {
-        justify-content: center;
-      }
-
-      .subtitle {
-        font-size: 14px;
-      }
+      .name { font-size: 42px; }
+      .countdown { justify-content: center; }
     }
   </style>
 </head>
@@ -167,28 +147,33 @@
         Wedding Day <span class="date">17.07.2026</span>
       </div>
 
-      <div class="countdown" id="timer">
-        <div class="timer-item">
-          <span class="timer-num" id="days">00</span>
-          <span class="timer-label">днів</span>
-        </div>
-        <div class="timer-item">
-          <span class="timer-num" id="hours">00</span>
-          <span class="timer-label">год</span>
-        </div>
-        <div class="timer-item">
-          <span class="timer-num" id="minutes">00</span>
-          <span class="timer-label">хв</span>
-        </div>
-        <div class="timer-item">
-          <span class="timer-num" id="seconds">00</span>
-          <span class="timer-label">сек</span>
+      <div class="timer-wrapper">
+        <div class="countdown">
+          <div class="timer-item">
+            <span class="timer-num" id="days">00</span>
+            <span class="timer-label">днів</span>
+          </div>
+          <div class="timer-item">
+            <span class="timer-num" id="hours">00</span>
+            <span class="timer-label">год</span>
+          </div>
+          <div class="timer-item">
+            <span class="timer-num" id="minutes">00</span>
+            <span class="timer-label">хв</span>
+          </div>
+          <div class="timer-item">
+            <span class="timer-num" id="seconds">00</span>
+            <span class="timer-label">сек</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <script>
-    function updateCountdown() {
-      const targetDate = new Date("July 17, 2026 00:00:00").
-        
+    function startTimer() {
+      // Вказуємо дату чітко: Рік, Місяць (0-11), День
+      // Липень - це місяць 6 (бо січень - 0)
+      const targetDate = new Date(2026, 6, 17, 0, 0, 0).getTime();
+
+      function update() {
