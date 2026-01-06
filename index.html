@@ -10,7 +10,7 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { width: 100%; height: 100%; background: #000; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+    body, html { width: 100%; height: 100%; background: #000; font-family: 'Montserrat', sans-serif; }
 
     .hero {
       position: relative;
@@ -20,6 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      overflow: hidden;
     }
 
     .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
@@ -27,15 +28,17 @@
     .content {
       position: relative;
       z-index: 2;
-      margin-right: 15%;
+      margin-right: 10%;
       color: #fff;
       text-align: left;
-      width: 320px;
+      width: 100%;
+      max-width: 350px;
     }
 
     .name {
       font-family: 'Playfair Display', serif;
-      font-size: 64px;
+      font-size: clamp(48px, 10vw, 64px);
+      line-height: 1.1;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1s ease forwards;
@@ -45,7 +48,7 @@
     .and { font-size: 22px; margin: 10px 0; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1s; }
 
     .subtitle {
-      margin-top: 25px;
+      margin: 20px 0 35px 0;
       font-size: 16px;
       letter-spacing: 1px;
       opacity: 0;
@@ -54,29 +57,28 @@
     }
 
     /* ПЛЕЄР */
-    .player-section {
-      margin-top: 40px;
+    .player-container {
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 2.5s;
+      padding-right: 20px;
     }
 
-    .progress-container {
+    .progress-box {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 25px;
-      cursor: pointer;
     }
 
-    .progress-bar {
+    .bar-bg {
       flex: 1;
       height: 2px;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.3);
       position: relative;
     }
 
-    .progress-fill {
+    .bar-fill {
       width: 0%;
       height: 100%;
       background: #fff;
@@ -88,26 +90,26 @@
       left: 0%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       background: #fff;
       border-radius: 50%;
     }
 
-    .time { font-size: 13px; min-width: 35px; font-weight: 300; }
+    .time { font-size: 12px; min-width: 35px; color: rgba(255,255,255,0.8); }
 
     .controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 5px;
+      max-width: 300px;
     }
 
-    .btn { background: none; border: none; color: #fff; cursor: pointer; transition: 0.3s; }
+    .btn { background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; }
     
-    .play-btn {
-      width: 65px;
-      height: 65px;
+    .play-circle {
+      width: 60px;
+      height: 60px;
       background: #fff;
       border-radius: 50%;
       color: #000;
@@ -115,16 +117,24 @@
       align-items: center;
       justify-content: center;
     }
-
-    .play-btn span { font-size: 40px; }
+    .play-circle span { font-size: 42px; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
+    /* Мобільна адаптація */
     @media (max-width: 768px) {
       .hero { justify-content: center; }
-      .content { margin-right: 0; text-align: center; width: 280px; }
-      .controls { justify-content: center; gap: 20px; }
+      .content { 
+        margin-right: 0; 
+        text-align: center; 
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .player-container { padding-right: 0; width: 100%; max-width: 280px; }
+      .controls { gap: 10px; width: 100%; }
     }
   </style>
 </head>
@@ -142,12 +152,5 @@
         Ми створюємо нашу спільну історію <br> <b>17.07.2026</b>
       </div>
 
-      <div class="player-section">
-        <div class="progress-container" id="progress-wrapper">
-          <span class="time" id="current">0:00</span>
-          <div class="progress-bar">
-            <div class="progress-fill" id="fill"></div>
-            <div class="dot" id="dot"></div>
-          </div>
-          <span class="time" id="total">0:00</span>
-        </div>
+      <div class="player-container">
+        <div class="progress-box">
