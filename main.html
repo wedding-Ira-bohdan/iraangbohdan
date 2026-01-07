@@ -26,7 +26,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background: url('https://i.ibb.co/vChsmpGR/dfc21227-a5c2-4fd4-b6ec-60e0284f76fd.jpg') center/cover no-repeat;
+      background: url('https://i.ibb.co/8DtYs738/IMG-5685.jpg') center / cover no-repeat;
     }
 
     .overlay {
@@ -79,13 +79,12 @@
       animation-delay: 3.2s;
     }
 
-    /* Дата біла */
     .subtitle .date {
       display: inline-block;
       margin-left: 10px;
       font-weight: 500;
       font-size: 14px;
-      color: #fff; /* білий колір */
+      color: #fff;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.5s;
@@ -123,8 +122,6 @@
       .subtitle .date {
         font-size: 12px;
         margin-left: 5px;
-        display: inline-block;
-        color: #fff; /* білий колір */
       }
     }
   </style>
@@ -146,7 +143,7 @@
     </div>
   </section>
 
-<section id="wedding-timer" style="background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5;">
+  <section id="wedding-timer" style="background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5;">
     <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
       
       <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
@@ -154,24 +151,24 @@
       </p>
       
       <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px;">
+          <span id="d_new" style="display: block; font-size: 38px; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; letter-spacing: 2px; opacity: 0.6;">ДНІВ</span>
         </div>
 
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px;">
+          <span id="h_new" style="display: block; font-size: 38px; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; letter-spacing: 2px; opacity: 0.6;">ГОД</span>
         </div>
 
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="m_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">хв</span>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px;">
+          <span id="m_new" style="display: block; font-size: 38px; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; letter-spacing: 2px; opacity: 0.6;">ХВ</span>
         </div>
 
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="s_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">сек</span>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px;">
+          <span id="s_new" style="display: block; font-size: 38px; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; letter-spacing: 2px; opacity: 0.6;">СЕК</span>
         </div>
       </div>
     </div>
@@ -179,7 +176,6 @@
 
   <script>
     (function() {
-      // Дата весілля
       const target = new Date(2026, 6, 17, 0, 0, 0).getTime();
 
       function update() {
@@ -187,30 +183,26 @@
         const diff = target - now;
 
         if (diff <= 0) {
-          document.getElementById("wedding-timer").innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px;'>Цей щасливий день настав!</div>";
+          document.getElementById("wedding-timer").innerHTML =
+            "<div style='padding:40px;font-family:Playfair Display,serif;font-size:24px;'>Цей щасливий день настав!</div>";
           return;
         }
 
         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
 
-        const dEl = document.getElementById("d_new");
-        const hEl = document.getElementById("h_new");
-        const mEl = document.getElementById("m_new");
-        const sEl = document.getElementById("s_new");
-
-        if(dEl) dEl.innerText = d;
-        if(hEl) hEl.innerText = h.toString().padStart(2, '0');
-        if(mEl) mEl.innerText = m.toString().padStart(2, '0');
-        if(sEl) sEl.innerText = s.toString().padStart(2, '0');
+        document.getElementById("d_new").innerText = d;
+        document.getElementById("h_new").innerText = h.toString().padStart(2, "0");
+        document.getElementById("m_new").innerText = m.toString().padStart(2, "0");
+        document.getElementById("s_new").innerText = s.toString().padStart(2, "0");
       }
 
       setInterval(update, 1000);
       update();
     })();
   </script>
-  
+
 </body>
 </html>
