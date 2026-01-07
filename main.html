@@ -1,4 +1,166 @@
-font-family: 'Playfair Display', serif;">00</span>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Ірина & Богдан</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('https://i.ibb.co/vChsmpGR/dfc21227-a5c2-4fd4-b6ec-60e0284f76fd.jpg') center/cover no-repeat;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .content {
+      position: absolute;
+      right: 30%;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: left;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.3s ease forwards;
+    }
+
+    .and {
+      font-size: 22px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1.6s;
+    }
+
+    .name.first {
+      animation-delay: 0.6s;
+    }
+
+    .name.second {
+      animation-delay: 2.2s;
+    }
+
+    .subtitle {
+      margin-top: 25px;
+      font-size: 16px;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.2s;
+    }
+
+    /* Дата біла */
+    .subtitle .date {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #fff; /* білий колір */
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 📱 Мобільна версія */
+    @media (max-width: 768px) {
+      .content {
+        right: 50%;
+        transform: translate(50%, -50%);
+        text-align: center;
+      }
+
+      .name {
+        font-size: 42px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+
+      .subtitle .date {
+        font-size: 12px;
+        margin-left: 5px;
+        display: inline-block;
+        color: #fff; /* білий колір */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <div class="name first">Ірина</div>
+      <div class="and">and</div>
+      <div class="name second">Богдан</div>
+
+      <div class="subtitle">
+        Wedding Day <span class="date">17.07.2026</span>
+      </div>
+    </div>
+  </section>
+
+<section id="wedding-timer" style="background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5;">
+    <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
+      
+      <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
+        До нашої події залишилося:
+      </p>
+      
+      <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
+        </div>
+
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
           <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
         </div>
 
