@@ -26,18 +26,36 @@
     }
 
     .envelope {
+      position: relative;
       width: 90%;
       max-width: 460px;
-      background: #fdfdfd; /* Колір паперу */
-      padding: 50px 35px;
+      background: #fdfdfd;
+      padding: 60px 40px;
       text-align: center;
       cursor: pointer;
       box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-      transition: transform 0.4s ease, opacity 0.6s ease;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+      
+      /* Цікава обводка через border та внутрішню лінію */
+      border: 1px solid #d4af37; /* Тонка золотиста лінія по краю */
     }
 
+    /* Внутрішня декоративна рамка */
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 2px solid #d4af37;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Ефект при наведенні */
     .envelope:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     h1 {
@@ -45,6 +63,7 @@
       margin-bottom: 25px;
       font-weight: 400;
       color: #1a1a1a;
+      position: relative;
     }
 
     p {
@@ -52,6 +71,7 @@
       font-size: 18px;
       line-height: 1.6;
       color: #444;
+      padding: 0 10px;
     }
 
     .hint {
@@ -61,6 +81,31 @@
       text-transform: uppercase;
       opacity: 0.5;
       color: #000;
+    }
+
+    /* --- Налаштування для компʼютерної версії (Desktop) --- */
+    @media (min-width: 1024px) {
+      .envelope {
+        max-width: 650px; /* Збільшуємо ширину */
+        padding: 100px 60px; /* Збільшуємо внутрішні відступи */
+      }
+
+      h1 {
+        font-size: 42px; /* Більший заголовок */
+        margin-bottom: 40px;
+      }
+
+      p {
+        font-size: 24px; /* Більший текст */
+      }
+
+      .envelope::before {
+        top: 25px;
+        left: 25px;
+        right: 25px;
+        bottom: 25px;
+        border-width: 3px; /* Трохи товстіша рамка на великих екранах */
+      }
     }
   </style>
 </head>
@@ -77,11 +122,9 @@
     function openSite() {
       const env = document.querySelector('.envelope');
       
-      // Ефект зникнення
       env.style.opacity = '0';
-      env.style.transform = 'scale(0.95)';
+      env.style.transform = 'scale(1.1) translateY(-20px)'; // Додав легкий ефект "вильоту" вгору
 
-      // Перехід на другу сторінку через 0.6 секунди
       setTimeout(() => {
         window.location.href = "main.html"; 
       }, 600);
