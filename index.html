@@ -5,6 +5,14 @@
   <title>Запрошення</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Запрошення на весілля Ірини та Богдана">
+  <meta property="og:description" content="Натисніть, щоб відкрити наше особливе запрошення">
+  <meta property="og:image" content="https://annavoytovich2003-lang.github.io/iraangbohdan/preview.jpg">
+  <meta property="og:url" content="https://annavoytovich2003-lang.github.io/iraangbohdan/">
+  
+  <meta name="theme-color" content="#2B160E">
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
 
   <style>
@@ -35,12 +43,9 @@
       cursor: pointer;
       box-shadow: 0 25px 60px rgba(0,0,0,0.5);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
-      
-      /* Цікава обводка через border та внутрішню лінію */
-      border: 1px solid #d4af37; /* Тонка золотиста лінія по краю */
+      border: 1px solid #d4af37;
     }
 
-    /* Внутрішня декоративна рамка */
     .envelope::before {
       content: '';
       position: absolute;
@@ -53,7 +58,6 @@
       opacity: 0.6;
     }
 
-    /* Ефект при наведенні */
     .envelope:hover {
       transform: scale(1.05);
     }
@@ -83,20 +87,19 @@
       color: #000;
     }
 
-    /* --- Налаштування для компʼютерної версії (Desktop) --- */
     @media (min-width: 1024px) {
       .envelope {
-        max-width: 650px; /* Збільшуємо ширину */
-        padding: 100px 60px; /* Збільшуємо внутрішні відступи */
+        max-width: 650px;
+        padding: 100px 60px;
       }
 
       h1 {
-        font-size: 42px; /* Більший заголовок */
+        font-size: 42px;
         margin-bottom: 40px;
       }
 
       p {
-        font-size: 24px; /* Більший текст */
+        font-size: 24px;
       }
 
       .envelope::before {
@@ -104,7 +107,7 @@
         left: 25px;
         right: 25px;
         bottom: 25px;
-        border-width: 3px; /* Трохи товстіша рамка на великих екранах */
+        border-width: 3px;
       }
     }
   </style>
@@ -123,7 +126,7 @@
       const env = document.querySelector('.envelope');
       
       env.style.opacity = '0';
-      env.style.transform = 'scale(1.1) translateY(-20px)'; // Додав легкий ефект "вильоту" вгору
+      env.style.transform = 'scale(1.1) translateY(-20px)';
 
       setTimeout(() => {
         window.location.href = "main.html"; 
