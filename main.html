@@ -26,7 +26,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      background: url('https://i.ibb.co/vChsmpGR/dfc21227-a5c2-4fd4-b6ec-60e0284f76fd.jpg') center/cover no-repeat;
+      background: url('https://i.ibb.co/8DtYs738/IMG-5685.jpg') center/cover no-repeat;
     }
 
     .overlay {
@@ -85,12 +85,12 @@
       animation-delay: 3.5s;
     }
 
-    /* Dress Code */
+    /* Стилі для блоку Dress Code */
     .dress-code-section {
-      background: #E0DDD5;
+      background: #E0DDD5; /* Світлий відтінок з вашої палітри */
       padding: 100px 0;
       text-align: center;
-      color: #2B160E;
+      color: #2B160E; /* Темно-коричневий для тексту */
     }
 
     .dress-title {
@@ -121,20 +121,17 @@
     .palette {
       display: flex;
       justify-content: center;
-      gap: 18px;
+      gap: 15px;
       flex-wrap: wrap;
       margin-bottom: 30px;
     }
 
-    .photo-item {
-      width: 70px;
-      height: 70px;
+    .color-item {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.18);
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     @keyframes fadeUp {
@@ -152,14 +149,9 @@
         text-align: center;
         width: 100%;
       }
-
       .name { font-size: 42px; }
       .dress-title { font-size: 32px; }
-
-      .photo-item {
-        width: 55px;
-        height: 55px;
-      }
+      .color-item { width: 40px; height: 40px; }
     }
   </style>
 </head>
@@ -177,15 +169,29 @@
     </div>
   </section>
 
-  <section id="wedding-timer" style="background: #2B160E; padding: 80px 0; text-align: center; color: #fff;">
-    <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8;">
-      До нашої події залишилося:
-    </p>
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-      <div><span id="d_new">00</span> днів</div>
-      <div><span id="h_new">00</span> год</div>
-      <div><span id="m_new">00</span> хв</div>
-      <div><span id="s_new">00</span> сек</div>
+  <section id="wedding-timer" style="background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5;">
+    <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;"> 
+      <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
+        До нашої події залишилося:
+      </p>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
+        </div>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
+        </div>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="m_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">хв</span>
+        </div>
+        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+          <span id="s_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">сек</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -193,32 +199,145 @@
     <div class="dress-title">Dress Code</div>
     <div class="divider"></div>
     <p class="dress-text">
-      Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах.
+      Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+      Це допоможе створити особливу гармонію нашої події.
     </p>
-
+    
     <div class="palette">
-      <div class="photo-item" style="background-image: url('photo1.jpg');"></div>
-      <div class="photo-item" style="background-image: url('photo2.jpg');"></div>
-      <div class="photo-item" style="background-image: url('photo3.jpg');"></div>
-      <div class="photo-item" style="background-image: url('photo4.jpg');"></div>
-      <div class="photo-item" style="background-image: url('photo5.jpg');"></div>
-    </div>
+      <div class="color-item" style="background-color: #000000;"></div> <div class="color-item" style="background-color: #4B2E1D;"></div> <div class="color-item" style="background-color: #8D735B;"></div> <div class="color-item" style="background-color: #B29D8D;"></div> <div class="color-item" style="background-color: #DED6CC;"></div> <div class="color-item" style="background-color: #FFFFFF;"></div> </div>
 
     <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">
-      Стиль: Semi-Formal
+      Стиль: Elegant
     </p>
   </section>
 
   <script>
-    const target = new Date(2026, 6, 17).getTime();
-    setInterval(() => {
-      const diff = target - new Date().getTime();
-      document.getElementById("d_new").innerText = Math.floor(diff / 86400000);
-      document.getElementById("h_new").innerText = Math.floor(diff / 3600000) % 24;
-      document.getElementById("m_new").innerText = Math.floor(diff / 60000) % 60;
-      document.getElementById("s_new").innerText = Math.floor(diff / 1000) % 60;
-    }, 1000);
+    (function() {
+      const target = new Date(2026, 6, 17, 0, 0, 0).getTime();
+
+      function update() {
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          document.getElementById("wedding-timer").innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px;'>Цей щасливий день настав!</div>";
+          return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById("d_new");
+        const hEl = document.getElementById("h_new");
+        const mEl = document.getElementById("m_new");
+        const sEl = document.getElementById("s_new");
+
+        if(dEl) dEl.innerText = d;
+        if(hEl) hEl.innerText = h.toString().padStart(2, '0');
+        if(mEl) mEl.innerText = m.toString().padStart(2, '0');
+        if(sEl) sEl.innerText = s.toString().padStart(2, '0');
+      }
+
+      setInterval(update, 1000);
+      update();
+    })();
   </script>
 
+<style>
+  .location-section {
+    background-color: #f4ece4;
+    padding: 80px 20px;
+  }
+
+  .location-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .location-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #6b5c52;
+    margin-bottom: 30px;
+  }
+
+  .location-icon {
+    font-size: 32px;
+    margin-left: 10px;
+  }
+
+  .location-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #4a4038;
+  }
+
+  .location-address {
+    font-size: 18px;
+    color: #7a6a60;
+    margin-bottom: 20px;
+  }
+
+  .map-hint {
+    font-size: 14px;
+    color: #8a7a70;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .location-map a {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 360px;
+    border: 0;
+    pointer-events: none; /* важливо: щоб клік йшов по лінку */
+  }
+
+  @media (max-width: 600px) {
+    .location-title {
+      font-size: 32px;
+    }
+  }
+</style>
+
+<section class="location-section">
+  <div class="location-container">
+
+    <h2 class="location-title">
+      Локація <span class="location-icon">📍</span>
+    </h2>
+
+    <p class="location-name">Готель «Айвенго»</p>
+    <p class="location-address">
+      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306
+    </p>
+
+    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
+
+    <div class="location-map">
+      <a 
+        href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
+        target="_blank"
+        rel="noopener"
+      >
+        <iframe
+          src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
+          loading="lazy">
+        </iframe>
+      </a>
+    </div>
+
+  </div>
+</section>  
+  
 </body>
 </html>
