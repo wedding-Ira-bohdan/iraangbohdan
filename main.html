@@ -61,7 +61,7 @@
     .location-map a { display: block; border-radius: 12px; overflow: hidden; }
     .location-map iframe { width: 100%; height: 360px; border: 0; pointer-events: none; }
 
-    /* Scroll Down Arrow with Line */
+    /* Scroll Down Arrow (Line + Triangle) */
     .scroll-down {
       position: absolute;
       bottom: 40px;
@@ -73,7 +73,12 @@
       flex-direction: column;
       align-items: center;
     }
-
+    .scroll-down .line {
+      width: 2px;
+      height: 30px; /* довжина лінії */
+      background: #fff;
+      animation: bounce 1.2s infinite;
+    }
     .scroll-down .arrow {
       width: 0;
       height: 0;
@@ -81,27 +86,18 @@
       border-right: 10px solid transparent;
       border-top: 15px solid #fff;
       animation: bounce 1.2s infinite;
-      margin-bottom: 5px;
     }
 
-    .scroll-down .line {
-      width: 2px;
-      height: 30px;
-      background: #fff;
-      animation: bounce-line 1.2s infinite;
-    }
-
+    /* Анімація для стрілки */
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(8px); }
       60% { transform: translateY(4px); }
     }
 
-    @keyframes bounce-line {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(8px); }
-      60% { transform: translateY(4px); }
-    }
+    /* Animations */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -110,18 +106,14 @@
       .dress-title { font-size: 32px; }
       .color-item { width: 40px; height: 40px; }
       .scroll-down { bottom: 20px; }
+      .scroll-down .line { height: 20px; }
       .scroll-down .arrow {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         border-top: 12px solid #fff;
       }
-      .scroll-down .line { height: 20px; }
     }
     @media (max-width: 600px) { .location-title { font-size: 32px; } }
-
-    /* Animations */
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body>
@@ -136,10 +128,10 @@
       <div class="subtitle">Wedding Day <span class="date">17.07.2026</span></div>
     </div>
 
-    <!-- Scroll Down Arrow with Line -->
+    <!-- Scroll Down Arrow with Line on Top -->
     <a href="#wedding-timer" class="scroll-down">
-      <div class="arrow"></div>
       <div class="line"></div>
+      <div class="arrow"></div>
     </a>
   </section>
 
