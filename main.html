@@ -194,3 +194,151 @@
       </div>
     </div>
   </section>
+
+  
+  <section class="dress-code-section">
+    <div class="dress-title">Dress Code</div>
+    <div class="divider"></div>
+    <p class="dress-text">
+      Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+      Це допоможе створити особливу гармонію нашої події.
+    </p>
+    
+    <div class="palette">
+      <div class="color-item" style="background-color: #000000;"></div> <div class="color-item" style="background-color: #4B2E1D;"></div> <div class="color-item" style="background-color: #8D735B;"></div> <div class="color-item" style="background-color: #B29D8D;"></div> <div class="color-item" style="background-color: #DED6CC;"></div> <div class="color-item" style="background-color: #FFFFFF;"></div> </div>
+
+    <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">
+      Стиль: Elegant
+    </p>
+  </section>
+
+  <script>
+    (function() {
+      const target = new Date(2026, 6, 17, 0, 0, 0).getTime();
+
+      function update() {
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          document.getElementById("wedding-timer").innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px;'>Цей щасливий день настав!</div>";
+          return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById("d_new");
+        const hEl = document.getElementById("h_new");
+        const mEl = document.getElementById("m_new");
+        const sEl = document.getElementById("s_new");
+
+        if(dEl) dEl.innerText = d;
+        if(hEl) hEl.innerText = h.toString().padStart(2, '0');
+        if(mEl) mEl.innerText = m.toString().padStart(2, '0');
+        if(sEl) sEl.innerText = s.toString().padStart(2, '0');
+      }
+
+      setInterval(update, 1000);
+      update();
+    })();
+  </script>
+
+<style>
+  .location-section {
+    background-color: #f4ece4;
+    padding: 80px 20px;
+  }
+
+  .location-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .location-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #6b5c52;
+    margin-bottom: 30px;
+  }
+
+  .location-icon {
+    font-size: 32px;
+    margin-left: 10px;
+  }
+
+  .location-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #4a4038;
+  }
+
+  .location-address {
+    font-size: 18px;
+    color: #7a6a60;
+    margin-bottom: 20px;
+  }
+
+  .map-hint {
+    font-size: 14px;
+    color: #8a7a70;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .location-map a {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 360px;
+    border: 0;
+    pointer-events: none; /* важливо: щоб клік йшов по лінку */
+  }
+
+  @media (max-width: 600px) {
+    .location-title {
+      font-size: 32px;
+    }
+  }
+</style>
+
+<section class="location-section">
+  <div class="location-container">
+
+    <h2 class="location-title">
+      Локація <span class="location-icon">📍</span>
+    </h2>
+
+    <p class="location-name">Готель «Айвенго»</p>
+    <p class="location-address">
+      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306
+    </p>
+
+    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
+
+    <div class="location-map">
+      <a 
+        href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
+        target="_blank"
+        rel="noopener"
+      >
+        <iframe
+          src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
+          loading="lazy">
+        </iframe>
+      </a>
+    </div>
+
+  </div>
+</section>  
+  
+</body>
+</html>
