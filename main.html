@@ -254,6 +254,61 @@
   }
 </style>
 
+<!-- ================== ПРИСУТНІСТЬ НА ВЕСІЛЛІ ================== -->
+<section class="attendance-section">
+  <div class="attendance-container">
+    <h2 class="attendance-title">Присутність на весіллі</h2>
+    <div class="divider"></div>
+
+    <!-- Форма з Formspree -->
+    <form class="attendance-form" action="https://formspree.io/f/mnqwlqyo" method="POST">
+      <label>Ім’я та прізвище</label>
+      <input type="text" name="name" required>
+
+      <p class="attendance-question">Чи будете ви присутні?</p>
+
+      <label class="radio">
+        <input type="radio" name="attendance" value="Так, прийду" required>
+        <span>Так, прийду</span>
+      </label>
+
+      <label class="radio">
+        <input type="radio" name="attendance" value="Так, прийду з парою">
+        <span>Так, прийду з парою</span>
+      </label>
+
+      <label class="radio">
+        <input type="radio" name="attendance" value="Ні, на жаль, не зможу">
+        <span>Ні, на жаль, не зможу</span>
+      </label>
+
+      <!-- Для надсилання на Formspree -->
+      <input type="hidden" name="_replyto" value="anna.voy5@icloud.com">
+      <button type="submit">Підтвердити</button>
+    </form>
+  </div>
+</section>
+
+<style>
+.attendance-section {
+  background: #E0DDD5;
+  padding: 100px 20px;
+  text-align: center;
+  color: #2B160E;
+}
+.attendance-container { max-width: 500px; margin: 0 auto; }
+.attendance-title { font-family: 'Playfair Display', serif; font-size: 38px; font-style: italic; margin-bottom: 20px; }
+.divider { width: 50px; height: 1px; background: #2B160E; margin: 0 auto 30px; opacity: 0.3; }
+.attendance-form label { display: block; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.attendance-form input[type="text"] { width: 100%; padding: 14px; border: 1px solid rgba(0,0,0,0.2); background: transparent; font-family: 'Montserrat', sans-serif; margin-bottom: 30px; }
+.attendance-question { font-size: 15px; margin-bottom: 15px; font-weight: 400; }
+.radio { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; font-size: 14px; cursor: pointer; }
+.radio input { accent-color: #2B160E; }
+.attendance-form button { margin-top: 30px; padding: 14px 40px; background: #2B160E; color: #fff; border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 3px; text-transform: uppercase; font-size: 11px; cursor: pointer; transition: opacity 0.3s ease; }
+.attendance-form button:hover { opacity: 0.85; }
+@media (max-width: 768px) { .attendance-title { font-size: 32px; } }
+</style>
+  
   <!-- ================== LOCATION SECTION ================== -->
   <section class="location-section">
     <div class="location-container">
