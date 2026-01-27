@@ -64,49 +64,20 @@
     /* Scroll Down Arrow */
     .scroll-down {
       position: absolute;
-      right: 30px;
       bottom: 40px;
-      width: 30px;
-      height: 30px;
+      left: 50%;
+      transform: translateX(-50%);
       cursor: pointer;
       z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .scroll-down span {
-      display: block;
-      width: 3px;
-      height: 15px;
-      background: #fff;
-      position: relative;
-      animation: bounce 1.5s infinite;
+    .scroll-down .arrow {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid #fff;
     }
-
-    .scroll-down span::before,
-    .scroll-down span::after {
-      content: '';
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: #fff;
-      right: 0;
-      bottom: 0;
-    }
-
-    .scroll-down span::before { transform: translateY(5px) rotate(45deg); }
-    .scroll-down span::after { transform: translateY(5px) rotate(-45deg); }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(5px); }
-      60% { transform: translateY(3px); }
-    }
-
-    /* Animations */
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { to { opacity: 1; } }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -114,9 +85,18 @@
       .name { font-size: 42px; }
       .dress-title { font-size: 32px; }
       .color-item { width: 40px; height: 40px; }
-      .scroll-down { right: 50%; transform: translateX(50%); }
+      .scroll-down { bottom: 20px; }
+      .scroll-down .arrow {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 12px solid #fff;
+      }
     }
     @media (max-width: 600px) { .location-title { font-size: 32px; } }
+
+    /* Animations */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body>
@@ -132,7 +112,9 @@
     </div>
 
     <!-- Scroll Down Arrow -->
-    <a href="#wedding-timer" class="scroll-down"><span></span></a>
+    <a href="#wedding-timer" class="scroll-down">
+      <div class="arrow"></div>
+    </a>
   </section>
 
   <!-- ================== COUNTDOWN TIMER ================== -->
