@@ -114,27 +114,70 @@
   </section>
 
   <!-- ================== DRESS CODE SECTION ================== -->
-  <section class="dress-code-section">
-    <div class="dress-title">Dress Code</div>
-    <div class="divider"></div>
-    <p class="dress-text">
-      Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
-      Це допоможе створити особливу гармонію нашої події.
-    </p>
-    
-    <div class="palette">
-      <div class="color-item" style="background-color: #000000;"></div>
-      <div class="color-item" style="background-color: #4B2E1D;"></div>
-      <div class="color-item" style="background-color: #8D735B;"></div>
-      <div class="color-item" style="background-color: #B29D8D;"></div>
-      <div class="color-item" style="background-color: #DED6CC;"></div>
-      <div class="color-item" style="background-color: #FFFFFF;"></div>
-    </div>
+<section class="dress-code-section">
+  
+  <!-- Заголовок секції -->
+  <div class="dress-title">Dress Code</div>
+  
+  <!-- Розділювач -->
+  <div class="divider"></div>
+  
+  <!-- Текст-пояснення -->
+  <p class="dress-text">
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+    Це допоможе створити особливу гармонію нашої події.
+  </p>
+  
+  <!-- Палітра з фотографіями (5 фото) -->
+  <div class="palette">
+    <div class="color-item"><img src="photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item"><img src="photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item"><img src="photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item"><img src="photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item"><img src="photo5.jpg" alt="Фото 5"></div>
+  </div>
+  
+  <!-- Стиль події -->
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">
+    Стиль: Elegant
+  </p>
 
-    <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">
-      Стиль: Elegant
-    </p>
-  </section>
+</section>
+
+<style>
+  .palette {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .color-item {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  .color-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* щоб фото не спотворювалось */
+    display: block;
+  }
+
+  /* Адаптивність для мобільних */
+  @media (max-width: 768px) {
+    .color-item {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
 
   <!-- ================== LOCATION SECTION ================== -->
   <section class="location-section">
