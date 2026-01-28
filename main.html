@@ -18,7 +18,7 @@
 
     .hero {
       position: relative;
-      width: 100%; height: 100vh;
+      width: 100%; min-height: 100vh;
       background: url('https://i.ibb.co/8DtYs738/IMG-5685.jpg') center/cover no-repeat;
       display: flex; justify-content: center; align-items: center;
       text-align: center; color: #fff;
@@ -39,7 +39,8 @@
     .name.first { animation-delay: 0.6s; }
     .name.second { animation-delay: 2.2s; }
 
-    .and { font-size: 22px; margin: 10px 0; letter-spacing: 2px;
+    .and {
+      font-size: 22px; margin: 10px 0; letter-spacing: 2px;
       opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1.6s;
     }
 
@@ -49,8 +50,16 @@
     }
     .subtitle .date { margin-left: 10px; font-weight: 500; font-size: 14px; }
 
+    .mini-player-wrapper {
+      margin-top: 22px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 3.5s; /* Плеєр з'являється трохи пізніше */
+    }
+
     .mini-player {
-      margin-top: 22px; display: flex; justify-content: center; gap: 20px;
+      display: flex; justify-content: center; gap: 20px;
       align-items: center;
     }
     .mini-player button {
@@ -105,10 +114,12 @@
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
 
-      <div class="mini-player">
-        <button id="prev">⏮</button>
-        <button id="play">▶</button>
-        <button id="next">⏭</button>
+      <div class="mini-player-wrapper">
+        <div class="mini-player">
+          <button id="prev" aria-label="Previous track">⏮</button>
+          <button id="play" aria-label="Play/Pause">▶</button>
+          <button id="next" aria-label="Next track">⏭</button>
+        </div>
       </div>
     </div>
   </div>
@@ -119,11 +130,11 @@
   </a>
 </section>
 
-<audio id="audio" loop></audio>
+<audio id="audio" preload="auto" loop></audio>
 
 <script>
   const tracks = [
-    "track1.mp3",
+    "track1.mp3", // Замінити на ваші файли
     "track2.mp3"
   ];
 
@@ -133,9 +144,14 @@
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
 
-  function loadTrack(i) {
+  function loadTrack(i, autoplay = false) {
     audio.src = tracks[i];
-    audio.play();
+    audio.load();
+    if (autoplay) {
+      audio.play().catch(() => {
+        console.log("Автоплей заблоковано браузером");
+      });
+    }
     playBtn.textContent = "⏸";
   }
 
@@ -151,15 +167,15 @@
 
   prevBtn.addEventListener("click", () => {
     current = (current - 1 + tracks.length) % tracks.length;
-    loadTrack(current);
+    loadTrack(current, true);
   });
 
   nextBtn.addEventListener("click", () => {
     current = (current + 1) % tracks.length;
-    loadTrack(current);
+    loadTrack(current, true);
   });
 
-  // Start first track automatically
+  // Старт першого треку після першої взаємодії з плеєром
   loadTrack(current);
 </script>
 
