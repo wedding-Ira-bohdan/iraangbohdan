@@ -17,79 +17,50 @@
     html, body {
       width: 100%;
       height: 100%;
-      font-family: 'Playfair Display', serif;
-      overflow: hidden;
+      background: #2B160E; /* Темно-коричневий фон */
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
     }
 
-    /* Фон */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('images/photo7.jpg') no-repeat center center;
-      background-size: cover;
-      filter: brightness(0.6);
-      z-index: -1;
-    }
-
-    /* КАРТКА ЯК НА ФОТО */
     .envelope {
       width: 90%;
-      max-width: 420px;
-
-      /* Точний айворі + паперовий градієнт */
-      background: linear-gradient(
-        180deg,
-        #ede8dd 0%,
-        #e6e0d4 55%,
-        #ded7ca 100%
-      );
-
-      padding: 58px 42px;
+      max-width: 460px;
+      background: #fdfdfd; /* Колір паперу */
+      padding: 50px 35px;
       text-align: center;
       cursor: pointer;
-
-      border-radius: 0;
-
-      /* Зовнішня + внутрішня тінь (ефект паперу) */
-      box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
       transition: transform 0.4s ease, opacity 0.6s ease;
     }
 
     .envelope:hover {
-      transform: scale(1.015);
+      transform: scale(1.02);
     }
 
     h1 {
-      font-size: 30px;
-      margin-bottom: 28px;
-      font-weight: 500;
-      font-style: italic;
-      color: #2a2a2a;
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: 400;
+      color: #1a1a1a;
     }
 
     p {
-      font-size: 18px;
       font-style: italic;
-      line-height: 1.7;
-      color: #3b3b3b;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #444;
     }
 
     .hint {
-      margin-top: 42px;
-      font-size: 11px;
+      margin-top: 35px;
+      font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      opacity: 0.45;
-      color: #2a2a2a;
+      opacity: 0.5;
+      color: #000;
     }
   </style>
 </head>
@@ -98,23 +69,21 @@
 
   <div class="envelope" onclick="openSite()">
     <h1>Дорогі гості!</h1>
-    <p>
-      Запрошуємо вас розділити з нами радість<br>
-      особливої для нас події<br>
-      та стати частиною нашої історії
-    </p>
+    <p>Запрошуємо вас розділити з нами радість особливої для нас події та стати частиною нашої історії</p>
     <div class="hint">Натисніть, щоб відкрити</div>
   </div>
 
   <script>
     function openSite() {
       const env = document.querySelector('.envelope');
-
+      
+      // Ефект зникнення
       env.style.opacity = '0';
-      env.style.transform = 'scale(0.96)';
+      env.style.transform = 'scale(0.95)';
 
+      // Перехід на другу сторінку через 0.6 секунди
       setTimeout(() => {
-        window.location.href = "main.html";
+        window.location.href = "main.html"; 
       }, 600);
     }
   </script>
