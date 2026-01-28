@@ -35,19 +35,21 @@
       height: 100%;
       background: url('images/photo7.jpg') no-repeat center center;
       background-size: cover;
-      filter: brightness(0.5); /* Легке затемнення */
-      z-index: -1; /* Щоб фон був позаду всього контенту */
+      filter: brightness(0.6); /* Легке затемнення */
+      z-index: -1;
     }
 
     .envelope {
       width: 90%;
       max-width: 460px;
-      background: #fdfdfd; /* Колір паперу */
+      background: rgba(253, 253, 253, 0.85); /* Напівпрозорий білий фон */
       padding: 50px 35px;
       text-align: center;
       cursor: pointer;
       box-shadow: 0 25px 60px rgba(0,0,0,0.5);
       transition: transform 0.4s ease, opacity 0.6s ease;
+      border-radius: 12px; /* М’які краї для естетики */
+      backdrop-filter: blur(4px); /* Легке розмиття фону під квадратиком */
     }
 
     .envelope:hover {
