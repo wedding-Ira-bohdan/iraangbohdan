@@ -253,6 +253,132 @@
     }
   }
 </style>
+
+<!-- ================== EVENTS SECTION ================== -->
+<section class="events-section" style="background-image: url('images/photo6.jpg');">
+  <div class="events-overlay"></div>
+
+  <div class="events-content">
+    <h2 class="events-title">Програма дня</h2>
+
+    <div class="event-item right">
+      <span class="event-time">11:30</span>
+      <span class="event-name">Збір гостей</span>
+    </div>
+
+    <div class="event-item left">
+      <span class="event-time">12:00</span>
+      <span class="event-name">Початок церемонії</span>
+    </div>
+
+    <div class="event-item right">
+      <span class="event-time">14:00</span>
+      <span class="event-name">Початок банкету</span>
+    </div>
+
+    <div class="event-item left">
+      <span class="event-time">16:00</span>
+      <span class="event-name">Конкурси</span>
+    </div>
+
+    <div class="event-item right">
+      <span class="event-time">20:00</span>
+      <span class="event-name">Весільний торт</span>
+    </div>
+
+    <div class="event-item left">
+      <span class="event-time">22:00</span>
+      <span class="event-name">Завершення свята</span>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  /* ================== EVENTS SECTION ================== */
+.events-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 120px 20px;
+  color: #fff;
+}
+
+.events-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.events-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.events-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  margin-bottom: 80px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Події */
+.event-item {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+  margin-bottom: 50px;
+  font-size: 18px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+/* Ліва / права */
+.event-item.left { justify-content: flex-start; text-align: left; }
+.event-item.right { justify-content: flex-end; text-align: right; }
+
+/* Час і назва */
+.event-time {
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.event-name {
+  font-weight: 500;
+}
+
+/* Поява при скролі */
+.event-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .events-title { font-size: 32px; margin-bottom: 60px; }
+  .event-item { flex-direction: column; align-items: center; text-align: center; }
+  .event-item.right, .event-item.left { justify-content: center; }
+}
+</style>
+
+<script>
+// Анімація появи при скролі
+const events = document.querySelectorAll('.event-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+events.forEach(event => observer.observe(event));
+</script>
   
   <!-- ================== LOCATION SECTION ================== -->
   <section class="location-section">
