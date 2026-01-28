@@ -11,7 +11,13 @@
   <!-- Глобальні стилі -->
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; background: #000; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+    }
     a { text-decoration: none; color: inherit; }
   </style>
 </head>
@@ -20,11 +26,26 @@
 <!-- ================== HERO SECTION ================== -->
 <section class="hero">
   <div class="overlay"></div>
+
   <div class="content">
     <div class="name first">Ірина</div>
     <div class="and">and</div>
     <div class="name second">Богдан</div>
-    <div class="subtitle">Wedding Day <span class="date">17.07.2026</span></div>
+
+    <div class="subtitle">
+      Wedding Day <span class="date">17.07.2026</span>
+
+      <!-- MINI PLAYER (ТІЛЬКИ ВІН) -->
+      <div class="mini-player">
+        <button id="prev">⏮</button>
+        <button id="play">▶</button>
+        <button id="next">⏭</button>
+
+        <audio id="audio">
+          <source src="music.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
   </div>
 
   <!-- Scroll Down Arrow -->
@@ -33,7 +54,7 @@
     <div class="arrow"></div>
   </a>
 
-  <!-- CSS для HERO -->
+  <!-- CSS -->
   <style>
     .hero {
       position: relative;
@@ -41,43 +62,98 @@
       height: 100vh;
       background: url('https://i.ibb.co/8DtYs738/IMG-5685.jpg') center/cover no-repeat;
     }
-    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+
     .content {
       position: absolute;
       right: 30%;
-      top: 50%;
+      top: 35%;
       transform: translateY(-50%);
       text-align: left;
       color: #fff;
       z-index: 2;
     }
-    .name { font-family: 'Playfair Display', serif; font-size: 64px; opacity: 0; transform: translateY(20px); animation: fadeUp 1.3s ease forwards; }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.3s ease forwards;
+    }
+
     .name.first { animation-delay: 0.6s; }
     .name.second { animation-delay: 2.2s; }
-    .and { font-size: 22px; margin: 10px 0; letter-spacing: 2px; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1.6s; }
-    .subtitle { margin-top: 25px; font-size: 16px; letter-spacing: 1px; opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 3.2s; }
-    .subtitle .date { display: inline-block; margin-left: 10px; font-weight: 500; font-size: 14px; color: #fff; opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 3.5s; }
+
+    .and {
+      font-size: 22px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1.6s;
+    }
+
+    .subtitle {
+      margin-top: 25px;
+      font-size: 16px;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.2s;
+    }
+
+    .subtitle .date {
+      margin-left: 10px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    /* ===== MINI PLAYER ===== */
+    .mini-player {
+      margin-top: 22px;
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .mini-player button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .mini-player button:active {
+      transform: scale(0.9);
+    }
 
     .scroll-down {
       position: absolute;
       bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
-      cursor: pointer;
-      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
+      z-index: 10;
     }
+
     .scroll-down .line {
       width: 2px;
       height: 30px;
       background: #fff;
       animation: bounce 1.2s infinite;
     }
+
     .scroll-down .arrow {
-      width: 0;
-      height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-top: 15px solid #fff;
@@ -89,23 +165,18 @@
       40% { transform: translateY(8px); }
       60% { transform: translateY(4px); }
     }
+
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .content { right: 50%; transform: translate(50%, -50%); text-align: center; width: 100%; }
-      .name { font-size: 42px; }
-      .scroll-down { bottom: 20px; }
-      .scroll-down .line { height: 20px; }
-      .scroll-down .arrow {
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 12px solid #fff;
+      .content {
+        right: 50%;
+        transform: translate(50%, -50%);
+        text-align: center;
+        width: 100%;
       }
-    }
-  </style>
-</section>
-
+      
 <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
