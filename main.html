@@ -12,8 +12,29 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; background: #000; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+  </style>
+</head>
+<body>
 
-    /* Hero Section */
+<!-- ================== HERO SECTION ================== -->
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="name first">Ірина</div>
+    <div class="and">and</div>
+    <div class="name second">Богдан</div>
+    <div class="subtitle">Wedding Day <span class="date">17.07.2026</span></div>
+  </div>
+
+  <!-- Scroll Down Arrow -->
+  <a href="#wedding-timer" class="scroll-down">
+    <div class="line"></div>
+    <div class="arrow"></div>
+  </a>
+
+  <!-- CSS для HERO -->
+  <style>
     .hero {
       position: relative;
       width: 100%;
@@ -37,32 +58,6 @@
     .subtitle { margin-top: 25px; font-size: 16px; letter-spacing: 1px; opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 3.2s; }
     .subtitle .date { display: inline-block; margin-left: 10px; font-weight: 500; font-size: 14px; color: #fff; opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 3.5s; }
 
-    /* Dress Code Section */
-    .dress-code-section {
-      background: #E0DDD5;
-      padding: 100px 0;
-      text-align: center;
-      color: #2B160E;
-    }
-    .dress-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; margin-bottom: 20px; font-style: italic; }
-    .divider { width: 50px; height: 1px; background: #2B160E; margin: 0 auto 30px; opacity: 0.3; }
-    .dress-text { font-size: 15px; line-height: 1.8; max-width: 600px; margin: 0 auto 40px; font-weight: 300; padding: 0 20px; }
-    .palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
-    .color-item { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
-    .color-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    /* Location Section */
-    .location-section { background-color: #f4ece4; padding: 80px 20px; }
-    .location-container { max-width: 900px; margin: 0 auto; text-align: center; }
-    .location-title { font-family: 'Playfair Display', serif; font-size: 42px; color: #6b5c52; margin-bottom: 30px; }
-    .location-icon { font-size: 32px; margin-left: 10px; }
-    .location-name { font-size: 22px; font-weight: 600; margin-bottom: 10px; color: #4a4038; }
-    .location-address { font-size: 18px; color: #7a6a60; margin-bottom: 20px; }
-    .map-hint { font-size: 14px; color: #8a7a70; margin-bottom: 20px; font-style: italic; }
-    .location-map a { display: block; border-radius: 12px; overflow: hidden; }
-    .location-map iframe { width: 100%; height: 360px; border: 0; pointer-events: none; }
-
-    /* Scroll Down Arrow */
     .scroll-down {
       position: absolute;
       bottom: 40px;
@@ -89,7 +84,6 @@
       animation: bounce 1.2s infinite;
     }
 
-    /* Анімації */
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(8px); }
@@ -98,7 +92,67 @@
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    /* Events Section */
+    @media (max-width: 768px) {
+      .content { right: 50%; transform: translate(50%, -50%); text-align: center; width: 100%; }
+      .name { font-size: 42px; }
+      .scroll-down { bottom: 20px; }
+      .scroll-down .line { height: 20px; }
+      .scroll-down .arrow {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 12px solid #fff;
+      }
+    }
+  </style>
+</section>
+
+<!-- ================== COUNTDOWN TIMER ================== -->
+<section id="wedding-timer">
+  <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
+    <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
+      До нашої події залишилося:
+    </p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+        <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
+      </div>
+      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+        <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
+      </div>
+      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+        <span id="m_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">хв</span>
+      </div>
+      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
+        <span id="s_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
+        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">сек</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS для TIMER -->
+  <style>
+    #wedding-timer { background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5; }
+  </style>
+</section>
+
+<!-- ================== EVENTS SECTION ================== -->
+<section class="events-section" style="background-image: url('images/photo6.jpg');">
+  <div class="events-overlay"></div>
+  <div class="events-content">
+    <h2 class="events-title">Програма дня</h2>
+    <div class="event-item right"><span class="event-time">11:30</span><span class="event-name">Збір гостей</span></div>
+    <div class="event-item left"><span class="event-time">12:00</span><span class="event-name">Початок церемонії</span></div>
+    <div class="event-item right"><span class="event-time">14:00</span><span class="event-name">Початок банкету</span></div>
+    <div class="event-item left"><span class="event-time">16:00</span><span class="event-name">Конкурси</span></div>
+    <div class="event-item right"><span class="event-time">20:00</span><span class="event-name">Весільний торт</span></div>
+    <div class="event-item left"><span class="event-time">22:00</span><span class="event-name">Завершення свята</span></div>
+  </div>
+
+  <!-- CSS для EVENTS -->
+  <style>
     .events-section {
       position: relative;
       background-size: cover;
@@ -106,17 +160,8 @@
       padding: 120px 20px;
       color: #fff;
     }
-    .events-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-    }
-    .events-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
     .events-title {
       font-family: 'Playfair Display', serif;
       font-size: 40px;
@@ -140,185 +185,121 @@
     .event-name { font-weight: 500; }
     .event-item.show { opacity: 1; transform: translateY(0); }
 
-    /* Countdown Timer Section */
-    #wedding-timer {
-      background: #2B160E;
-      padding: 80px 0;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      z-index: 5;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .content { right: 50%; transform: translate(50%, -50%); text-align: center; width: 100%; }
-      .name { font-size: 42px; }
-      .dress-title { font-size: 32px; }
-      .color-item { width: 60px; height: 60px; }
-      .scroll-down { bottom: 20px; }
-      .scroll-down .line { height: 20px; }
-      .scroll-down .arrow {
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 12px solid #fff;
-      }
       .events-title { font-size: 32px; margin-bottom: 60px; }
       .event-item { flex-direction: column; align-items: center; text-align: center; }
       .event-item.right, .event-item.left { justify-content: center; }
     }
+  </style>
+</section>
+
+<!-- ================== DRESS CODE SECTION ================== -->
+<section class="dress-code-section">
+  <div class="dress-title">Dress Code</div>
+  <div class="divider"></div>
+  <p class="dress-text">
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+    Це допоможе створити особливу гармонію нашої події.
+  </p>
+  <div class="palette">
+    <div class="color-item"><img src="images/photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item"><img src="images/photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item"><img src="images/photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item"><img src="images/photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item"><img src="images/photo5.jpg" alt="Фото 5"></div>
+  </div>
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
+
+  <!-- CSS для DRESS CODE -->
+  <style>
+    .dress-code-section {
+      background: #E0DDD5;
+      padding: 100px 0;
+      text-align: center;
+      color: #2B160E;
+    }
+    .dress-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; margin-bottom: 20px; font-style: italic; }
+    .divider { width: 50px; height: 1px; background: #2B160E; margin: 0 auto 30px; opacity: 0.3; }
+    .dress-text { font-size: 15px; line-height: 1.8; max-width: 600px; margin: 0 auto 40px; font-weight: 300; padding: 0 20px; }
+    .palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+    .color-item { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
+    .color-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    @media (max-width: 768px) {
+      .dress-title { font-size: 32px; }
+      .color-item { width: 60px; height: 60px; }
+    }
+  </style>
+</section>
+
+<!-- ================== LOCATION SECTION ================== -->
+<section class="location-section">
+  <div class="location-container">
+    <h2 class="location-title">Локація <span class="location-icon">📍</span></h2>
+    <p class="location-name">Готель «Айвенго»</p>
+    <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306</p>
+    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
+    <div class="location-map">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
+        <iframe src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed" loading="lazy"></iframe>
+      </a>
+    </div>
+  </div>
+
+  <!-- CSS для LOCATION -->
+  <style>
+    .location-section { background-color: #f4ece4; padding: 80px 20px; }
+    .location-container { max-width: 900px; margin: 0 auto; text-align: center; }
+    .location-title { font-family: 'Playfair Display', serif; font-size: 42px; color: #6b5c52; margin-bottom: 30px; }
+    .location-icon { font-size: 32px; margin-left: 10px; }
+    .location-name { font-size: 22px; font-weight: 600; margin-bottom: 10px; color: #4a4038; }
+    .location-address { font-size: 18px; color: #7a6a60; margin-bottom: 20px; }
+    .map-hint { font-size: 14px; color: #8a7a70; margin-bottom: 20px; font-style: italic; }
+    .location-map a { display: block; border-radius: 12px; overflow: hidden; }
+    .location-map iframe { width: 100%; height: 360px; border: 0; pointer-events: none; }
+
     @media (max-width: 600px) { .location-title { font-size: 32px; } }
   </style>
-</head>
-<body>
+</section>
 
-  <!-- ================== HERO SECTION ================== -->
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="content">
-      <div class="name first">Ірина</div>
-      <div class="and">and</div>
-      <div class="name second">Богдан</div>
-      <div class="subtitle">Wedding Day <span class="date">17.07.2026</span></div>
-    </div>
+<!-- ================== SCRIPTS ================== -->
+<script>
+  // ================== COUNTDOWN SCRIPT ==================
+  (function() {
+    const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
 
-    <!-- Scroll Down Arrow -->
-    <a href="#wedding-timer" class="scroll-down">
-      <div class="line"></div>
-      <div class="arrow"></div>
-    </a>
-  </section>
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-  <!-- ================== COUNTDOWN TIMER ================== -->
-  <section id="wedding-timer">
-    <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
-      <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
-        До нашої події залишилося:
-      </p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
-        </div>
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
-        </div>
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="m_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">хв</span>
-        </div>
-        <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-          <span id="s_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-          <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">сек</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================== EVENTS SECTION ================== -->
-  <section class="events-section" style="background-image: url('images/photo6.jpg');">
-    <div class="events-overlay"></div>
-    <div class="events-content">
-      <h2 class="events-title">Програма дня</h2>
-      <div class="event-item right"><span class="event-time">11:30</span><span class="event-name">Збір гостей</span></div>
-      <div class="event-item left"><span class="event-time">12:00</span><span class="event-name">Початок церемонії</span></div>
-      <div class="event-item right"><span class="event-time">14:00</span><span class="event-name">Початок банкету</span></div>
-      <div class="event-item left"><span class="event-time">16:00</span><span class="event-name">Конкурси</span></div>
-      <div class="event-item right"><span class="event-time">20:00</span><span class="event-name">Весільний торт</span></div>
-      <div class="event-item left"><span class="event-time">22:00</span><span class="event-name">Завершення свята</span></div>
-    </div>
-  </section>
-
-  <!-- ================== DRESS CODE SECTION ================== -->
-  <section class="dress-code-section">
-    <div class="dress-title">Dress Code</div>
-    <div class="divider"></div>
-    <p class="dress-text">
-      Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
-      Це допоможе створити особливу гармонію нашої події.
-    </p>
-    <div class="palette">
-      <div class="color-item"><img src="images/photo1.jpg" alt="Фото 1"></div>
-      <div class="color-item"><img src="images/photo2.jpg" alt="Фото 2"></div>
-      <div class="color-item"><img src="images/photo3.jpg" alt="Фото 3"></div>
-      <div class="color-item"><img src="images/photo4.jpg" alt="Фото 4"></div>
-      <div class="color-item"><img src="images/photo5.jpg" alt="Фото 5"></div>
-    </div>
-    <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
-  </section>
-
-  <!-- ================== LOCATION SECTION ================== -->
-  <section class="location-section">
-    <div class="location-container">
-      <h2 class="location-title">Локація <span class="location-icon">📍</span></h2>
-      <p class="location-name">Готель «Айвенго»</p>
-      <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306</p>
-      <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
-      <div class="location-map">
-        <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
-          <iframe src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed" loading="lazy"></iframe>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================== SCRIPTS ================== -->
-  <script>
-    // ================== COUNTDOWN SCRIPT ==================
-    (function() {
-      const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
-
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-
-        if (distance <= 0) {
-          document.getElementById("d_new").innerText = "00";
-          document.getElementById("h_new").innerText = "00";
-          document.getElementById("m_new").innerText = "00";
-          document.getElementById("s_new").innerText = "00";
-          const timerSection = document.getElementById("wedding-timer");
-          if (timerSection) {
-            timerSection.innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px; text-align:center;'>Цей щасливий день настав!</div>";
-          }
-          clearInterval(timerInterval);
-          return;
+      if (distance <= 0) {
+        document.getElementById("d_new").innerText = "00";
+        document.getElementById("h_new").innerText = "00";
+        document.getElementById("m_new").innerText = "00";
+        document.getElementById("s_new").innerText = "00";
+        const timerSection = document.getElementById("wedding-timer");
+        if (timerSection) {
+          timerSection.innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px; text-align:center;'>Цей щасливий день настав!</div>";
         }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("d_new").innerText = String(days).padStart(2, '0');
-        document.getElementById("h_new").innerText = String(hours).padStart(2, '0');
-        document.getElementById("m_new").innerText = String(minutes).padStart(2, '0');
-        document.getElementById("s_new").innerText = String(seconds).padStart(2, '0');
+        clearInterval(timerInterval);
+        return;
       }
 
-      const timerInterval = setInterval(updateCountdown, 1000);
-      updateCountdown();
-    })();
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // ================== SCROLL DOWN ANIMATION ==================
-    const scrollLink = document.querySelector('.scroll-down');
-    scrollLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector('#wedding-timer').scrollIntoView({ behavior: 'smooth' });
-    });
+      document.getElementById("d_new").innerText = String(days).padStart(2, "0");
+      document.getElementById("h_new").innerText = String(hours).padStart(2, "0");
+      document.getElementById("m_new").innerText = String(minutes).padStart(2, "0");
+      document.getElementById("s_new").innerText = String(seconds).padStart(2, "0");
+    }
 
-    // ================== EVENTS FADE IN ==================
-    const eventItems = document.querySelectorAll('.event-item');
-    window.addEventListener('scroll', () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      eventItems.forEach(item => {
-        const itemTop = item.getBoundingClientRect().top;
-        if(itemTop < triggerBottom) {
-          item.classList.add('show');
-        }
-      });
-    });
-  </script>
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  })();
+</script>
+
 </body>
 </html>
