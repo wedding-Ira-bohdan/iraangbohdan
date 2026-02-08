@@ -60,7 +60,7 @@
     }
 
     .mini-player {
-      display: flex; justify-content: center; gap: 30px; /* Відстань між кнопками */
+      display: flex; justify-content: center; gap: 30px;
       align-items: center;
     }
 
@@ -72,7 +72,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff; /* Колір іконок */
+      color: #fff;
       transition: transform 0.2s, opacity 0.2s;
       -webkit-tap-highlight-color: transparent;
       outline: none;
@@ -181,7 +181,7 @@
   </a>
 </section>
 
-<audio id="audio" preload="auto" loop></audio>
+<audio id="audio" preload="auto"></audio>
 
 <script>
   const tracks = [
@@ -190,7 +190,6 @@
     "images/song3.mp3"
   ];
 
-  // Рандомний порядок на першому заході
   let firstLoad = true;
   let shuffled = [...tracks].sort(() => Math.random() - 0.5);
 
@@ -199,12 +198,14 @@
 
   let current = 0;
   const audio = document.getElementById("audio");
+  audio.loop = false; // вимикаємо loop
   const playBtn = document.getElementById("play");
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
   const progress = document.getElementById("progress");
 
   function loadTrack(i, autoplay = false) {
+    audio.pause(); // зупиняємо поточний трек
     audio.src = firstLoad ? shuffled[i] : tracks[i];
     audio.load();
     if (autoplay) {
@@ -215,7 +216,6 @@
     }
   }
 
-  // Play/pause кнопка
   playBtn.addEventListener("click", () => {
     if (audio.paused) {
       audio.play();
@@ -226,21 +226,18 @@
     }
   });
 
-  // Попередній трек
   prevBtn.addEventListener("click", () => {
     current = (current - 1 + tracks.length) % tracks.length;
     firstLoad = false;
     loadTrack(current, true);
   });
 
-  // Наступний трек
   nextBtn.addEventListener("click", () => {
     current = (current + 1) % tracks.length;
     firstLoad = false;
     loadTrack(current, true);
   });
 
-  // Оновлення прогрес-бару
   audio.addEventListener("timeupdate", () => {
     if (audio.duration) {
       const percent = (audio.currentTime / audio.duration) * 100;
@@ -248,7 +245,6 @@
     }
   });
 
-  // Автоматичне переключення треку після завершення
   audio.addEventListener("ended", () => {
     current = (current + 1) % tracks.length;
     firstLoad = false;
