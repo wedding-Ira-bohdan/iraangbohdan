@@ -74,22 +74,37 @@
       justify-content: center;
       color: #fff; /* Колір іконок */
       transition: transform 0.2s, opacity 0.2s;
-      /* Прибираємо сині обводки на мобільних */
       -webkit-tap-highlight-color: transparent;
       outline: none;
     }
 
-    /* Розміри SVG іконок */
     .mini-player button svg {
       width: 32px;
       height: 32px;
-      fill: currentColor; /* Заливка кольором тексту (white) */
+      fill: currentColor;
       display: block;
     }
 
     .mini-player button:active { transform: scale(0.9); }
     .mini-player button:focus { outline: none; }
     .mini-player button:hover { opacity: 0.8; }
+
+    /* Прогрес-бар */
+    #progress-container {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 12px auto 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    #progress {
+      width: 0%;
+      height: 100%;
+      background: #fff;
+      border-radius: 2px;
+      transition: width 0.1s linear;
+    }
 
     /* --- Скролл вниз --- */
     .scroll-down {
@@ -121,8 +136,8 @@
       .name { font-size: 40px; }
       .and { font-size: 18px; }
       .subtitle { font-size: 14px; }
-      /* Трохи менші іконки на мобільному, якщо треба */
       .mini-player button svg { width: 28px; height: 28px; }
+      #progress-container { width: 150px; }
     }
   </style>
 </head>
@@ -133,7 +148,8 @@
   <div class="content">
     <div class="name first">Ірина</div>
     <div class="and">and</div>
-    <div class="name second">Богдан</div> <div class="subtitle">
+    <div class="name second">Богдан</div>
+    <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
 
       <div class="mini-player-wrapper">
@@ -143,12 +159,17 @@
           </button>
           
           <button id="play" aria-label="Play/Pause">
-             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
           </button>
 
           <button id="next" aria-label="Next track">
             <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg>
           </button>
+        </div>
+
+        <!-- Прогрес-бар -->
+        <div id="progress-container">
+          <div id="progress"></div>
         </div>
       </div>
     </div>
@@ -163,14 +184,16 @@
 <audio id="audio" preload="auto" loop></audio>
 
 <script>
-  // Твої пісні
   const tracks = [
     "images/song1.mp3",
     "images/song2.mp3",
     "images/song3.mp3"
   ];
 
-  // SVG-код для іконок, щоб змінювати їх через JS
+  // Рандомний порядок на першому заході
+  let firstLoad = true;
+  let shuffled = [...tracks].sort(() => Math.random() - 0.5);
+
   const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
   const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>';
 
@@ -179,44 +202,63 @@
   const playBtn = document.getElementById("play");
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
+  const progress = document.getElementById("progress");
 
   function loadTrack(i, autoplay = false) {
-    audio.src = tracks[i];
+    audio.src = firstLoad ? shuffled[i] : tracks[i];
     audio.load();
     if (autoplay) {
-      audio.play().catch(() => {
-        console.log("Автоплей заблоковано браузером");
-      });
-      playBtn.innerHTML = pauseIcon; // Ставимо паузу, бо грає
+      audio.play().catch(() => console.log("Автоплей заблоковано браузером"));
+      playBtn.innerHTML = pauseIcon;
     } else {
-      playBtn.innerHTML = playIcon; // Ставимо плей, бо стоїть
+      playBtn.innerHTML = playIcon;
     }
   }
 
+  // Play/pause кнопка
   playBtn.addEventListener("click", () => {
     if (audio.paused) {
       audio.play();
-      playBtn.innerHTML = pauseIcon; // Міняємо на паузу
+      playBtn.innerHTML = pauseIcon;
     } else {
       audio.pause();
-      playBtn.innerHTML = playIcon; // Міняємо на плей
+      playBtn.innerHTML = playIcon;
     }
   });
 
+  // Попередній трек
   prevBtn.addEventListener("click", () => {
     current = (current - 1 + tracks.length) % tracks.length;
+    firstLoad = false;
     loadTrack(current, true);
   });
 
+  // Наступний трек
   nextBtn.addEventListener("click", () => {
     current = (current + 1) % tracks.length;
+    firstLoad = false;
     loadTrack(current, true);
   });
 
-  // Запуск першого треку (без автоплею, щоб браузер не лаявся)
+  // Оновлення прогрес-бару
+  audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percent + "%";
+    }
+  });
+
+  // Автоматичне переключення треку після завершення
+  audio.addEventListener("ended", () => {
+    current = (current + 1) % tracks.length;
+    firstLoad = false;
+    loadTrack(current, true);
+  });
+
+  // Перший запуск
   loadTrack(current, false);
 </script>
-    
+  
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
