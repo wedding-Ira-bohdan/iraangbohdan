@@ -50,6 +50,7 @@
     }
     .subtitle .date { margin-left: 10px; font-weight: 500; font-size: 14px; }
 
+    /* --- СТИЛІ ПЛЕЄРА --- */
     .mini-player-wrapper {
       margin-top: 22px;
       opacity: 0;
@@ -59,47 +60,38 @@
     }
 
     .mini-player {
-      display: flex; justify-content: center; gap: 20px;
+      display: flex; justify-content: center; gap: 30px; /* Відстань між кнопками */
       align-items: center;
     }
 
-    /* ФІКС: ПОВНА ПРОЗОРИСТЬ СИСТЕМНИХ ОБВОДОК */
     .mini-player button {
-      background: transparent !important; 
-      border: none !important;
-      font-size: 28px; 
-      color: #fff; 
+      background: transparent;
+      border: none;
       cursor: pointer;
-      padding: 5px 10px;
-      
-      /* Робимо підсвітку кліку повністю прозорою */
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-      -webkit-tap-highlight-color: transparent !important;
-      
-      /* Прибираємо будь-які рамки */
-      outline: none !important;
-      outline: 0 !important;
-      box-shadow: none !important;
-      user-select: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff; /* Колір іконок */
+      transition: transform 0.2s, opacity 0.2s;
+      /* Прибираємо сині обводки на мобільних */
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
     }
 
-    /* Додатково для всіх станів */
-    .mini-player button:focus, 
-    .mini-player button:active,
-    .mini-player button:hover,
-    .mini-player button:visited {
-      outline: none !important;
-      background: transparent !important;
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    }
-
-    /* Спеціально для Safari на iPhone */
-    input:focus, button:focus, a:focus, area:focus, select:focus, textarea:focus {
-      outline: none !important;
+    /* Розміри SVG іконок */
+    .mini-player button svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor; /* Заливка кольором тексту (white) */
+      display: block;
     }
 
     .mini-player button:active { transform: scale(0.9); }
+    .mini-player button:focus { outline: none; }
+    .mini-player button:hover { opacity: 0.8; }
 
+    /* --- Скролл вниз --- */
     .scroll-down {
       position: absolute; bottom: 40px; left: 50%;
       transform: translateX(-50%);
@@ -129,7 +121,8 @@
       .name { font-size: 40px; }
       .and { font-size: 18px; }
       .subtitle { font-size: 14px; }
-      .mini-player button { font-size: 24px; }
+      /* Трохи менші іконки на мобільному, якщо треба */
+      .mini-player button svg { width: 28px; height: 28px; }
     }
   </style>
 </head>
@@ -140,16 +133,22 @@
   <div class="content">
     <div class="name first">Ірина</div>
     <div class="and">and</div>
-    <div class="name second">Богдан</div>
-
-    <div class="subtitle">
+    <div class="name second">Богдан</div> <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
 
       <div class="mini-player-wrapper">
         <div class="mini-player">
-          <button id="prev" aria-label="Previous track">⏮</button>
-          <button id="play" aria-label="Play/Pause">▶</button>
-          <button id="next" aria-label="Next track">⏭</button>
+          <button id="prev" aria-label="Previous track">
+            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg>
+          </button>
+          
+          <button id="play" aria-label="Play/Pause">
+             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          </button>
+
+          <button id="next" aria-label="Next track">
+            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -164,11 +163,16 @@
 <audio id="audio" preload="auto" loop></audio>
 
 <script>
+  // Твої пісні
   const tracks = [
     "images/song1.mp3",
     "images/song2.mp3",
     "images/song3.mp3"
   ];
+
+  // SVG-код для іконок, щоб змінювати їх через JS
+  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
+  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>';
 
   let current = 0;
   const audio = document.getElementById("audio");
@@ -180,21 +184,22 @@
     audio.src = tracks[i];
     audio.load();
     if (autoplay) {
-      audio.play().then(() => {
-        playBtn.textContent = "⏸";
-      }).catch(() => {
-        console.log("Автоплей заблоковано");
+      audio.play().catch(() => {
+        console.log("Автоплей заблоковано браузером");
       });
+      playBtn.innerHTML = pauseIcon; // Ставимо паузу, бо грає
+    } else {
+      playBtn.innerHTML = playIcon; // Ставимо плей, бо стоїть
     }
   }
 
   playBtn.addEventListener("click", () => {
     if (audio.paused) {
       audio.play();
-      playBtn.textContent = "⏸";
+      playBtn.innerHTML = pauseIcon; // Міняємо на паузу
     } else {
       audio.pause();
-      playBtn.textContent = "▶";
+      playBtn.innerHTML = playIcon; // Міняємо на плей
     }
   });
 
@@ -208,10 +213,11 @@
     loadTrack(current, true);
   });
 
-  loadTrack(current);
+  // Запуск першого треку (без автоплею, щоб браузер не лаявся)
+  loadTrack(current, false);
 </script>
-
-<!-- ================== COUNTDOWN TIMER ================== -->
+    
+    <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
     <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
