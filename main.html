@@ -55,7 +55,7 @@
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1s ease forwards;
-      animation-delay: 3.5s; /* Плеєр з'являється трохи пізніше */
+      animation-delay: 3.5s;
     }
 
     .mini-player {
@@ -99,6 +99,17 @@
       .and { font-size: 18px; }
       .subtitle { font-size: 14px; }
       .mini-player button { font-size: 24px; }
+
+      /* ФІКС СИНЬОГО КОЛЬОРУ В ПЛЕЄРІ */
+      .mini-player button {
+        color: #fff;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mini-player button:focus,
+      .mini-player button:active {
+        color: #fff;
+        outline: none;
+      }
     }
   </style>
 </head>
@@ -134,7 +145,7 @@
 
 <script>
   const tracks = [
-    "track1.mp3", // Замінити на ваші файли
+    "track1.mp3",
     "track2.mp3"
   ];
 
@@ -175,12 +186,8 @@
     loadTrack(current, true);
   });
 
-  // Старт першого треку після першої взаємодії з плеєром
   loadTrack(current);
 </script>
-
-</body>
-</html>
 
 <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
