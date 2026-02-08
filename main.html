@@ -62,11 +62,34 @@
       display: flex; justify-content: center; gap: 20px;
       align-items: center;
     }
+
+    /* ОНОВЛЕНІ КНОПКИ БЕЗ ОБВОДОК */
     .mini-player button {
-      background: transparent; border: none;
-      font-size: 28px; color: #fff; cursor: pointer;
+      background: transparent; 
+      border: none;
+      font-size: 28px; 
+      color: #fff; 
+      cursor: pointer;
       padding: 5px 10px;
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-focus-ring-color: transparent !important;
     }
+
+    .mini-player button:focus, 
+    .mini-player button:active,
+    .mini-player button:hover,
+    .mini-player button:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mini-player button::-moz-focus-inner {
+      border: 0 !important;
+    }
+
     .mini-player button:active { transform: scale(0.9); }
 
     .scroll-down {
@@ -99,27 +122,6 @@
       .and { font-size: 18px; }
       .subtitle { font-size: 14px; }
       .mini-player button { font-size: 24px; }
-
-      /* Білий плеєр без будь-яких обводок і підсвічування */
-      .mini-player button {
-        color: #fff !important;
-        background: transparent;
-        border: none;
-        outline: none !important;
-        box-shadow: none !important;
-        -webkit-tap-highlight-color: transparent; /* мобільні */
-        -webkit-focus-ring-color: transparent;    /* Safari */
-        -moz-outline-style: none;                  /* Firefox */
-      }
-      .mini-player button:focus,
-      .mini-player button:active {
-        outline: none !important;
-        box-shadow: none !important;
-      }
-      .mini-player button::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-      }
     }
   </style>
 </head>
@@ -154,7 +156,6 @@
 <audio id="audio" preload="auto" loop></audio>
 
 <script>
-  // 3 пісні в папці images
   const tracks = [
     "images/song1.mp3",
     "images/song2.mp3",
@@ -175,7 +176,7 @@
         console.log("Автоплей заблоковано браузером");
       });
     }
-    playBtn.textContent = "⏸";
+    playBtn.textContent = audio.paused ? "▶" : "⏸";
   }
 
   playBtn.addEventListener("click", () => {
@@ -198,7 +199,6 @@
     loadTrack(current, true);
   });
 
-  // Запуск першого треку
   loadTrack(current);
 </script>
 
