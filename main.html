@@ -100,21 +100,21 @@
       .subtitle { font-size: 14px; }
       .mini-player button { font-size: 24px; }
 
-      /* Білий плеєр на мобільних, без обводок і синього підсвічування */
+      /* Білий плеєр без будь-яких обводок і підсвічування */
       .mini-player button {
         color: #fff !important;
         background: transparent;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
         border: none;
-        box-shadow: none;
+        outline: none !important;
+        box-shadow: none !important;
+        -webkit-tap-highlight-color: transparent; /* мобільні */
+        -webkit-focus-ring-color: transparent;    /* Safari */
+        -moz-outline-style: none;                  /* Firefox */
       }
       .mini-player button:focus,
       .mini-player button:active {
-        color: #fff !important;
-        outline: none;
-        box-shadow: none;
-        border: none;
+        outline: none !important;
+        box-shadow: none !important;
       }
       .mini-player button::-moz-focus-inner {
         border: 0;
