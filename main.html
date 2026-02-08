@@ -63,31 +63,39 @@
       align-items: center;
     }
 
-    /* ОНОВЛЕНІ КНОПКИ БЕЗ ОБВОДОК */
+    /* ФІКС: ПОВНА ПРОЗОРИСТЬ СИСТЕМНИХ ОБВОДОК */
     .mini-player button {
-      background: transparent; 
-      border: none;
+      background: transparent !important; 
+      border: none !important;
       font-size: 28px; 
       color: #fff; 
       cursor: pointer;
       padding: 5px 10px;
+      
+      /* Робимо підсвітку кліку повністю прозорою */
+      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+      -webkit-tap-highlight-color: transparent !important;
+      
+      /* Прибираємо будь-які рамки */
       outline: none !important;
+      outline: 0 !important;
       box-shadow: none !important;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-focus-ring-color: transparent !important;
+      user-select: none;
     }
 
+    /* Додатково для всіх станів */
     .mini-player button:focus, 
     .mini-player button:active,
     .mini-player button:hover,
-    .mini-player button:focus-visible {
+    .mini-player button:visited {
       outline: none !important;
-      box-shadow: none !important;
-      -webkit-tap-highlight-color: transparent;
+      background: transparent !important;
+      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     }
 
-    .mini-player button::-moz-focus-inner {
-      border: 0 !important;
+    /* Спеціально для Safari на iPhone */
+    input:focus, button:focus, a:focus, area:focus, select:focus, textarea:focus {
+      outline: none !important;
     }
 
     .mini-player button:active { transform: scale(0.9); }
@@ -172,11 +180,12 @@
     audio.src = tracks[i];
     audio.load();
     if (autoplay) {
-      audio.play().catch(() => {
-        console.log("Автоплей заблоковано браузером");
+      audio.play().then(() => {
+        playBtn.textContent = "⏸";
+      }).catch(() => {
+        console.log("Автоплей заблоковано");
       });
     }
-    playBtn.textContent = audio.paused ? "▶" : "⏸";
   }
 
   playBtn.addEventListener("click", () => {
