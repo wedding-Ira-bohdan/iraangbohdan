@@ -100,7 +100,7 @@
       .subtitle { font-size: 14px; }
       .mini-player button { font-size: 24px; }
 
-      /* ФІКС СИНЬОГО КОЛЬОРУ В ПЛЕЄРІ */
+      /* Фікс синього кольору в плеєрі на мобільних */
       .mini-player button {
         color: #fff;
         -webkit-tap-highlight-color: transparent;
@@ -144,9 +144,10 @@
 <audio id="audio" preload="auto" loop></audio>
 
 <script>
+  // Музика лежить прямо в папці images
   const tracks = [
-    "track1.mp3",
-    "track2.mp3"
+    "images/song1.mp3",
+    "images/song2.mp3"
   ];
 
   let current = 0;
@@ -186,6 +187,7 @@
     loadTrack(current, true);
   });
 
+  // Стартує перший трек
   loadTrack(current);
 </script>
 
