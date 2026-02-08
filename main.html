@@ -100,14 +100,17 @@
       .subtitle { font-size: 14px; }
       .mini-player button { font-size: 24px; }
 
-      /* Фікс синього кольору в плеєрі на мобільних */
+      /* Білий плеєр на мобільних */
       .mini-player button {
-        color: #fff;
-        -webkit-tap-highlight-color: transparent;
+        color: #fff !important;
+        background: transparent;
+        -webkit-tap-highlight-color: transparent; /* прибирає блакитний ефект натискання */
+        outline: none;
       }
+
       .mini-player button:focus,
       .mini-player button:active {
-        color: #fff;
+        color: #fff !important;
         outline: none;
       }
     }
