@@ -217,34 +217,137 @@
   
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
-  <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
-    <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; font-weight: 400;">
-      До нашої події залишилося:
-    </p>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
-      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-        <span id="d_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">днів</span>
+  <div class="timer-container">
+    <p class="timer-label">До нашої події залишилося:</p>
+    <div class="timer-grid">
+      <div class="timer-item">
+        <span id="d_new" class="timer-value">00</span>
+        <span class="timer-unit">днів</span>
       </div>
-      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-        <span id="h_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">год</span>
+      <div class="timer-item">
+        <span id="h_new" class="timer-value">00</span>
+        <span class="timer-unit">год</span>
       </div>
-      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-        <span id="m_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">хв</span>
+      <div class="timer-item">
+        <span id="m_new" class="timer-value">00</span>
+        <span class="timer-unit">хв</span>
       </div>
-      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px;">
-        <span id="s_new" style="display: block; font-size: 38px; font-weight: 300; font-family: 'Playfair Display', serif;">00</span>
-        <span style="font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">сек</span>
+      <div class="timer-item">
+        <span id="s_new" class="timer-value">00</span>
+        <span class="timer-unit">сек</span>
       </div>
     </div>
   </div>
 
-  <!-- CSS для TIMER -->
   <style>
-    #wedding-timer { background: #2B160E; padding: 80px 0; text-align: center; color: #fff; position: relative; z-index: 5; }
+    #wedding-timer { 
+      background: #2B160E; 
+      padding: 80px 0; 
+      text-align: center; 
+      color: #fff; 
+      position: relative; 
+      z-index: 5; 
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .timer-container { 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 0 10px; 
+    }
+    
+    .timer-label { 
+      letter-spacing: 4px; 
+      text-transform: uppercase; 
+      font-size: 12px; 
+      margin-bottom: 30px; 
+      opacity: 0.8; 
+      font-weight: 400;
+    }
+    
+    /* Флекс-контейнер, що забороняє перенос елементів */
+    .timer-grid { 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 15px; 
+      flex-wrap: nowrap; 
+    }
+
+    .timer-item { 
+      border: 1px solid rgba(255,255,255,0.15); 
+      padding: 20px; 
+      min-width: 85px; 
+      border-radius: 2px; 
+      flex-shrink: 0; /* Забороняє стискання окремих блоків */
+    }
+    
+    .timer-value { 
+      display: block; 
+      font-size: 38px; 
+      font-weight: 300; 
+      font-family: 'Playfair Display', serif; 
+    }
+    
+    .timer-unit { 
+      font-size: 9px; 
+      text-transform: uppercase; 
+      opacity: 0.6; 
+      letter-spacing: 2px; 
+    }
+
+    /* Адаптація для планшетів та смартфонів */
+    @media (max-width: 600px) {
+      .timer-grid { gap: 10px; }
+      .timer-item { 
+        min-width: 70px; 
+        padding: 15px 5px; 
+      }
+      .timer-value { font-size: 28px; }
+      .timer-unit { font-size: 8px; letter-spacing: 1px; }
+    }
+
+    /* Адаптація для дуже маленьких екранів (iPhone SE тощо) */
+    @media (max-width: 360px) {
+      .timer-grid { gap: 5px; }
+      .timer-item { 
+        min-width: 65px; 
+        padding: 10px 2px; 
+      }
+      .timer-value { font-size: 24px; }
+    }
   </style>
+
+  <script>
+    function updateTimer() {
+      // Дата вашого весілля
+      const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      // Якщо дата вже настала
+      if (distance < 0) {
+        document.querySelector(".timer-container").innerHTML = "<h2 style='font-family: \"Playfair Display\", serif;'>Цей день настав!</h2>";
+        return;
+      }
+
+      // Розрахунок часу
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Виведення результату з додаванням нуля попереду
+      document.getElementById("d_new").innerText = days < 10 ? "0" + days : days;
+      document.getElementById("h_new").innerText = hours < 10 ? "0" + hours : hours;
+      document.getElementById("m_new").innerText = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById("s_new").innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    // Оновлення щосекунди
+    setInterval(updateTimer, 1000);
+    updateTimer(); // Викликаємо відразу, щоб не було затримки в 1 сек
+  </script>
 </section>
 
 <!-- ================== EVENTS SECTION ================== -->
@@ -314,6 +417,7 @@
   </style>
 
   <script>
+    
     // ================== EVENTS FADE IN ON SCROLL ==================
     const eventItems = document.querySelectorAll('.event-item');
     const observer = new IntersectionObserver(entries => {
