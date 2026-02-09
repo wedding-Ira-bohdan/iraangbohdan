@@ -24,24 +24,25 @@
       justify-content: center; 
       align-items: center; 
       text-align: center; 
+      color: #fff;
     }
     
     .overlay {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,0.35); /* Повернув як було */
+      background: rgba(0,0,0,0.35);
       z-index: 1;
     }
 
+    /* Збільшений відступ, щоб текст не наповзав на руки/тіло */
     .content { 
       position: relative; 
       z-index: 2; 
-      padding-top: 220px; 
+      padding-top: 150px; /* Опустили ще нижче */
     }
 
     .name {
       font-family: 'Playfair Display', serif;
       font-size: 64px;
-      color: #000; /* Чорний текст */
       opacity: 0; transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
     }
@@ -50,34 +51,170 @@
 
     .and {
       font-size: 22px; margin: 10px 0; letter-spacing: 2px;
-      color: #000; /* Чорний текст */
       opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 1.6s;
     }
 
     .subtitle {
       margin-top: 25px; font-size: 16px; letter-spacing: 1px;
-      color: #000; /* Чорний текст */
       opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 3.2s;
     }
     .subtitle .date { margin-left: 10px; font-weight: 500; font-size: 14px; }
 
-    /* ПЛЕЄР ЧОРНИЙ */
+    /* Плеєр */
     .mini-player-wrapper {
       margin-top: 22px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp 1s ease forwards; animation-delay: 3.5s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 3.5s;
     }
-    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
-    .mini-player button { background: transparent; border: none; cursor: pointer; color: #000; transition: transform 0.2s; outline: none; }
-    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
-    
-    #progress-container { 
-      width: 200px; height: 4px; 
-      background: rgba(0, 0, 0, 0.2); 
-      margin: 12px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; 
-    }
-    #progress { width: 0%; height: 100%; background: #000; transition: width 0.1s linear; }
 
+    .mini-player {
+      display: flex; justify-content: center; gap: 30px;
+      align-items: center;
+    }
+
+    .mini-player button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      transition: transform 0.2s;
+      outline: none;
+    }
+
+    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
+
+    #progress-container {
+      width: 200px; height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 12px auto 0;
+      border-radius: 2px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
+
+    /* Стрілка вниз */
+    .scroll-down {
+      position: absolute; bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      z-index: 10;
+    }
+    .scroll-down .line { width: 2px; height: 30px; background: #fff; animation: bounce 1.2s infinite; }
+    .scroll-down .arrow {
+      border-left: 10px solid transparent; border-right: 10px solid transparent;
+      border-top: 15px solid #fff; animation: bounce 1.2s infinite;
+    }
+
+    @keyframes bounce {
+      0%,20%,50%,80%,100%{ transform: translateY(0); }
+      40%{ transform: translateY(8px); }
+      60%{ transform: translateY(4px); }
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .content { padding-top: 100px; } /* Адаптація для мобільних */
+      .name { font-size: 44px; }
+      #progress-container { width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="name first">Ірина</div>
+    <div class="and">and</div>
+    <div class="name second">Богдан</div>
+    <div class="subtitle">
+      Wedding Day <span class="date">17.07.2026</span>
+
+      <div class="mini-player-wrapper">
+        <div class="mini-player">
+          <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg></button>
+          <button id="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+          <button id="next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg></button>
+        </div>
+        <div id="progress-container"><div id="progress"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#wedding-timer" class="scroll-down">
+    <div class="line"></div>
+    <div class="arrow"></div>
+  </a>
+</section>
+
+<audio id="audio" preload="auto"></audio>
+
+<script>
+  const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
+  let playlist = [...tracks].sort(() => Math.random() - 0.5);
+  let current = 0;
+
+  const audio = document.getElementById("audio");
+  const playBtn = document.getElementById("play");
+  const progress = document.getElementById("progress");
+  const progressContainer = document.getElementById("progress-container");
+
+  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
+  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>';
+
+  function loadTrack(i, autoplay = false) {
+    audio.src = playlist[i];
+    audio.load();
+    if (autoplay) {
+      audio.play().catch(() => {});
+      playBtn.innerHTML = pauseIcon;
+    }
+  }
+
+  playBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.innerHTML = pauseIcon;
+    } else {
+      audio.pause();
+      playBtn.innerHTML = playIcon;
+    }
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    current = (current + 1) % playlist.length;
+    loadTrack(current, true);
+  });
+
+  document.getElementById("prev").addEventListener("click", () => {
+    current = (current - 1 + playlist.length) % playlist.length;
+    loadTrack(current, true);
+  });
+
+  audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+    }
+  });
+
+  progressContainer.addEventListener("click", (e) => {
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    if (audio.duration) audio.currentTime = (clickX / width) * audio.duration;
+  });
+
+  audio.addEventListener("ended", () => {
+    current = (current + 1) % playlist.length;
+    loadTrack(current, true);
+  });
+
+  loadTrack(current, false);
+</script>
+  
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div style="font-family: 'Montserrat', sans-serif; max-width: 800px; margin: 0 auto; padding: 0 20px;">
