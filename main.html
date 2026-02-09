@@ -22,7 +22,7 @@
       background: url('https://i.ibb.co/Cs38dh4j/photo-5208712500533205211-y.jpg') center/cover no-repeat;
       display: flex; 
       justify-content: center; 
-      align-items: center; /* Центрування по вертикалі */
+      align-items: center; 
       text-align: center; 
       color: #fff;
     }
@@ -33,11 +33,11 @@
       z-index: 1;
     }
 
-    /* Опускаємо текст тут */
+    /* Збільшений відступ, щоб текст не наповзав на руки/тіло */
     .content { 
       position: relative; 
       z-index: 2; 
-      padding-top: 80px; /* Додаємо відступ зверху, щоб опустити текст */
+      padding-top: 150px; /* Опустили ще нижче */
     }
 
     .name {
@@ -60,7 +60,7 @@
     }
     .subtitle .date { margin-left: 10px; font-weight: 500; font-size: 14px; }
 
-    /* --- СТИЛІ ПЛЕЄРА --- */
+    /* Плеєр */
     .mini-player-wrapper {
       margin-top: 22px;
       opacity: 0;
@@ -78,54 +78,34 @@
       background: transparent;
       border: none;
       cursor: pointer;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: #fff;
-      transition: transform 0.2s, opacity 0.2s;
-      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s;
       outline: none;
     }
 
-    .mini-player button svg {
-      width: 32px;
-      height: 32px;
-      fill: currentColor;
-    }
+    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
 
     #progress-container {
-      width: 200px;
-      height: 4px;
+      width: 200px; height: 4px;
       background: rgba(255, 255, 255, 0.3);
       margin: 12px auto 0;
       border-radius: 2px;
-      overflow: hidden;
       cursor: pointer;
+      overflow: hidden;
     }
-    #progress {
-      width: 0%;
-      height: 100%;
-      background: #fff;
-      transition: width 0.1s linear;
-    }
+    #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
 
-    /* --- Скролл вниз --- */
+    /* Стрілка вниз */
     .scroll-down {
       position: absolute; bottom: 40px; left: 50%;
       transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center;
       z-index: 10;
     }
-    .scroll-down .line {
-      width: 2px; height: 30px; background: #fff;
-      animation: bounce 1.2s infinite;
-    }
+    .scroll-down .line { width: 2px; height: 30px; background: #fff; animation: bounce 1.2s infinite; }
     .scroll-down .arrow {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 15px solid #fff;
-      animation: bounce 1.2s infinite;
+      border-left: 10px solid transparent; border-right: 10px solid transparent;
+      border-top: 15px solid #fff; animation: bounce 1.2s infinite;
     }
 
     @keyframes bounce {
@@ -137,15 +117,14 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .content { padding-top: 60px; } /* Трохи менший відступ для мобільних */
+      .content { padding-top: 100px; } /* Адаптація для мобільних */
       .name { font-size: 44px; }
-      .and { font-size: 18px; }
-      .subtitle { font-size: 14px; }
+      #progress-container { width: 160px; }
     }
   </style>
 </head>
-
 <body>
+
 <section class="hero">
   <div class="overlay"></div>
   <div class="content">
@@ -157,22 +136,11 @@
 
       <div class="mini-player-wrapper">
         <div class="mini-player">
-          <button id="prev" aria-label="Previous track">
-            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg>
-          </button>
-          
-          <button id="play" aria-label="Play/Pause">
-            <svg viewBox="0 0 24 24" id="play-svg"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-          </button>
-
-          <button id="next" aria-label="Next track">
-            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg>
-          </button>
+          <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg></button>
+          <button id="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
+          <button id="next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg></button>
         </div>
-
-        <div id="progress-container">
-          <div id="progress"></div>
-        </div>
+        <div id="progress-container"><div id="progress"></div></div>
       </div>
     </div>
   </div>
