@@ -33,11 +33,10 @@
       z-index: 1;
     }
 
-    /* Збільшений відступ, щоб текст не наповзав на руки/тіло */
     .content { 
       position: relative; 
       z-index: 2; 
-      padding-top: 150px; /* Опустили ще нижче */
+      padding-top: 150px; 
     }
 
     .name {
@@ -117,13 +116,11 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .content { padding-top: 100px; } /* Адаптація для мобільних */
+      .content { padding-top: 100px; }
       .name { font-size: 44px; }
       #progress-container { width: 160px; }
     }
   </style>
-</head>
-<body>
 
 <section class="hero">
   <div class="overlay"></div>
@@ -154,8 +151,8 @@
 <audio id="audio" preload="auto"></audio>
 
 <script>
+  // Пісні йдуть суворо по порядку
   const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
-  let playlist = [...tracks].sort(() => Math.random() - 0.5);
   let current = 0;
 
   const audio = document.getElementById("audio");
@@ -167,11 +164,12 @@
   const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>';
 
   function loadTrack(i, autoplay = false) {
-    audio.src = playlist[i];
+    audio.src = tracks[i];
     audio.load();
     if (autoplay) {
-      audio.play().catch(() => {});
-      playBtn.innerHTML = pauseIcon;
+      audio.play().then(() => {
+        playBtn.innerHTML = pauseIcon;
+      }).catch(e => console.log("Автовідтворення заблоковано браузером до першої взаємодії"));
     }
   }
 
@@ -186,12 +184,12 @@
   });
 
   document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % playlist.length;
+    current = (current + 1) % tracks.length;
     loadTrack(current, true);
   });
 
   document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + playlist.length) % playlist.length;
+    current = (current - 1 + tracks.length) % tracks.length;
     loadTrack(current, true);
   });
 
@@ -207,11 +205,13 @@
     if (audio.duration) audio.currentTime = (clickX / width) * audio.duration;
   });
 
+  // Автоматичне перемикання на наступну пісню після закінчення
   audio.addEventListener("ended", () => {
-    current = (current + 1) % playlist.length;
+    current = (current + 1) % tracks.length;
     loadTrack(current, true);
   });
 
+  // Ініціалізація першої пісні
   loadTrack(current, false);
 </script>
   
