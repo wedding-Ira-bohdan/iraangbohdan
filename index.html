@@ -27,16 +27,13 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      /* Додаємо легке затемнення фону, щоб текст краще читався */
-      background-color: rgba(0,0,0,0.2);
-      background-blend-mode: overlay;
     }
 
     .text-layer {
       position: relative;
-      width: 90%; /* Збільшили для мобільних, щоб тексту було просторо */
-      max-width: 400px;
-      padding: 40px 20px; /* Замість жорсткого aspect-ratio використовуємо падінги */
+      width: 70%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -44,7 +41,8 @@
       align-items: center;
       text-align: center;
       color: #1a1a1a;
-      transition: opacity 0.6s ease;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+      transition: opacity 0.6s ease; /* Додано для плавності зникнення */
     }
 
     .text-layer img {
@@ -56,7 +54,6 @@
       object-fit: cover;
       border-radius: 15px;
       z-index: 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .text-layer h1,
@@ -64,45 +61,36 @@
     .text-layer .hint {
       position: relative;
       z-index: 1;
-      /* Забороняємо розрив слів у критичних місцях */
-      word-wrap: break-word;
     }
 
     h1 {
-      font-size: clamp(20px, 6vw, 26px);
-      margin-bottom: 15px;
+      font-size: clamp(22px, 4vw, 28px);
+      margin-bottom: 20px;
       font-weight: 400;
-      white-space: nowrap; /* Заголовок в один рядок */
     }
 
     p {
       font-style: italic;
-      font-size: clamp(14px, 4vw, 17px);
-      line-height: 1.5;
-      max-width: 90%;
+      font-size: clamp(16px, 3.5vw, 18px);
+      line-height: 1.6;
     }
 
+    /* Пульсуюча підказка */
     .hint {
-      margin-top: 20px;
-      font-size: 12px;
-      letter-spacing: 2px;
+      margin-top: 25px;
+      font-size: 14px;
+      letter-spacing: 1px;
       font-weight: bold;
       text-transform: uppercase;
-      opacity: 0.7;
+      display: inline-block;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.05); opacity: 1; }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
-    /* Адаптація для дуже маленьких екранів */
-    @media (max-width: 360px) {
-      .text-layer { width: 95%; padding: 30px 15px; }
-      h1 { font-size: 18px; }
-      p { font-size: 13px; }
-    }
   </style>
 </head>
 
@@ -121,9 +109,9 @@
     function openSite() {
       const block = document.querySelector('.text-layer');
       block.style.opacity = '0';
-      // Додаємо невелику затримку для плавного зникнення перед переходом
       setTimeout(() => {
-        window.location.href = "main.html";
+        // Оновлений шлях до сторінки в папці zaproshennya
+        window.location.href = "zaproshennya/main.html";
       }, 600);
     }
   </script>
