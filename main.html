@@ -476,7 +476,7 @@
   </style>
 </section>
 
-<!-- ================== CHURCH LOCATION SECTION ================== -->
+<!-- ================== CHURCH LOCATION ================== -->
 
 <section class="location-section">
 
@@ -490,20 +490,26 @@
 
     <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
 
-    <div class="location-map">
-      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener">
-        <iframe
-          src="https://maps.google.com/maps?hl=uk&q=Церква%20Петра%20і%20Павла%20ПЦУ%20Клевань&z=16&output=embed"
-          loading="lazy">
-        </iframe>
-      </a>
+    <div class="location-map-wrapper">
+
+      <div class="location-map">
+        <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener">
+          <iframe
+            src="https://maps.google.com/maps?hl=uk&q=Церква%20Петра%20і%20Павла%20ПЦУ%20Клевань&z=16&output=embed"
+            loading="lazy">
+          </iframe>
+        </a>
+      </div>
+
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-photo">
+
     </div>
 
   </div>
 
 </section>
 
-<!-- ================== HOTEL LOCATION SECTION ================== -->
+<!-- ================== HOTEL LOCATION ================== -->
 
 <section class="location-section">
 
@@ -517,20 +523,26 @@
 
     <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
 
-    <div class="location-map">
-      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
-        <iframe
-          src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
-          loading="lazy">
-        </iframe>
-      </a>
+    <div class="location-map-wrapper">
+
+      <div class="location-map">
+        <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
+          <iframe
+            src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
+            loading="lazy">
+          </iframe>
+        </a>
+      </div>
+
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-photo">
+
     </div>
 
   </div>
 
 </section>
 
-<!-- ================== LOCATION CSS ================== -->
+<!-- ================== CSS ================== -->
 
 <style>
   .location-section {
@@ -539,7 +551,7 @@
   }
 
   .location-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
   }
@@ -576,6 +588,12 @@
     font-style: italic;
   }
 
+  .location-map-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
   .location-map a {
     display: block;
     border-radius: 12px;
@@ -589,54 +607,37 @@
     pointer-events: none;
   }
 
+  .location-photo {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    z-index: 5;
+    background: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .location-photo {
+      position: static;
+      transform: none;
+      margin: 20px auto 0;
+      display: block;
+      width: 80%;
+      height: auto;
+    }
+  }
+
   @media (max-width: 600px) {
     .location-title {
       font-size: 32px;
     }
   }
 </style>
-
-<!-- ================== SCRIPTS ================== -->
-
-<script>
-  (function() {
-    const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance <= 0) {
-        document.getElementById("d_new").innerText = "00";
-        document.getElementById("h_new").innerText = "00";
-        document.getElementById("m_new").innerText = "00";
-        document.getElementById("s_new").innerText = "00";
-
-        const timerSection = document.getElementById("wedding-timer");
-        if (timerSection) {
-          timerSection.innerHTML =
-            "<div style='padding:40px;font-family:Playfair Display,serif;font-size:24px;text-align:center;'>Цей щасливий день настав!</div>";
-        }
-
-        clearInterval(timerInterval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("d_new").innerText = String(days).padStart(2, "0");
-      document.getElementById("h_new").innerText = String(hours).padStart(2, "0");
-      document.getElementById("m_new").innerText = String(minutes).padStart(2, "0");
-      document.getElementById("s_new").innerText = String(seconds).padStart(2, "0");
-    }
-
-    const timerInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  })();
-</script>
 
 </body>
 </html>
