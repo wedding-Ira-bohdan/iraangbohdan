@@ -718,28 +718,30 @@
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite" style="position: relative; width: 100%; min-height: 60vh; background: url('images/photo11.jpg') center/cover no-repeat; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 60px; text-align: center;">
 
-  <div class="celebration-frame">
+  <div class="celebration-text-block">
     <p class="celebration-text-top">Святкуй з нами</p>
     <p class="celebration-text-bottom">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
   </div>
 </section>
 
 <style>
-.celebration-frame {
-  max-width: 400px;
-  padding: 20px 25px;
-  border: 2px solid rgba(0, 0, 0, 0.7); /* чорна рамка */
-  border-radius: 15px;
-  background: rgba(255,255,255,0.15); /* легка прозора рамка */
+.celebration-text-block {
+  display: inline-block;
+  padding: 15px 25px;
+  border: 2px solid rgba(255, 255, 255, 0.6); /* легка рамка */
+  border-radius: 12px;
+  backdrop-filter: blur(5px); /* замилює фон тільки під текстом */
+  background: rgba(255, 255, 255, 0.1); /* легка прозорість */
   color: #000; /* чорний текст */
-  box-shadow: 0 0 15px rgba(0,0,0,0.2); /* легкий ореол для виділення */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 .celebration-text-top {
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .celebration-text-bottom {
@@ -749,13 +751,13 @@
 }
 
 @media (max-width: 768px) {
-  .celebration-frame { padding: 15px 20px; }
+  .celebration-text-block { padding: 12px 18px; }
   .celebration-text-top { font-size: 20px; }
   .celebration-text-bottom { font-size: 14px; }
 }
 
 @media (max-width: 480px) {
-  .celebration-frame { padding: 12px 15px; }
+  .celebration-text-block { padding: 10px 15px; }
   .celebration-text-top { font-size: 18px; }
   .celebration-text-bottom { font-size: 12px; }
 }
