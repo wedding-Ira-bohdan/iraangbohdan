@@ -721,26 +721,44 @@
   <div class="overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.35);"></div>
   
   <div style="position: relative; z-index: 2; color: #fff; max-width: 800px;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 30px; font-style: italic; text-shadow: 0 4px 20px rgba(0,0,0,0.6);">Святкуйте з нами</h2>
-    <p style="font-family: 'Montserrat', sans-serif; font-size: 20px; letter-spacing: 1px; opacity: 0.9; text-shadow: 0 2px 12px rgba(0,0,0,0.5);">
-      Будь ласка, відгукніться до <strong>17.06.2026</strong>
-    </p>
+    <h1 class="celebration-title">Святкуй з нами</h1>
+    <p class="celebration-subtitle">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
   </div>
 </section>
 
 <style>
-/* Анімація появи тексту */
-.celebration-section h2,
-.celebration-section p {
+/* Стиль заголовку і підзаголовку */
+.celebration-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  margin-bottom: 40px;
+  font-style: italic;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUpText 1s ease forwards;
+  transform: translateY(-20px);
+  animation: fadeDown 1s ease forwards;
+  animation-delay: 0.5s;
 }
 
-.celebration-section h2 { animation-delay: 0.5s; }
-.celebration-section p { animation-delay: 1.2s; }
+.celebration-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 1.2s;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
 
-@keyframes fadeUpText {
+/* Анімації */
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -749,12 +767,12 @@
 
 /* Адаптивність */
 @media (max-width: 768px) {
-  .celebration-section h2 { font-size: 36px; }
-  .celebration-section p { font-size: 16px; }
+  .celebration-title { font-size: 48px; margin-bottom: 30px; }
+  .celebration-subtitle { font-size: 18px; }
 }
 
 @media (max-width: 480px) {
-  .celebration-section h2 { font-size: 28px; }
-  .celebration-section p { font-size: 14px; }
+  .celebration-title { font-size: 36px; margin-bottom: 20px; }
+  .celebration-subtitle { font-size: 16px; }
 }
 </style>
