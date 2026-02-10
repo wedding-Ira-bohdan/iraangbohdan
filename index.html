@@ -17,7 +17,7 @@
     html, body {
       width: 100%;
       height: 100%;
-      font-family: 'Playfair Display', serif; /* повернули шрифт */
+      font-family: 'Playfair Display', serif;
       background-image: url('images/photo7.jpg');
       background-size: cover;
       background-position: center;
@@ -31,9 +31,10 @@
 
     .text-layer {
       position: relative;
-      width: 70%;
+      width: 85%;
       max-width: 420px;
-      aspect-ratio: 1 / 1;
+      /* Замість жорсткого aspect-ratio використовуємо padding, щоб текст не вилазив */
+      padding: 50px 20px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -42,6 +43,8 @@
       text-align: center;
       color: #1a1a1a;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+      /* opacity завжди 1 */
+      opacity: 1 !important; 
     }
 
     .text-layer img {
@@ -63,18 +66,18 @@
     }
 
     h1 {
-      font-size: clamp(22px, 4vw, 28px);
+      font-size: clamp(20px, 5vw, 28px);
       margin-bottom: 20px;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     p {
       font-style: italic;
-      font-size: clamp(16px, 3.5vw, 18px);
+      font-size: clamp(14px, 3.5vw, 17px);
       line-height: 1.6;
     }
 
-    /* Пульсуюча підказка */
     .hint {
       margin-top: 25px;
       font-size: 14px;
@@ -90,6 +93,12 @@
       50% { transform: scale(1.1); }
     }
 
+    /* Для маленьких екранів, щоб не було переносу */
+    @media (max-width: 380px) {
+      .text-layer { width: 92%; padding: 40px 15px; }
+      h1 { font-size: 19px; }
+      p { font-size: 13.5px; }
+    }
   </style>
 </head>
 
@@ -106,12 +115,17 @@
 
   <script>
     function openSite() {
-      const block = document.querySelector('.text-layer');
-      block.style.opacity = '0';
-      setTimeout(() => {
-        window.location.href = "main.html";
-      }, 600);
+      // Прибрали block.style.opacity = '0', тепер квадрат не зникає
+      window.location.href = "main.html";
     }
+
+    // Додатковий захист: якщо браузер "кешує" стан сторінки, 
+    // ми примусово показуємо блок при завантаженні
+    window.onpageshow = function(event) {
+      if (event.persisted) {
+        document.querySelector('.text-layer').style.opacity = '1';
+      }
+    };
   </script>
 
 </body>
