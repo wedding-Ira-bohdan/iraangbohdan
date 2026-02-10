@@ -716,12 +716,9 @@
 </section>
 
 <!-- ================== CELEBRATION INVITE ================== -->
-<section class="celebration-invite" style="position: relative; width: 100%; min-height: 60vh; background: url('images/photo11.jpg') center/cover no-repeat;">
+<section class="celebration-invite" style="position: relative; width: 100%; min-height: 60vh; background: url('images/photo11.jpg') center/cover no-repeat; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 60px; text-align: center;">
 
-  <!-- Темна напівпрозора накладка для читабельності -->
-  <div class="overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.25);"></div>
-
-  <div style="position: absolute; bottom: 40px; left: 30px; max-width: 400px; color: #fff;">
+  <div style="max-width: 400px; color: #fff;">
     <p class="celebration-text-top">Святкуй з нами</p>
     <p class="celebration-text-bottom">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
   </div>
@@ -733,14 +730,15 @@
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 12px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  /* легка тінь для читабельності */
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 .celebration-text-bottom {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
 }
 
 /* Адаптивність */
