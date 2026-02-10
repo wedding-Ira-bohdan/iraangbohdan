@@ -478,7 +478,13 @@
 
 <!-- ================== CHURCH LOCATION ================== -->
 
-<style>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation - Locations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
     body {
       margin: 0;
       font-family: sans-serif;
@@ -546,12 +552,15 @@
       transform: translateY(-2px);
     }
 
-    /* ===== РВАНА ПАПЕРОВА ЛІНІЯ ===== */
+    /* ===== РВАНА ПАПЕРОВА ЛІНІЯ (ОНОВЛЕНО) ===== */
     .ripped-white-line {
       width: 100%;
-      height: 50px;
-      background-color: #f4ece4;
+      height: 80px; /* Трохи збільшив висоту для хаотичності */
+      background-color: transparent;
       overflow: hidden;
+      margin: -40px 0; /* Наповзання на блоки для ефекту шарів */
+      position: relative;
+      z-index: 10;
     }
 
     .ripped-white-line svg {
@@ -566,86 +575,62 @@
       }
 
       .ripped-white-line {
-        height: 40px;
+        height: 50px;
+        margin: -25px 0;
       }
     }
   </style>
 </head>
-
 <body>
 
-<!-- ================== CHURCH LOCATION ================== -->
-
 <section class="location-section">
-
   <div class="location-container">
-
     <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
-
     <p class="location-name">Церква святих апостолів Петра і Павла</p>
-
     <p class="location-address">Адреса: вулиця Паркова 21, смт. Клевань, Рівненська область</p>
-
     <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
+    <a href="https://maps.google.com" target="_blank" rel="noopener" class="map-button">
       Місце проведення церемонії
     </a>
-
   </div>
-
 </section>
 
-<!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
-
 <div class="ripped-white-line">
-  <svg viewBox="0 0 1000 60" preserveAspectRatio="none">
+  <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
     <path d="
-      M0,30
-      C40,20 80,40 120,30
-      C160,20 200,40 240,30
-      C280,20 320,40 360,30
-      C400,20 440,40 480,30
-      C520,20 560,40 600,30
-      C640,20 680,40 720,30
-      C760,20 800,40 840,30
-      C880,20 920,40 960,30
-      C980,35 1000,30 1000,30
-      L1000,60 L0,60 Z
-    " fill="#ffffff"/>
+      /* Верхня рвана межа */
+      M0,40 L25,35 L50,45 L80,32 L110,48 L145,34 L180,45 L215,32 L250,50 L285,35 
+      L320,46 L355,32 L390,52 L425,36 L460,48 L495,33 L530,51 L565,35 L600,47 
+      L635,32 L670,53 L705,37 L740,49 L775,34 L810,51 L845,36 L880,48 L915,33 
+      L950,47 L980,35 L1000,42
+      
+      /* Права межа */
+      L1000,65 
+      
+      /* Нижня рвана межа (йдемо назад) */
+      L975,72 L945,58 L915,69 L885,55 L855,70 L825,56 L795,68 L765,54 
+      L735,71 L705,57 L675,69 L645,55 L615,72 L585,58 L555,67 L525,54 L495,73 
+      L465,59 L435,68 L405,55 L375,70 L345,56 L315,67 L285,54 L255,71 L225,58 
+      L195,69 L165,55 L135,72 L105,58 L75,66 L45,54 L20,68 L0,62 
+      
+      /* Замикаємо контур */
+      Z" 
+      fill="#ffffff"/>
   </svg>
 </div>
 
-<!-- ================== HOTEL LOCATION ================== -->
-
 <section class="location-section hotel">
-
   <div class="location-container">
-
     <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
-
     <p class="location-name">Готельно ресторанний комплекс «Айвенго»</p>
-
     <p class="location-address">
       Адреса: вулиця Зелена 53, Колоденка, Рівненська область
     </p>
-
     <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
+    <a href="https://maps.google.com" target="_blank" rel="noopener" class="map-button">
       Місце проведення святкування
     </a>
-
   </div>
-
 </section>
 
 </body>
