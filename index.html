@@ -42,7 +42,7 @@
       text-align: center;
       color: #1a1a1a;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-      transition: opacity 0.6s ease; /* Додано для плавності зникнення */
+      transition: opacity 0.6s ease;
     }
 
     .text-layer img {
@@ -75,7 +75,6 @@
       line-height: 1.6;
     }
 
-    /* Пульсуюча підказка */
     .hint {
       margin-top: 25px;
       font-size: 14px;
@@ -110,8 +109,8 @@
       const block = document.querySelector('.text-layer');
       block.style.opacity = '0';
       setTimeout(() => {
-        // Оновлений шлях до сторінки в папці zaproshennya
-        window.location.href = "zaproshennya/main.html";
+        // Змінено на шлях до папки, щоб прибрати "main.html" з адреси
+        window.location.href = "zaproshennya/";
       }, 600);
     }
   </script>
