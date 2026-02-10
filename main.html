@@ -488,14 +488,15 @@
 
     <p class="location-address">Адреса: смт Клевань, Рівненська область</p>
 
-    <div class="location-map">
-      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener">
-        <iframe
-          src="https://maps.google.com/maps?hl=uk&q=Церква%20Петра%20і%20Павла%20ПЦУ%20Клевань&z=16&output=embed"
-          loading="lazy">
-        </iframe>
-      </a>
-    </div>
+    <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
+
+    <a 
+      href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
+      target="_blank"
+      rel="noopener"
+      class="map-button">
+      Місце проведення церемонії
+    </a>
 
   </div>
 
@@ -513,14 +514,15 @@
 
     <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306</p>
 
-    <div class="location-map">
-      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
-        <iframe
-          src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
-          loading="lazy">
-        </iframe>
-      </a>
-    </div>
+    <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
+
+    <a 
+      href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
+      target="_blank"
+      rel="noopener"
+      class="map-button">
+      Місце проведення святкування
+    </a>
 
   </div>
 
@@ -562,20 +564,32 @@
   .location-address {
     font-size: 18px;
     color: #7a6a60;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 
-  .location-map a {
-    display: block;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .location-map iframe {
+  .location-image {
     width: 100%;
-    height: 360px;
-    border: 0;
-    pointer-events: none;
+    max-width: 700px;
+    border-radius: 16px;
+    margin: 0 auto 25px;
+    display: block;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  }
+
+  .map-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: #6b5c52;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .map-button:hover {
+    background-color: #4a4038;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 600px) {
