@@ -488,21 +488,13 @@
 
     <p class="location-address">Адреса: смт Клевань, Рівненська область</p>
 
-    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
-
-    <div class="location-map-wrapper">
-
-      <div class="location-map">
-        <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener">
-          <iframe
-            src="https://maps.google.com/maps?hl=uk&q=Церква%20Петра%20і%20Павла%20ПЦУ%20Клевань&z=16&output=embed"
-            loading="lazy">
-          </iframe>
-        </a>
-      </div>
-
-      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-photo">
-
+    <div class="location-map">
+      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener">
+        <iframe
+          src="https://maps.google.com/maps?hl=uk&q=Церква%20Петра%20і%20Павла%20ПЦУ%20Клевань&z=16&output=embed"
+          loading="lazy">
+        </iframe>
+      </a>
     </div>
 
   </div>
@@ -521,21 +513,13 @@
 
     <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306</p>
 
-    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
-
-    <div class="location-map-wrapper">
-
-      <div class="location-map">
-        <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
-          <iframe
-            src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
-            loading="lazy">
-          </iframe>
-        </a>
-      </div>
-
-      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-photo">
-
+    <div class="location-map">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
+        <iframe
+          src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed"
+          loading="lazy">
+        </iframe>
+      </a>
     </div>
 
   </div>
@@ -551,7 +535,7 @@
   }
 
   .location-container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
   }
@@ -578,20 +562,7 @@
   .location-address {
     font-size: 18px;
     color: #7a6a60;
-    margin-bottom: 20px;
-  }
-
-  .map-hint {
-    font-size: 14px;
-    color: #8a7a70;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-
-  .location-map-wrapper {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+    margin-bottom: 30px;
   }
 
   .location-map a {
@@ -605,31 +576,6 @@
     height: 360px;
     border: 0;
     pointer-events: none;
-  }
-
-  .location-photo {
-    position: absolute;
-    right: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 220px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    z-index: 5;
-    background: #fff;
-  }
-
-  @media (max-width: 768px) {
-    .location-photo {
-      position: static;
-      transform: none;
-      margin: 20px auto 0;
-      display: block;
-      width: 80%;
-      height: auto;
-    }
   }
 
   @media (max-width: 600px) {
