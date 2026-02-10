@@ -502,8 +502,8 @@
 
 </section>
 
-<!-- ===== РВАНИЙ РОЗДІЛЮВАЧ З ТІНЯМИ ===== -->
-<div class="paper-divider-shadow"></div>
+<!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
+<div class="ripped-white-line"></div>
 
 <!-- ================== HOTEL LOCATION ================== -->
 
@@ -603,37 +603,30 @@
     transform: translateY(-2px);
   }
 
-  /* ================= РВАНИЙ РОЗДІЛЮВАЧ ================= */
-
-  .paper-divider-shadow {
-    height: 90px; /* висота рваного краю */
-    background-color: #f4ece4; /* колір секцій */
+  /* ================= РВАНА БІЛА ЛІНІЯ ================= */
+  .ripped-white-line {
+    height: 20px; /* висота лінії ~1-2 см */
+    background-color: transparent;
     position: relative;
     overflow: hidden;
+    margin: 40px 0; /* відстань від секцій зверху/знизу */
   }
 
-  .paper-divider-shadow::before {
+  .ripped-white-line::before {
     content: "";
     position: absolute;
-    top: -10px;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background:
-      radial-gradient(circle at 5% 0%, rgba(0,0,0,0.08) 28px, #f4ece4 29px),
-      radial-gradient(circle at 20% 0%, rgba(0,0,0,0.08) 24px, #f4ece4 25px),
-      radial-gradient(circle at 35% 0%, rgba(0,0,0,0.08) 30px, #f4ece4 31px),
-      radial-gradient(circle at 50% 0%, rgba(0,0,0,0.08) 26px, #f4ece4 27px),
-      radial-gradient(circle at 65% 0%, rgba(0,0,0,0.08) 29px, #f4ece4 30px),
-      radial-gradient(circle at 80% 0%, rgba(0,0,0,0.08) 25px, #f4ece4 26px),
-      radial-gradient(circle at 95% 0%, rgba(0,0,0,0.08) 31px, #f4ece4 32px);
-    background-repeat: repeat-x;
+      repeating-linear-gradient(
+        90deg,
+        #ffffff 0 4px,
+        transparent 4px 8px
+      );
     pointer-events: none;
-  }
-
-  /* Друга секція — фон той же */
-  .location-section.hotel {
-    padding-top: 120px;
+    opacity: 0.8;
   }
 
   @media (max-width: 600px) {
@@ -641,8 +634,9 @@
       font-size: 32px;
     }
 
-    .paper-divider-shadow {
-      height: 60px;
+    .ripped-white-line {
+      height: 15px;
+      margin: 30px 0;
     }
   }
 </style>
