@@ -715,5 +715,67 @@
 
 </section>
 
+<!-- ================== COUPLE PHOTOS SECTION ================== -->
+<section class="couple-photos-section" style="background: #f4ece4; padding: 100px 0; text-align: center;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size: 38px; margin-bottom: 50px; font-style: italic; color: #6b5c52;">Наші фото</h2>
+  <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+    <img src="images/photo11.jpg" alt="Фото пари 1" class="couple-photo left">
+    <img src="images/photo12.jpg" alt="Фото пари 2" class="couple-photo right">
+    <img src="images/photo13.jpg" alt="Фото пари 3" class="couple-photo right">
+  </div>
+</section>
+
+<style>
+.couple-photo {
+  width: 250px;
+  max-width: 45vw;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeUpSlide 1s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* індивідуальна затримка для чергової появи */
+.couple-photo.left { animation-delay: 0.3s; }
+.couple-photo.right { animation-delay: 0.9s; }
+
+/* hover ефект */
+.couple-photo:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 22px 48px rgba(0,0,0,0.28);
+  filter: brightness(1.08);
+}
+
+/* анімація fade-up + slide + наростання тіні */
+@keyframes fadeUpSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+  60% {
+    opacity: 0.6;
+    transform: translateY(10px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.18);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+}
+
+/* адаптивність для мобільних */
+@media (max-width: 768px) {
+  .couple-photo {
+    width: 180px;
+    max-width: 80vw;
+    margin-bottom: 20px;
+  }
+}
+</style>
+  
 </body>
 </html>
