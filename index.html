@@ -31,10 +31,9 @@
 
     .text-layer {
       position: relative;
-      width: 85%;
+      width: 70%;
       max-width: 420px;
-      /* Замість жорсткого aspect-ratio використовуємо padding, щоб текст не вилазив */
-      padding: 50px 20px;
+      aspect-ratio: 1 / 1;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -43,8 +42,6 @@
       text-align: center;
       color: #1a1a1a;
       text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-      /* opacity завжди 1 */
-      opacity: 1 !important; 
     }
 
     .text-layer img {
@@ -66,15 +63,14 @@
     }
 
     h1 {
-      font-size: clamp(20px, 5vw, 28px);
+      font-size: clamp(22px, 4vw, 28px);
       margin-bottom: 20px;
       font-weight: 400;
-      white-space: nowrap;
     }
 
     p {
       font-style: italic;
-      font-size: clamp(14px, 3.5vw, 17px);
+      font-size: clamp(16px, 3.5vw, 18px);
       line-height: 1.6;
     }
 
@@ -92,13 +88,6 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
-
-    /* Для маленьких екранів, щоб не було переносу */
-    @media (max-width: 380px) {
-      .text-layer { width: 92%; padding: 40px 15px; }
-      h1 { font-size: 19px; }
-      p { font-size: 13.5px; }
-    }
   </style>
 </head>
 
@@ -115,16 +104,13 @@
 
   <script>
     function openSite() {
-      // Прибрали block.style.opacity = '0', тепер квадрат не зникає
+      // Квадрат більше не зникає, просто переходимо за посиланням
       window.location.href = "main.html";
     }
 
-    // Додатковий захист: якщо браузер "кешує" стан сторінки, 
-    // ми примусово показуємо блок при завантаженні
+    // Це про всяк випадок, щоб браузер точно показав квадрат при поверненні назад
     window.onpageshow = function(event) {
-      if (event.persisted) {
-        document.querySelector('.text-layer').style.opacity = '1';
-      }
+      document.querySelector('.text-layer').style.opacity = '1';
     };
   </script>
 
