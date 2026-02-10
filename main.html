@@ -477,73 +477,49 @@
 </section>
 
 <!-- ================== LOCATION SECTION ================== -->
+<section class="location-section ceremony-bg">
+  <div class="location-container">
+    <h2 class="location-title">Церемонія вінчання <span class="location-icon">⛪</span></h2>
+    <p class="location-name">Собор</p>
+    <p class="location-address">Адреса: Клевань, Рівненська область, 35311</p>
+    <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
+    <div class="location-map">
+      <a href="https://www.google.com/maps/search/?api=1&query=Клевань+Рівненська+область+35311" target="_blank" rel="noopener">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10115.862410626388!2d25.961559!3d50.742361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472f619b023f034d%3A0xc3f5b72265008064!2z0JrQu9C10LLQsNC90YwsINCg0ZbQstC90LXQvdGB0YzQutCwINC-0LHQuy4sIDM1MzEx!5e0!3m2!1suk!2sua!4v1700000000000" loading="lazy"></iframe>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="location-section">
   <div class="location-container">
-    <h2 class="location-title">Локація <span class="location-icon">📍</span></h2>
+    <h2 class="location-title">Локація свята <span class="location-icon">📍</span></h2>
     <p class="location-name">Готель «Айвенго»</p>
     <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область, 35306</p>
     <div class="map-hint">Натисніть на карту, щоб відкрити Google Maps</div>
     <div class="location-map">
-      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener">
-        <iframe src="https://maps.google.com/maps?hl=uk&q=Готель%20Айвенго,%20вулиця%20Зелена%2053,%20Колоденка&z=16&output=embed" loading="lazy"></iframe>
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго+Колоденка" target="_blank" rel="noopener">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.748342418525!2d26.31291!3d50.59478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472f9191e4889657%3A0x8686f05b01831818!2z0JPQvtGC0LXQu9GMINKr0JDQudCy0LXQvdCz0L7Cuw!5e0!3m2!1suk!2sua!4v1700000000000" loading="lazy"></iframe>
       </a>
     </div>
   </div>
 
-  <!-- CSS для LOCATION -->
   <style>
-    .location-section { background-color: #f4ece4; padding: 80px 20px; }
+    .location-section { background-color: #f4ece4; padding: 80px 20px; border-bottom: 1px solid rgba(107, 92, 82, 0.1); }
+    .ceremony-bg { background-color: #f9f5f1; } 
+    
     .location-container { max-width: 900px; margin: 0 auto; text-align: center; }
     .location-title { font-family: 'Playfair Display', serif; font-size: 42px; color: #6b5c52; margin-bottom: 30px; }
     .location-icon { font-size: 32px; margin-left: 10px; }
     .location-name { font-size: 22px; font-weight: 600; margin-bottom: 10px; color: #4a4038; }
     .location-address { font-size: 18px; color: #7a6a60; margin-bottom: 20px; }
     .map-hint { font-size: 14px; color: #8a7a70; margin-bottom: 20px; font-style: italic; }
-    .location-map a { display: block; border-radius: 12px; overflow: hidden; }
+    .location-map a { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     .location-map iframe { width: 100%; height: 360px; border: 0; pointer-events: none; }
 
-    @media (max-width: 600px) { .location-title { font-size: 32px; } }
+    @media (max-width: 600px) { 
+      .location-title { font-size: 32px; } 
+      .location-section { padding: 60px 15px; }
+    }
   </style>
 </section>
-
-<!-- ================== SCRIPTS ================== -->
-<script>
-  // ================== COUNTDOWN SCRIPT ==================
-  (function() {
-    const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance <= 0) {
-        document.getElementById("d_new").innerText = "00";
-        document.getElementById("h_new").innerText = "00";
-        document.getElementById("m_new").innerText = "00";
-        document.getElementById("s_new").innerText = "00";
-        const timerSection = document.getElementById("wedding-timer");
-        if (timerSection) {
-          timerSection.innerHTML = "<div style='padding: 40px; font-family: Playfair Display, serif; font-size: 24px; text-align:center;'>Цей щасливий день настав!</div>";
-        }
-        clearInterval(timerInterval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("d_new").innerText = String(days).padStart(2, "0");
-      document.getElementById("h_new").innerText = String(hours).padStart(2, "0");
-      document.getElementById("m_new").innerText = String(minutes).padStart(2, "0");
-      document.getElementById("s_new").innerText = String(seconds).padStart(2, "0");
-    }
-
-    const timerInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  })();
-</script>
-
-</body>
-</html>
