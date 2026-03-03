@@ -28,6 +28,7 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      background-color: #fdfaf7;
     }
 
     .text-layer {
@@ -38,10 +39,16 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      justify-content: center; /* Центруємо контент всередині */
       align-items: center;
       text-align: center;
       color: #1a1a1a;
-      padding: 40px 30px;
+      padding: 35px;
+      transition: transform 0.3s ease;
+    }
+
+    .text-layer:hover {
+      transform: scale(1.01);
     }
 
     .text-layer img {
@@ -51,9 +58,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 15px;
+      border-radius: 15px; /* Твої закруглені кути */
       z-index: 0;
       opacity: 0.98;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .text-layer h1,
@@ -64,47 +72,48 @@
     }
 
     h1 {
+      /* Заголовок: жирний та збалансований відступ */
       font-size: clamp(24px, 6vw, 30px);
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      /* Скорочено відстань до тексту знизу */
-      margin-top: 10px;
-      margin-bottom: 20px; 
+      margin-bottom: 25px; /* Відстань до тексту ("золота середина") */
+      line-height: 1.2;
     }
 
     p {
+      /* Основний текст: великий, жирний та похилий */
       font-size: clamp(20px, 5vw, 24px); 
-      line-height: 1.3;
+      line-height: 1.4;
       font-style: italic;
       font-weight: 500; 
       color: #1a1a1a;
-      max-width: 320px;
-      /* push hint to the bottom */
-      margin-bottom: auto; 
+      max-width: 310px;
+      margin-bottom: 35px; /* Відступ до підказки */
     }
 
     .hint {
+      /* Підказка знизу */
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 2px;
       font-weight: 600;
       text-transform: uppercase;
       border-bottom: 2px solid #1a1a1a;
-      padding-bottom: 4px;
-      margin-top: 20px;
+      padding-bottom: 5px;
       animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.7; }
+      50% { transform: scale(1.05); opacity: 0.6; }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="text-layer" onclick="openSite()" role="button">
+  <div class="text-layer" onclick="openSite()" role="button" aria-label="Відкрити запрошення">
     <img src="images/photo8.jpg" alt="Фон">
     
     <h1>Дорогі гості!</h1>
@@ -116,8 +125,18 @@
 
   <script>
     function openSite() {
-      window.location.href = "main.html";
+      const layer = document.querySelector('.text-layer');
+      layer.style.opacity = '0';
+      layer.style.transition = 'opacity 0.4s ease';
+      
+      setTimeout(() => {
+        window.location.href = "main.html";
+      }, 350);
     }
+
+    window.onpageshow = function(event) {
+      document.querySelector('.text-layer').style.opacity = '1';
+    };
   </script>
 
 </body>
