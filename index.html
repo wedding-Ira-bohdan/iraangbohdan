@@ -39,7 +39,7 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Центруємо контент всередині */
+      justify-content: center; 
       align-items: center;
       text-align: center;
       color: #1a1a1a;
@@ -58,7 +58,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 15px; /* Твої закруглені кути */
+      border-radius: 15px;
       z-index: 0;
       opacity: 0.98;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -72,28 +72,26 @@
     }
 
     h1 {
-      /* Заголовок: жирний та збалансований відступ */
       font-size: clamp(24px, 6vw, 30px);
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 25px; /* Відстань до тексту ("золота середина") */
+      margin-bottom: 25px; 
       line-height: 1.2;
     }
 
     p {
-      /* Основний текст: великий, жирний та похилий */
       font-size: clamp(20px, 5vw, 24px); 
       line-height: 1.4;
       font-style: italic;
       font-weight: 500; 
       color: #1a1a1a;
       max-width: 310px;
-      margin-bottom: 35px; /* Відступ до підказки */
+      /* Збільшив відступ знизу, щоб опустити підказку ще нижче */
+      margin-bottom: 45px; 
     }
 
     .hint {
-      /* Підказка знизу */
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
       letter-spacing: 2px;
@@ -113,7 +111,7 @@
 
 <body>
 
-  <div class="text-layer" onclick="openSite()" role="button" aria-label="Відкрити запрошення">
+  <div class="text-layer" onclick="openSite()" role="button">
     <img src="images/photo8.jpg" alt="Фон">
     
     <h1>Дорогі гості!</h1>
