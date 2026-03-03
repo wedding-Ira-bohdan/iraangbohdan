@@ -16,6 +16,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
+    /* HERO SECTION */
     .hero {
       position: relative;
       width: 100%; min-height: 100vh;
@@ -72,6 +73,7 @@
       font-size: 14px;
     }
 
+    /* PLAYER */
     .mini-player-wrapper {
       margin-top: 22px;
       opacity: 0;
@@ -79,28 +81,9 @@
       animation: fadeUp 1s ease forwards;
       animation-delay: 3.5s;
     }
-
-    .mini-player {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .mini-player button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      transition: transform 0.2s;
-      outline: none;
-    }
-
-    .mini-player button svg {
-      width: 32px;
-      height: 32px;
-      fill: currentColor;
-    }
+    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
+    .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
+    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
 
     #progress-container {
       width: 200px;
@@ -111,52 +94,82 @@
       cursor: pointer;
       overflow: hidden;
     }
-    #progress {
-      width: 0%;
-      height: 100%;
-      background: #fff;
-      transition: width 0.1s linear;
-    }
+    #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
 
+    /* SCROLL LINE (ЗАМІСТЬ СТРІЛКИ) */
     .scroll-down {
       position: absolute;
       bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       z-index: 10;
+      height: 60px;
+      width: 1px;
     }
-    .scroll-down .line {
-      width: 2px;
+    .scroll-line-inner {
+      width: 1px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-line-inner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 30px;
       background: #fff;
-      animation: bounce 1.2s infinite;
-    }
-    .scroll-down .arrow {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 15px solid #fff;
-      animation: bounce 1.2s infinite;
+      animation: scanLine 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
     }
 
-    @keyframes bounce {
-      0%,20%,50%,80%,100% { transform: translateY(0); }
-      40% { transform: translateY(8px); }
-      60% { transform: translateY(4px); }
+    @keyframes scanLine {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(200%); }
     }
+
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
+    /* TIMER SECTION */
+    #wedding-timer { background: #2B160E; padding: 80px 0; text-align: center; color: #fff; font-family: 'Montserrat', sans-serif; }
+    .timer-grid { display: flex; justify-content: center; align-items: center; gap: 15px; }
+    .timer-box { border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; border-radius: 2px; }
+    .timer-box span { display: block; font-size: 38px; font-family: 'Playfair Display', serif; }
+    .timer-box label { font-size: 9px; text-transform: uppercase; opacity: 0.6; display: block; margin-top: 5px; }
+
+    /* EVENTS SECTION */
+    .events-section { position: relative; background-size: cover; background-position: center; padding: 120px 20px; color: #fff; }
+    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .event-item { display: flex; gap: 25px; margin-bottom: 50px; font-size: 18px; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .event-item.show { opacity: 1; transform: translateY(0); }
+    .event-item.right { justify-content: flex-end; text-align: right; }
+    .event-item.left { justify-content: flex-start; text-align: left; }
+
+    /* DRESS CODE */
+    .dress-code-section { background: #E0DDD5; padding: 100px 0; text-align: center; color: #2B160E; }
+    .palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+    .color-item { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .color-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* LOCATION */
+    .location-section { background-color: #f4ece4; padding: 80px 20px; text-align: center; color: #4a4038; }
+    .location-image { width: 100%; max-width: 720px; border-radius: 18px; margin: 20px auto; display: block; box-shadow: 0 18px 40px rgba(0,0,0,0.22); }
+    .map-button { display: inline-block; padding: 14px 36px; background-color: #6b5c52; color: #fff; border-radius: 40px; transition: 0.3s; }
+    .ripped-white-line { width: 100%; height: 50px; background-color: #f4ece4; overflow: hidden; }
+
+    /* CELEBRATION INVITE */
+    .celebration-invite { min-height: 60vh; background: url('images/photo12.jpg') center/cover no-repeat; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 20px; }
+    .celebration-text-block { padding: 25px 40px; border-radius: 14px; backdrop-filter: blur(18px); background: rgba(0, 0, 0, 0.25); color: #fff; text-align: center; }
+
     @media (max-width: 768px) {
-      .content { padding-top: 100px; }
       .name { font-size: 44px; }
-      #progress-container { width: 160px; }
+      .event-item { flex-direction: column; align-items: center; text-align: center; }
     }
   </style>
 </head>
-
 <body>
 
 <section class="hero">
@@ -165,259 +178,41 @@
     <div class="name first">Ірина</div>
     <div class="and">and</div>
     <div class="name second">Богдан</div>
+    <div class="subtitle">Wedding Day <span class="date">17.07.2026</span></div>
 
-    <div class="subtitle">
-      Wedding Day <span class="date">17.07.2026</span>
-
-      <div class="mini-player-wrapper">
-        <div class="mini-player">
-          <button id="prev">
-            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-          </button>
-          <button id="play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <button id="next">
-            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-          </button>
-        </div>
-        <div id="progress-container"><div id="progress"></div></div>
+    <div class="mini-player-wrapper">
+      <div class="mini-player">
+        <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+        <button id="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button id="next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
       </div>
+      <div id="progress-container"><div id="progress"></div></div>
     </div>
   </div>
 
   <a href="#wedding-timer" class="scroll-down">
-    <div class="line"></div>
-    <div class="arrow"></div>
+    <div class="scroll-line-inner"></div>
   </a>
 </section>
 
 <audio id="audio" preload="auto"></audio>
 
-<script>
-  const tracks = [
-    "images/song1.mp3",
-    "images/song2.mp3",
-    "images/song3.mp3"
-  ];
-
-  let current = 0;
-
-  const audio = document.getElementById("audio");
-  const playBtn = document.getElementById("play");
-  const progress = document.getElementById("progress");
-  const progressContainer = document.getElementById("progress-container");
-
-  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-
-  function loadTrack(i, autoplay = false) {
-    audio.src = tracks[i];
-    audio.load();
-    if (autoplay) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
-    }
-  }
-
-  playBtn.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play();
-      playBtn.innerHTML = pauseIcon;
-    } else {
-      audio.pause();
-      playBtn.innerHTML = playIcon;
-    }
-  });
-
-  document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
-  });
-
-  document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + tracks.length) % tracks.length;
-    loadTrack(current, true);
-  });
-
-  audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    }
-  });
-
-  progressContainer.addEventListener("click", (e) => {
-    const width = progressContainer.clientWidth;
-    const clickX = e.offsetX;
-    if (audio.duration) {
-      audio.currentTime = (clickX / width) * audio.duration;
-    }
-  });
-
-  audio.addEventListener("ended", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
-  });
-
-  // автозапуск першої пісні
-  loadTrack(current, true);
-
-  // якщо браузер заблокує — запуск після першого кліку
-  document.addEventListener("click", function initAutoPlay() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
-    }
-    document.removeEventListener("click", initAutoPlay);
-  });
-</script>
-  
-    <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div class="timer-wrapper">
-    <p class="timer-title">До нашої події залишилося:</p>
-    
+    <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8;">До нашої події залишилося:</p>
     <div class="timer-grid">
-      <div class="timer-box">
-        <span id="d_new">00</span>
-        <label>днів</label>
-      </div>
-      <div class="timer-box">
-        <span id="h_new">00</span>
-        <label>год</label>
-      </div>
-      <div class="timer-box">
-        <span id="m_new">00</span>
-        <label>хв</label>
-      </div>
-      <div class="timer-box">
-        <span id="s_new">00</span>
-        <label>сек</label>
-      </div>
+      <div class="timer-box"><span id="d_new">00</span><label>днів</label></div>
+      <div class="timer-box"><span id="h_new">00</span><label>год</label></div>
+      <div class="timer-box"><span id="m_new">00</span><label>хв</label></div>
+      <div class="timer-box"><span id="s_new">00</span><label>сек</label></div>
     </div>
   </div>
-
-  <style>
-    /* Базові стилі секції */
-    #wedding-timer { 
-      background: #2B160E; 
-      padding: 80px 0; 
-      text-align: center; 
-      color: #fff; 
-      position: relative; 
-      z-index: 5;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .timer-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-
-    .timer-title {
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 30px;
-      opacity: 0.8;
-      font-weight: 400;
-    }
-
-    /* Контейнер сітки: nowrap гарантує один рядок */
-    .timer-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap; 
-    }
-
-    .timer-box {
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 20px;
-      min-width: 85px;
-      border-radius: 2px;
-      flex: 0 0 auto;
-    }
-
-    .timer-box span {
-      display: block;
-      font-size: 38px;
-      font-weight: 300;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .timer-box label {
-      font-size: 9px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      letter-spacing: 2px;
-      display: block;
-      margin-top: 5px;
-    }
-
-    /* Адаптація для мобільних (щоб все влізло в один ряд) */
-    @media (max-width: 480px) {
-      #wedding-timer { padding: 50px 0; }
-      .timer-grid { gap: 8px; }
-      .timer-box {
-        padding: 15px 5px;
-        min-width: 70px;
-      }
-      .timer-box span { font-size: 28px; }
-      .timer-box label { font-size: 8px; letter-spacing: 1px; }
-    }
-
-    /* Для екстремально маленьких екранів */
-    @media (max-width: 340px) {
-      .timer-grid { gap: 5px; }
-      .timer-box { min-width: 62px; }
-      .timer-box span { font-size: 22px; }
-    }
-  </style>
-
-  <script>
-    function updateWeddingTimer() {
-      // Встановлюємо дату весілля (17 липня 2026)
-      const targetDate = new Date("July 17, 2026 00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.querySelector(".timer-grid").innerHTML = "<h3>Цей день настав!</h3>";
-        return;
-      }
-
-      const mS = 1000;
-      const mMin = mS * 60;
-      const mHour = mMin * 60;
-      const mDay = mHour * 24;
-
-      const d = Math.floor(diff / mDay);
-      const h = Math.floor((diff % mDay) / mHour);
-      const m = Math.floor((diff % mHour) / mMin);
-      const s = Math.floor((diff % mMin) / mS);
-
-      document.getElementById("d_new").innerText = d < 10 ? "0" + d : d;
-      document.getElementById("h_new").innerText = h < 10 ? "0" + h : h;
-      document.getElementById("m_new").innerText = m < 10 ? "0" + m : m;
-      document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
-    }
-
-    // Запуск таймера
-    setInterval(updateWeddingTimer, 1000);
-    updateWeddingTimer();
-  </script>
 </section>
 
-<!-- ================== EVENTS SECTION ================== -->
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
-    <h2 class="events-title">Програма дня</h2>
+    <h2 style="font-family:'Playfair Display'; font-size:40px; margin-bottom:80px; text-align:center; font-style:italic;">Програма дня</h2>
     <div class="event-item right"><span class="event-time">11:30</span><span class="event-name">Збір гостей</span></div>
     <div class="event-item left"><span class="event-time">12:00</span><span class="event-name">Початок церемонії</span></div>
     <div class="event-item right"><span class="event-time">14:00</span><span class="event-name">Початок банкету</span></div>
@@ -425,355 +220,101 @@
     <div class="event-item right"><span class="event-time">20:00</span><span class="event-name">Весільний торт</span></div>
     <div class="event-item left"><span class="event-time">22:00</span><span class="event-name">Завершення свята</span></div>
   </div>
-
-  <style>
-    .events-section {
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      padding: 120px 20px;
-      color: #fff;
-    }
-    .events-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-    }
-    .events-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .events-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      margin-bottom: 80px;
-      text-align: center;
-      font-style: italic;
-    }
-    .event-item {
-      display: flex;
-      justify-content: flex-start;
-      gap: 25px;
-      margin-bottom: 50px;
-      font-size: 18px;
-      opacity: 0;               /* початково невидимі */
-      transform: translateY(30px); /* початкове зміщення вниз */
-      transition: all 0.8s ease;
-    }
-    .event-item.left { justify-content: flex-start; text-align: left; }
-    .event-item.right { justify-content: flex-end; text-align: right; }
-    .event-time { letter-spacing: 2px; opacity: 0.8; }
-    .event-name { font-weight: 500; }
-    .event-item.show {
-      opacity: 1;               /* при додаванні класу show – видно */
-      transform: translateY(0); /* повертаємо на своє місце */
-    }
-
-    /* Адаптивність */
-    @media (max-width: 768px) {
-      .event-item { flex-direction: column; align-items: center; text-align: center; }
-      .event-item.right, .event-item.left { justify-content: center; }
-      .events-title { font-size: 32px; margin-bottom: 60px; }
-    }
-  </style>
-
-  <script>
-    
-    // ================== EVENTS FADE IN ON SCROLL ==================
-    const eventItems = document.querySelectorAll('.event-item');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show'); // додаємо клас, щоб елемент з’явився
-          observer.unobserve(entry.target); // один раз показати
-        }
-      });
-    }, { threshold: 0.1 });
-
-    eventItems.forEach(item => observer.observe(item));
-  </script>
 </section>
 
-<!-- ================== DRESS CODE SECTION ================== -->
 <section class="dress-code-section">
-  <div class="dress-title">Dress Code</div>
-  <div class="divider"></div>
-  <p class="dress-text">
-    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
-    Це допоможе створити особливу гармонію нашої події.
-  </p>
+  <div style="font-family:'Playfair Display'; font-size:38px; font-style:italic; margin-bottom:20px;">Dress Code</div>
+  <div style="width:50px; height:1px; background:#2B160E; margin:0 auto 30px; opacity:0.3;"></div>
+  <p style="font-size:15px; max-width:600px; margin:0 auto 40px; padding:0 20px;">Ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята.</p>
   <div class="palette">
-    <div class="color-item"><img src="images/photo1.jpg" alt="Фото 1"></div>
-    <div class="color-item"><img src="images/photo2.jpg" alt="Фото 2"></div>
-    <div class="color-item"><img src="images/photo3.jpg" alt="Фото 3"></div>
-    <div class="color-item"><img src="images/photo4.jpg" alt="Фото 4"></div>
-    <div class="color-item"><img src="images/photo5.jpg" alt="Фото 5"></div>
+    <div class="color-item"><img src="images/photo1.jpg" alt=""></div>
+    <div class="color-item"><img src="images/photo2.jpg" alt=""></div>
+    <div class="color-item"><img src="images/photo3.jpg" alt=""></div>
+    <div class="color-item"><img src="images/photo4.jpg" alt=""></div>
+    <div class="color-item"><img src="images/photo5.jpg" alt=""></div>
   </div>
-  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
-
-  <!-- CSS для DRESS CODE -->
-  <style>
-    .dress-code-section {
-      background: #E0DDD5;
-      padding: 100px 0;
-      text-align: center;
-      color: #2B160E;
-    }
-    .dress-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; margin-bottom: 20px; font-style: italic; }
-    .divider { width: 50px; height: 1px; background: #2B160E; margin: 0 auto 30px; opacity: 0.3; }
-    .dress-text { font-size: 15px; line-height: 1.8; max-width: 600px; margin: 0 auto 40px; font-weight: 300; padding: 0 20px; }
-    .palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
-    .color-item { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
-    .color-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    @media (max-width: 768px) {
-      .dress-title { font-size: 32px; }
-      .color-item { width: 60px; height: 60px; }
-    }
-  </style>
 </section>
-
-
-<!-- ================== CHURCH LOCATION ================== -->
-
-<style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #f4ece4;
-    }
-
-    .location-section {
-      background-color: #f4ece4;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .location-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .location-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      color: #6b5c52;
-      margin-bottom: 30px;
-    }
-
-    .location-icon {
-      font-size: 32px;
-      margin-left: 10px;
-    }
-
-    .location-name {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #4a4038;
-    }
-
-    .location-address {
-      font-size: 18px;
-      color: #7a6a60;
-      margin-bottom: 25px;
-    }
-
-    .location-image {
-      width: 100%;
-      max-width: 720px;
-      border-radius: 18px;
-      margin: 0 auto 30px;
-      display: block;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-    }
-
-    .map-button {
-      display: inline-block;
-      padding: 14px 36px;
-      background-color: #6b5c52;
-      color: #ffffff;
-      font-size: 16px;
-      text-decoration: none;
-      border-radius: 40px;
-      transition: all 0.3s ease;
-    }
-
-    .map-button:hover {
-      background-color: #4a4038;
-      transform: translateY(-2px);
-    }
-
-    /* ===== РВАНА ПАПЕРОВА ЛІНІЯ ===== */
-    .ripped-white-line {
-      width: 100%;
-      height: 50px;
-      background-color: #f4ece4;
-      overflow: hidden;
-    }
-
-    .ripped-white-line svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    @media (max-width: 600px) {
-      .location-title {
-        font-size: 32px;
-      }
-
-      .ripped-white-line {
-        height: 40px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- ================== CHURCH LOCATION ================== -->
 
 <section class="location-section">
-
-  <div class="location-container">
-
-    <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
-
-    <p class="location-name">Церква святих апостолів Петра і Павла</p>
-
-    <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
-
-    <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
-      Місце проведення церемонії
-    </a>
-
-  </div>
-
+  <h2 style="font-family:'Playfair Display'; font-size:42px; margin-bottom:30px;">Вінчання ⛪</h2>
+  <p style="font-size:22px; font-weight:600;">Церква святих апостолів Петра і Павла</p>
+  <p>вулиця Паркова, 21, смт Клевань</p>
+  <img src="images/photo9.jpg" alt="" class="location-image">
+  <a href="#" class="map-button">Місце церемонії</a>
 </section>
-
-<!-- ===== РВАНА БІЛА ЛІНІЯ (ЗБІЛЬШЕНА) ===== -->
 
 <div class="ripped-white-line">
-  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path d="
-      M0,38
-      C60,5 90,65 140,32
-      C190,60 230,10 280,40
-      C310,20 360,75 420,35
-      C470,5 520,55 560,30
-      C610,70 650,15 700,45
-      C760,20 820,80 860,35
-      C910,15 960,60 1000,40
-
-      L1000,85
-      C950,110 920,45 870,80
-      C820,50 780,115 720,70
-      C680,105 630,40 590,95
-      C540,45 500,115 450,70
-      C410,105 360,40 310,95
-      C260,50 220,115 170,70
-      C120,105 80,45 40,80
-      C20,90 0,70 0,80
-      Z
-    " fill="#ffffff"/>
-  </svg>
+  <svg viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M0,38 C60,5 90,65 140,32 C190,60 230,10 280,40 C310,20 360,75 420,35 C470,5 520,55 560,30 C610,70 650,15 700,45 C760,20 820,80 860,35 C910,15 960,60 1000,40 L1000,85 C950,110 920,45 870,80 C820,50 780,115 720,70 C680,105 630,40 590,95 C540,45 500,115 450,70 C410,105 360,40 310,95 C260,50 220,115 170,70 C120,105 80,45 40,80 C20,90 0,70 0,80 Z" fill="#ffffff"/></svg>
 </div>
 
-<!-- ================== HOTEL LOCATION ================== -->
-
-<section class="location-section hotel">
-
-  <div class="location-container">
-
-    <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
-
-    <p class="location-name">Готельно ресторанний комплекс «Айвенго»</p>
-
-    <p class="location-address">
-      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область
-    </p>
-
-    <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
-      Місце проведення святкування
-    </a>
-
-  </div>
-
+<section class="location-section" style="background:#fff;">
+  <h2 style="font-family:'Playfair Display'; font-size:42px; margin-bottom:30px;">Локація 🏛️</h2>
+  <p style="font-size:22px; font-weight:600;">Комплекс «Айвенго»</p>
+  <p>вулиця Зелена, 53, Колоденка</p>
+  <img src="images/photo10.jpg" alt="" class="location-image">
+  <a href="#" class="map-button">Місце святкування</a>
 </section>
-  
-<!-- ================== CELEBRATION INVITE ================== -->
+
 <section class="celebration-invite">
-
   <div class="celebration-text-block">
-    <p class="celebration-text-top">Святкуйте з нами</p>
-    <p class="celebration-text-bottom">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
+    <p style="font-family:'Playfair Display'; font-size:36px; font-weight:600; margin-bottom:12px;">Святкуйте з нами</p>
+    <p>Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
   </div>
-  
 </section>
 
-<style>
-.celebration-invite {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
-  background: url('images/photo12.jpg') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* вирівнювання по низу */
-  padding-bottom: 20px; /* відстань від блоку до низу секції ~2см */
-  text-align: center;
-}
+<script>
+  // AUDIO
+  const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
+  let current = 0;
+  const audio = document.getElementById("audio");
+  const playBtn = document.getElementById("play");
+  const progress = document.getElementById("progress");
+  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
-.celebration-text-block {
-  display: inline-block;
-  padding: 25px 40px;
-  border-radius: 14px;
-  backdrop-filter: blur(18px);
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(0,0,0,0.15);
-  text-align: center;
-}
+  function loadTrack(i, autoplay = false) {
+    audio.src = tracks[i];
+    if (autoplay) audio.play().then(() => playBtn.innerHTML = pauseIcon).catch(() => {});
+  }
 
-.celebration-text-top {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  text-shadow: 0 0 12px rgba(0,0,0,0.4);
-}
+  playBtn.addEventListener("click", () => {
+    if (audio.paused) { audio.play(); playBtn.innerHTML = pauseIcon; }
+    else { audio.pause(); playBtn.innerHTML = playIcon; }
+  });
 
-.celebration-text-bottom {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 8px rgba(0,0,0,0.3);
-}
+  document.getElementById("next").addEventListener("click", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
+  document.getElementById("prev").addEventListener("click", () => { current = (current - 1 + tracks.length) % tracks.length; loadTrack(current, true); });
+  audio.addEventListener("timeupdate", () => { if (audio.duration) progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; });
+  audio.addEventListener("ended", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
+  
+  loadTrack(current);
+  document.addEventListener("click", () => { if (audio.paused) { audio.play(); playBtn.innerHTML = pauseIcon; } }, { once: true });
 
-@media (max-width: 768px) {
-  .celebration-text-block { padding: 18px 30px; }
-  .celebration-text-top { font-size: 28px; }
-  .celebration-text-bottom { font-size: 16px; }
-}
+  // TIMER
+  function updateTimer() {
+    const target = new Date("July 17, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+    if (diff <= 0) return;
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById("d_new").innerText = d < 10 ? "0"+d : d;
+    document.getElementById("h_new").innerText = h < 10 ? "0"+h : h;
+    document.getElementById("m_new").innerText = m < 10 ? "0"+m : m;
+    document.getElementById("s_new").innerText = s < 10 ? "0"+s : s;
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
 
-@media (max-width: 480px) {
-  .celebration-text-block { padding: 15px 20px; }
-  .celebration-text-top { font-size: 24px; }
-  .celebration-text-bottom { font-size: 14px; }
-}
-</style>
+  // INTERSECTION OBSERVER
+  const eventItems = document.querySelectorAll('.event-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('show'); observer.unobserve(entry.target); }});
+  }, { threshold: 0.1 });
+  eventItems.forEach(item => observer.observe(item));
+</script>
+
+</body>
+</html>
