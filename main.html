@@ -131,23 +131,15 @@
       overflow: hidden;
     }
 
+    /* Змінено на статичну лінію без анімації */
     .scroll-indicator::after {
       content: '';
       position: absolute;
-      top: -20%;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 20%;
+      height: 15%;
       background: #fff;
-      /* Збільшено час анімації з 2s до 3.5s для сповільнення */
-      animation: dropDown 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    @keyframes dropDown {
-      0% { top: -20%; opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { top: 100%; opacity: 0; }
     }
 
     .scroll-progress-bar {
