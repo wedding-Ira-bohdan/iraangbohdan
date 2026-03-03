@@ -118,34 +118,44 @@
       transition: width 0.1s linear;
     }
 
-    .scroll-down {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 10;
-    }
-    .scroll-down .line {
-      width: 2px;
-      height: 30px;
-      background: #fff;
-      animation: bounce 1.2s infinite;
-    }
-    .scroll-down .arrow {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 15px solid #fff;
-      animation: bounce 1.2s infinite;
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+      overflow: hidden;
     }
 
-    @keyframes bounce {
-      0%,20%,50%,80%,100% { transform: translateY(0); }
-      40% { transform: translateY(8px); }
-      60% { transform: translateY(4px); }
+    /* Додана анімація "краплі", що падає вниз, щоб показати можливість гортання */
+    .scroll-indicator::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 0;
+      width: 100%;
+      height: 20%;
+      background: #fff;
+      animation: dropDown 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
+
+    @keyframes dropDown {
+      0% { top: -20%; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .scroll-progress-bar {
+      width: 100%;
+      height: 0%;
+      background: #fff;
+    }
+
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
@@ -158,6 +168,10 @@
 </head>
 
 <body>
+
+<div class="scroll-indicator">
+  <div class="scroll-progress-bar" id="scrollBar"></div>
+</div>
 
 <section class="hero">
   <div class="overlay"></div>
@@ -185,11 +199,6 @@
       </div>
     </div>
   </div>
-
-  <a href="#wedding-timer" class="scroll-down">
-    <div class="line"></div>
-    <div class="arrow"></div>
-  </a>
 </section>
 
 <audio id="audio" preload="auto"></audio>
@@ -260,10 +269,8 @@
     loadTrack(current, true);
   });
 
-  // автозапуск першої пісні
   loadTrack(current, true);
 
-  // якщо браузер заблокує — запуск після першого кліку
   document.addEventListener("click", function initAutoPlay() {
     if (audio.paused) {
       audio.play().then(() => {
@@ -271,6 +278,23 @@
       }).catch(() => {});
     }
     document.removeEventListener("click", initAutoPlay);
+  });
+
+  window.addEventListener("scroll", () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    const indicator = document.querySelector(".scroll-indicator");
+    if (winScroll > 50) {
+      indicator.style.opacity = "0"; 
+    } else {
+      indicator.style.opacity = "1"; 
+    }
+
+    if (height > 0) {
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("scrollBar").style.height = scrolled + "%";
+    }
   });
 </script>
   
