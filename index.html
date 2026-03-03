@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Запрошення</title>
+  <title>Запрошення | Іра та Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,32 +19,39 @@
     html, body {
       width: 100%;
       height: 100%;
-      /* Змінено на Cormorant Garamond для основної естетики */
       font-family: 'Cormorant Garamond', serif;
+      /* Головний фон сторінки */
       background-image: url('images/photo7.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
+      
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      background-color: #fdfaf7; /* Колір-заглушка до завантаження фото */
     }
 
     .text-layer {
       position: relative;
-      width: 85%; /* Трохи збільшив для кращого вигляду тексту */
+      width: 85%;
       max-width: 420px;
       aspect-ratio: 1 / 1;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      /* Розподіляємо контент: заголовок вгору, кнопка вниз, текст по центру */
+      justify-content: space-between; 
       align-items: center;
       text-align: center;
       color: #1a1a1a;
-      padding: 40px;
+      padding: 60px 35px; /* Вертикальні відступи створюють "повітря" */
+      transition: transform 0.3s ease;
+    }
+
+    .text-layer:hover {
+      transform: scale(1.02);
     }
 
     .text-layer img {
@@ -54,9 +61,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 2px; /* Менший радіус виглядає більш преміально */
+      border-radius: 15px; /* Твої закруглені кути */
       z-index: 0;
-      opacity: 0.95; /* Додав легку прозорість фону під текстом */
+      opacity: 0.98;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .text-layer h1,
@@ -67,48 +75,47 @@
     }
 
     h1 {
-      font-size: clamp(24px, 6vw, 32px);
-      margin-bottom: 15px;
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 500;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
       text-transform: uppercase;
+      color: #2c2c2c;
     }
 
     p {
-      font-size: clamp(18px, 4vw, 20px);
-      line-height: 1.4;
+      font-size: clamp(17px, 4vw, 20px);
+      line-height: 1.5;
       font-style: italic;
-      font-weight: 300;
+      font-weight: 400;
       color: #333;
+      max-width: 280px; /* Обмеження ширини для кращого вигляду */
     }
 
     .hint {
-      margin-top: 30px;
-      /* Використовуємо Montserrat для сучасного вигляду підказки */
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 3px;
       font-weight: 400;
       text-transform: uppercase;
-      display: inline-block;
       border-bottom: 1px solid #1a1a1a;
-      padding-bottom: 5px;
+      padding-bottom: 6px;
       animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.98); }
+      0%, 100% { opacity: 1; transform: translateY(0); }
+      50% { opacity: 0.5; transform: translateY(2px); }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="text-layer" onclick="openSite()" role="button" aria-label="Відкрити головну сторінку">
-    <img src="images/photo8.jpg" alt="Декоративний квадрат">
+  <div class="text-layer" onclick="openSite()" role="button" aria-label="Відкрити запрошення">
+    <img src="images/photo8.jpg" alt="Фон">
     
     <h1>Дорогі гості!</h1>
+    
     <p>Запрошуємо вас розділити з нами радість особливої для нас події та стати частиною нашої історії</p>
     
     <div class="hint">Відкрити запрошення</div>
@@ -116,9 +123,17 @@
 
   <script>
     function openSite() {
-      window.location.href = "main.html";
+      // Плавний перехід на головну сторінку
+      const layer = document.querySelector('.text-layer');
+      layer.style.opacity = '0';
+      layer.style.transition = 'opacity 0.5s ease';
+      
+      setTimeout(() => {
+        window.location.href = "main.html";
+      }, 400);
     }
 
+    // Відновлення видимості при поверненні кнопкою "Назад"
     window.onpageshow = function(event) {
       document.querySelector('.text-layer').style.opacity = '1';
     };
