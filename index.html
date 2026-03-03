@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -20,17 +20,14 @@
       width: 100%;
       height: 100%;
       font-family: 'Cormorant Garamond', serif;
-      /* Головний фон сторінки */
       background-image: url('images/photo7.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      background-color: #fdfaf7; /* Колір-заглушка до завантаження фото */
     }
 
     .text-layer {
@@ -41,17 +38,12 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      /* Розподіляємо контент: заголовок вгору, кнопка вниз, текст по центру */
       justify-content: space-between; 
       align-items: center;
       text-align: center;
       color: #1a1a1a;
-      padding: 60px 35px; /* Вертикальні відступи створюють "повітря" */
-      transition: transform 0.3s ease;
-    }
-
-    .text-layer:hover {
-      transform: scale(1.02);
+      /* Зменшив відступи, щоб не було занадто розтягнуто */
+      padding: 45px 30px; 
     }
 
     .text-layer img {
@@ -61,10 +53,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 15px; /* Твої закруглені кути */
+      border-radius: 15px;
       z-index: 0;
       opacity: 0.98;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .text-layer h1,
@@ -75,43 +66,47 @@
     }
 
     h1 {
-      font-size: clamp(20px, 5vw, 26px);
-      font-weight: 500;
-      letter-spacing: 3px;
+      /* Більший і жирніший заголовок */
+      font-size: clamp(24px, 6vw, 30px);
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: #2c2c2c;
     }
 
     p {
-      font-size: clamp(17px, 4vw, 20px);
-      line-height: 1.5;
+      /* Більший розмір тексту та середня жирність */
+      font-size: clamp(20px, 5vw, 24px); 
+      line-height: 1.3;
       font-style: italic;
-      font-weight: 400;
-      color: #333;
-      max-width: 280px; /* Обмеження ширини для кращого вигляду */
+      font-weight: 500; 
+      color: #1a1a1a;
+      max-width: 320px;
     }
 
     .hint {
       font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 600; /* Жирніша підказка */
       text-transform: uppercase;
-      border-bottom: 1px solid #1a1a1a;
-      padding-bottom: 6px;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 4px;
+    }
+
+    /* М'яка анімація */
+    .hint {
       animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: translateY(0); }
-      50% { opacity: 0.5; transform: translateY(2px); }
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.7; }
     }
   </style>
 </head>
-
 <body>
 
-  <div class="text-layer" onclick="openSite()" role="button" aria-label="Відкрити запрошення">
+  <div class="text-layer" onclick="openSite()" role="button">
     <img src="images/photo8.jpg" alt="Фон">
     
     <h1>Дорогі гості!</h1>
@@ -123,20 +118,8 @@
 
   <script>
     function openSite() {
-      // Плавний перехід на головну сторінку
-      const layer = document.querySelector('.text-layer');
-      layer.style.opacity = '0';
-      layer.style.transition = 'opacity 0.5s ease';
-      
-      setTimeout(() => {
-        window.location.href = "main.html";
-      }, 400);
+      window.location.href = "main.html";
     }
-
-    // Відновлення видимості при поверненні кнопкою "Назад"
-    window.onpageshow = function(event) {
-      document.querySelector('.text-layer').style.opacity = '1';
-    };
   </script>
 
 </body>
