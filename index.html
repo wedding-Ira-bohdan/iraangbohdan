@@ -88,6 +88,30 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
+
+    /* === Панель редагування === */
+    #style-panel {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.95);
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 9999;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+
+    #style-panel label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #style-panel input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 
@@ -102,16 +126,47 @@
     <div class="hint">Відкрити запрошення</div>
   </div>
 
+  <!-- Панель редагування -->
+  <div id="style-panel">
+    <label>Шрифт заголовка (h1): <input type="text" id="h1-font" value="Playfair Display"></label>
+    <label>Розмір заголовка (px): <input type="number" id="h1-size" value="28" min="10" max="100"></label>
+    <label>Відстань між h1 і p (px): <input type="number" id="h1-margin" value="20" min="0" max="100"></label>
+    <label>Розмір тексту p (px): <input type="number" id="p-size" value="18" min="10" max="100"></label>
+    <label>Міжрядковий інтервал p: <input type="number" id="p-line" value="1.6" step="0.1" min="1" max="3"></label>
+  </div>
+
   <script>
     function openSite() {
-      // Квадрат більше не зникає, просто переходимо за посиланням
       window.location.href = "main.html";
     }
 
-    // Це про всяк випадок, щоб браузер точно показав квадрат при поверненні назад
     window.onpageshow = function(event) {
       document.querySelector('.text-layer').style.opacity = '1';
     };
+
+    // === JS для панелі редагування ===
+    const h1 = document.querySelector('h1');
+    const p = document.querySelector('p');
+
+    document.getElementById('h1-font').addEventListener('input', e => {
+      h1.style.fontFamily = e.target.value;
+    });
+
+    document.getElementById('h1-size').addEventListener('input', e => {
+      h1.style.fontSize = e.target.value + 'px';
+    });
+
+    document.getElementById('h1-margin').addEventListener('input', e => {
+      h1.style.marginBottom = e.target.value + 'px';
+    });
+
+    document.getElementById('p-size').addEventListener('input', e => {
+      p.style.fontSize = e.target.value + 'px';
+    });
+
+    document.getElementById('p-line').addEventListener('input', e => {
+      p.style.lineHeight = e.target.value;
+    });
   </script>
 
 </body>
