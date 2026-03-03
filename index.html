@@ -5,7 +5,9 @@
   <title>Запрошення</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -17,7 +19,8 @@
     html, body {
       width: 100%;
       height: 100%;
-      font-family: 'Playfair Display', serif;
+      /* Змінено на Cormorant Garamond для основної естетики */
+      font-family: 'Cormorant Garamond', serif;
       background-image: url('images/photo7.jpg');
       background-size: cover;
       background-position: center;
@@ -31,7 +34,7 @@
 
     .text-layer {
       position: relative;
-      width: 70%;
+      width: 85%; /* Трохи збільшив для кращого вигляду тексту */
       max-width: 420px;
       aspect-ratio: 1 / 1;
       cursor: pointer;
@@ -41,7 +44,7 @@
       align-items: center;
       text-align: center;
       color: #1a1a1a;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+      padding: 40px;
     }
 
     .text-layer img {
@@ -51,8 +54,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 15px;
+      border-radius: 2px; /* Менший радіус виглядає більш преміально */
       z-index: 0;
+      opacity: 0.95; /* Додав легку прозорість фону під текстом */
     }
 
     .text-layer h1,
@@ -63,30 +67,38 @@
     }
 
     h1 {
-      font-size: clamp(22px, 4vw, 28px);
-      margin-bottom: 20px;
-      font-weight: 400;
+      font-size: clamp(24px, 6vw, 32px);
+      margin-bottom: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     p {
+      font-size: clamp(18px, 4vw, 20px);
+      line-height: 1.4;
       font-style: italic;
-      font-size: clamp(16px, 3.5vw, 18px);
-      line-height: 1.6;
+      font-weight: 300;
+      color: #333;
     }
 
     .hint {
-      margin-top: 25px;
-      font-size: 14px;
-      letter-spacing: 1px;
-      font-weight: bold;
+      margin-top: 30px;
+      /* Використовуємо Montserrat для сучасного вигляду підказки */
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 400;
       text-transform: uppercase;
       display: inline-block;
-      animation: pulse 1.5s infinite;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 5px;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.98); }
     }
   </style>
 </head>
@@ -104,11 +116,9 @@
 
   <script>
     function openSite() {
-      // Квадрат більше не зникає, просто переходимо за посиланням
       window.location.href = "main.html";
     }
 
-    // Це про всяк випадок, щоб браузер точно показав квадрат при поверненні назад
     window.onpageshow = function(event) {
       document.querySelector('.text-layer').style.opacity = '1';
     };
