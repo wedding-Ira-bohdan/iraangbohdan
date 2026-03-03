@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,8 +41,13 @@
     }
 
     .name {
-      font-family: 'Playfair Display', serif;
+      /* Змінено ТІЛЬКИ шрифт та додано "розтягнутість" */
+      font-family: 'Cormorant Garamond', serif;
       font-size: 64px;
+      text-transform: uppercase;
+      letter-spacing: 12px;
+      margin-right: -12px; /* Щоб імена стояли ідеально по центру попри letter-spacing */
+      
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
@@ -131,7 +137,6 @@
       overflow: hidden;
     }
 
-    /* Змінено на статичну лінію без анімації */
     .scroll-indicator::after {
       content: '';
       position: absolute;
@@ -289,6 +294,7 @@
     }
   });
 </script>
+
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
