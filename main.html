@@ -80,12 +80,11 @@
     #progress-container { width: 140px; height: 2px; background: rgba(92,45,12,0.3); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #5C2D0C; }
 
-    /* Стрілки у стовпчик */
     .scroll-arrow-group { 
       position: absolute; 
       bottom: 40px; 
       display: flex; 
-      flex-direction: column; /* Зробив стовпчик */
+      flex-direction: column; 
       gap: 10px; 
       opacity: 0; 
       animation: fadeIn 1s ease forwards; 
@@ -110,7 +109,9 @@
     .scroll-arrow-group svg:nth-child(2) { animation-delay: 0.3s; }
     .scroll-arrow-group svg:nth-child(3) { animation-delay: 0.6s; }
 
-    @keyframes arrowPulse { 0% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(10px); opacity: 1; } 100% { transform: translateY(0); opacity: 0.5; } }
+    /* Анімація збільшення по черзі */
+    @keyframes arrowPulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+    
     @keyframes fadeUpFirst { from { opacity: 0; transform: translateY(31px); } to { opacity: 1; transform: translateY(11px); } }
     @keyframes fadeUpSecond { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(-5px); } }
     @keyframes fadeIn { to { opacity: 1; } }
@@ -214,7 +215,6 @@
 
   loadTrack(current, false);
 </script>
-
 
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
