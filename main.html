@@ -31,8 +31,6 @@
       color: #5C2D0C;
     }
 
-    .overlay { display: none; }
-
     .content {
       position: relative;
       z-index: 2;
@@ -82,10 +80,20 @@
     #progress-container { width: 140px; height: 2px; background: rgba(92,45,12,0.3); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #5C2D0C; }
 
-    /* Стрілки по боках - 3 підряд */
-    .scroll-arrow-group { position: absolute; bottom: 25px; display: flex; gap: 8px; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 4.5s; color: #5C2D0C; }
-    .scroll-left { left: 20px; }
-    .scroll-right { right: 20px; }
+    /* Стрілки у стовпчик */
+    .scroll-arrow-group { 
+      position: absolute; 
+      bottom: 40px; 
+      display: flex; 
+      flex-direction: column; /* Зробив стовпчик */
+      gap: 10px; 
+      opacity: 0; 
+      animation: fadeIn 1s ease forwards; 
+      animation-delay: 4.5s; 
+      color: #5C2D0C; 
+    }
+    .scroll-left { left: 30px; }
+    .scroll-right { right: 30px; }
 
     .scroll-arrow-group svg {
       width: 28px;
@@ -98,13 +106,11 @@
       animation: arrowPulse 1.5s ease-in-out infinite;
     }
 
-    /* Задаємо різні затримки для послідовної анімації */
-    .scroll-left svg:nth-child(1), .scroll-right svg:nth-child(1) { animation-delay: 0s; }
-    .scroll-left svg:nth-child(2), .scroll-right svg:nth-child(2) { animation-delay: 0.5s; }
-    .scroll-left svg:nth-child(3), .scroll-right svg:nth-child(3) { animation-delay: 1s; }
+    .scroll-arrow-group svg:nth-child(1) { animation-delay: 0s; }
+    .scroll-arrow-group svg:nth-child(2) { animation-delay: 0.3s; }
+    .scroll-arrow-group svg:nth-child(3) { animation-delay: 0.6s; }
 
-    @keyframes arrowPulse { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(1); opacity: 0.7; } }
-
+    @keyframes arrowPulse { 0% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(10px); opacity: 1; } 100% { transform: translateY(0); opacity: 0.5; } }
     @keyframes fadeUpFirst { from { opacity: 0; transform: translateY(31px); } to { opacity: 1; transform: translateY(11px); } }
     @keyframes fadeUpSecond { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(-5px); } }
     @keyframes fadeIn { to { opacity: 1; } }
@@ -115,8 +121,6 @@
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
-      .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
-      .scroll-arrow-group { bottom: 20px; }
       .scroll-left { left: 15px; }
       .scroll-right { right: 15px; }
     }
@@ -125,7 +129,6 @@
 <body>
 
 <section class="hero">
-  <div class="overlay"></div>
   <div class="content">
     <div class="names-container">
       <div class="name first">Iryna</div>
@@ -146,23 +149,20 @@
     </div>
   </div>
 
-  <!-- Ліва група з 3 стрілок -->
   <div class="scroll-arrow-group scroll-left">
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
   </div>
 
-  <!-- Права група з 3 стрілок -->
   <div class="scroll-arrow-group scroll-right">
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
     <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
   </div>
-
 </section>
 
-<audio id="audio" autoplay muted preload="auto"></audio>
+<audio id="audio" preload="auto"></audio>
 
 <script>
   const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
@@ -175,11 +175,10 @@
   const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
-  function loadTrack(i, autoplay = false) {
+  function loadTrack(i, shouldPlay = false) {
     audio.src = tracks[i];
-    audio.load();
-    if (autoplay) {
-      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {});
+    if (shouldPlay) {
+      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(e => console.log("Playback blocked"));
     }
   }
 
@@ -199,17 +198,13 @@
   });
 
   audio.addEventListener("timeupdate", () => {
-    if (audio.duration) { 
-      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; 
-    }
+    if (audio.duration) { progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; }
   });
 
   progressContainer.addEventListener("click", (e) => {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
-    if (audio.duration) { 
-      audio.currentTime = (clickX / width) * audio.duration; 
-    }
+    if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
   });
 
   audio.addEventListener("ended", () => { 
@@ -217,17 +212,7 @@
     loadTrack(current, true); 
   });
 
-  loadTrack(current, true);
-
-  window.addEventListener("load", () => {
-    audio.muted = true;
-    audio.play().then(() => {
-      setTimeout(() => {
-        audio.muted = false;
-        playBtn.innerHTML = pauseIcon;
-      }, 300);
-    }).catch(() => {});
-  });
+  loadTrack(current, false);
 </script>
 
 
