@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,7 +14,6 @@
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
     }
-    a { text-decoration: none; color: inherit; }
 
     .hero {
       position: relative;
@@ -36,10 +35,17 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 150px;
+      padding-top: 180px; /* Опустив весь блок нижче */
     }
 
-    /* Змінено шрифт та розмір для імен */
+    /* Контейнер для імен в один рядок */
+    .names-row {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0;
+    }
+
     .name {
       font-family: 'Marck Script', cursive;
       font-size: 80px;
@@ -47,22 +53,30 @@
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
     }
-    .name.first { animation-delay: 0.6s; }
-    .name.second { animation-delay: 2.2s; }
 
-    /* Змінено шрифт та розмір для and */
+    .name.first { 
+      animation-delay: 0.6s;
+      margin-right: -18px; /* Зближення останніх букв Ірини з and */
+    }
+
+    .name.second { 
+      animation-delay: 2.2s; 
+      margin-left: -18px; /* Зближення перших букв Богдана з and */
+    }
+
     .and {
       font-family: 'Marck Script', cursive;
-      font-size: 34px;
-      margin: 10px 0;
-      letter-spacing: 2px;
+      font-size: 30px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
+      padding: 0 10px;
+      position: relative;
+      top: -5px; /* Коригування по вертикалі для кращого вигляду в рядку */
     }
 
     .subtitle {
-      margin-top: 25px;
+      margin-top: 15px;
       font-size: 16px;
       letter-spacing: 1px;
       opacity: 0;
@@ -95,7 +109,6 @@
       border: none;
       cursor: pointer;
       color: #fff;
-      transition: transform 0.2s;
       outline: none;
     }
 
@@ -123,25 +136,10 @@
 
     .scroll-indicator {
       position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
+      top: 0; bottom: 0; right: 0;
       width: 4px;
       background: rgba(255, 255, 255, 0.2);
       z-index: 9999;
-      transition: opacity 0.3s ease;
-      opacity: 1;
-      overflow: hidden;
-    }
-
-    .scroll-indicator::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 15%;
-      background: #fff;
     }
 
     .scroll-progress-bar {
@@ -154,9 +152,10 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .content { padding-top: 100px; }
-      .name { font-size: 60px; } /* Трохи зменшив для мобільних, щоб влазило на екран */
-      #progress-container { width: 160px; }
+      .name { font-size: 50px; }
+      .and { font-size: 24px; }
+      .name.first { margin-right: -10px; }
+      .name.second { margin-left: -10px; }
     }
   </style>
 </head>
@@ -170,24 +169,20 @@
 <section class="hero">
   <div class="overlay"></div>
   <div class="content">
-    <div class="name first">Ірина</div>
-    <div class="and">and</div>
-    <div class="name second">Богдан</div>
+    <div class="names-row">
+      <div class="name first">Ірина</div>
+      <div class="and">and</div>
+      <div class="name second">Богдан</div>
+    </div>
 
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
 
       <div class="mini-player-wrapper">
         <div class="mini-player">
-          <button id="prev">
-            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-          </button>
-          <button id="play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <button id="next">
-            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-          </button>
+          <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+          <button id="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button id="next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
         </div>
         <div id="progress-container"><div id="progress"></div></div>
       </div>
@@ -198,14 +193,8 @@
 <audio id="audio" preload="auto"></audio>
 
 <script>
-  const tracks = [
-    "images/song1.mp3",
-    "images/song2.mp3",
-    "images/song3.mp3"
-  ];
-
+  const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
   let current = 0;
-
   const audio = document.getElementById("audio");
   const playBtn = document.getElementById("play");
   const progress = document.getElementById("progress");
@@ -218,9 +207,7 @@
     audio.src = tracks[i];
     audio.load();
     if (autoplay) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
+      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {});
     }
   }
 
@@ -253,9 +240,7 @@
   progressContainer.addEventListener("click", (e) => {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
-    if (audio.duration) {
-      audio.currentTime = (clickX / width) * audio.duration;
-    }
+    if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
   });
 
   audio.addEventListener("ended", () => {
@@ -263,13 +248,11 @@
     loadTrack(current, true);
   });
 
-  loadTrack(current, true);
+  loadTrack(current, false);
 
   document.addEventListener("click", function initAutoPlay() {
     if (audio.paused) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
+      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {});
     }
     document.removeEventListener("click", initAutoPlay);
   });
@@ -277,17 +260,8 @@
   window.addEventListener("scroll", () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    
-    const indicator = document.querySelector(".scroll-indicator");
-    if (winScroll > 50) {
-      indicator.style.opacity = "0"; 
-    } else {
-      indicator.style.opacity = "1"; 
-    }
-
     if (height > 0) {
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById("scrollBar").style.height = scrolled + "%";
+      document.getElementById("scrollBar").style.height = (winScroll / height) * 100 + "%";
     }
   });
 </script>
