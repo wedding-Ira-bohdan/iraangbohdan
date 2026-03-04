@@ -8,17 +8,21 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html, body {
-      width: 100%; height: 100%;
+      width: 100%; 
+      height: 100%;
       background: #000;
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
       overflow-x: hidden;
+      color: #2B160E;
     }
 
     .hero {
       position: relative;
-      width: 100%; min-height: 100vh;
+      width: 100%; 
+      min-height: 100vh;
       background: url('https://i.ibb.co/q3ssQp2K/photo-5211134531375667288-y.jpg') center/cover no-repeat;
       display: flex;
       justify-content: center;
@@ -28,7 +32,8 @@
     }
 
     .overlay {
-      position: absolute; inset: 0;
+      position: absolute; 
+      inset: 0;
       background: rgba(0,0,0,0.35);
       z-index: 1;
     }
@@ -56,6 +61,7 @@
       font-size: 95px;
       font-weight: 400;
       opacity: 0;
+      color: #2B160E;
     }
 
     .name.first {
@@ -72,7 +78,7 @@
       transform: translateX(19px) translateY(-12px); 
       animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
-      color: rgba(255, 255, 255, 0.9);
+      color: #2B160E;
       margin: 0;
     }
 
@@ -90,11 +96,13 @@
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
+      color: #2B160E;
     }
 
     .subtitle .date {
       margin-left: 12px;
       font-size: 30px;
+      color: #2B160E;
     }
 
     .mini-player-wrapper { 
@@ -105,33 +113,56 @@
       animation-delay: 3.5s; 
     }
     
-    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
-    .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
-    #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
-    #progress { width: 0%; height: 100%; background: #fff; }
+    .mini-player { 
+      display: flex; 
+      justify-content: center; 
+      gap: 30px; 
+      align-items: center; 
+    }
 
-    /* === ОНОВЛЕНІ СТИЛІ ДЛЯ СТРІЛОК === */
+    .mini-player button { 
+      background: transparent; 
+      border: none; 
+      cursor: pointer; 
+      color: #2B160E; 
+      outline: none; 
+    }
+
+    .mini-player button svg { 
+      width: 24px; 
+      height: 24px; 
+      fill: currentColor; 
+    }
+
+    #progress-container { 
+      width: 140px; 
+      height: 2px; 
+      background: rgba(43,22,14,0.3); 
+      margin: 15px auto 0; 
+      border-radius: 2px; 
+      cursor: pointer; 
+    }
+
+    #progress { 
+      width: 0%; 
+      height: 100%; 
+      background: #2B160E; 
+    }
+
     .scroll-arrow {
-      position: absolute; /* Змінено з fixed на absolute */
+      position: absolute;
       bottom: 25px;
       z-index: 10;
-      color: #fff;
+      color: #2B160E;
       opacity: 0; 
       cursor: pointer;
       pointer-events: none;
-      
       animation: fadeIn 1s ease forwards;
       animation-delay: 4.5s;
     }
 
-    .scroll-arrow.left {
-      left: 20px;
-    }
-
-    .scroll-arrow.right {
-      right: 20px;
-    }
+    .scroll-arrow.left { left: 20px; }
+    .scroll-arrow.right { right: 20px; }
 
     .scroll-arrow svg {
       width: 20px;
@@ -145,18 +176,9 @@
     }
 
     @keyframes arrowPulse {
-      0% {
-        transform: translateY(0);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(8px);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 0.7;
-      }
+      0% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0.7; }
     }
 
     @keyframes fadeUpFirst { 
@@ -176,14 +198,15 @@
       to { opacity: 1; transform: translateX(19px) translateY(-12px); } 
     }
 
-    @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUpPlayer { 
+      to { opacity: 1; transform: translateY(0); } 
+    }
 
     @media (max-width: 768px) {
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
-      
       .scroll-arrow { bottom: 20px; }
       .scroll-arrow.left { left: 15px; }
       .scroll-arrow.right { right: 15px; }
@@ -295,6 +318,7 @@
     }).catch(() => {});
   });
 </script>
+
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
