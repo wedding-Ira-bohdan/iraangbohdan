@@ -1,141 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Iryna & Bohdan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Iryna & Bohdan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      background: #000;
-      font-family: 'Montserrat', sans-serif;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
 
-    .hero {
-      position: relative;
-      width: 100%; min-height: 100vh;
-      background: url('https://i.ibb.co/q3ssQp2K/photo-5211134531375667288-y.jpg') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
+  .hero {
+    position: relative;
+    width: 100%; min-height: 100vh;
+    background: url('https://i.ibb.co/q3ssQp2K/photo-5211134531375667288-y.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+  }
 
-    .overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
-    }
+  .overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1;
+  }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      padding-top: 120px; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    }
+  .content {
+    position: relative;
+    z-index: 2;
+    padding-top: 120px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  }
 
-    .names-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
+  .names-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 
-    .name {
-      font-family: 'Great Vibes', cursive;
-      font-size: 95px;
-      font-weight: 400;
-      opacity: 0;
-    }
+  .name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 95px;
+    font-weight: 400;
+    opacity: 0;
+  }
 
-    .name.first {
-      animation: fadeUpFirst 1.3s ease forwards;
-      animation-delay: 0.6s;
-      margin-right: 140px; 
-      margin-bottom: -15px;
-    }
+  .name.first {
+    animation: fadeUpFirst 1.3s ease forwards;
+    animation-delay: 0.6s;
+    margin-right: 140px; 
+    margin-bottom: -15px;
+  }
 
-    .and {
-      font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      opacity: 0;
-      transform: translateX(19px) translateY(-12px); 
-      animation: fadeInAndSlide 1.5s ease forwards;
-      animation-delay: 1.6s;
-      color: rgba(255, 255, 255, 0.9);
-      margin: 0;
-    }
+  .and {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    opacity: 0;
+    transform: translateX(19px) translateY(-12px); 
+    animation: fadeInAndSlide 1.5s ease forwards;
+    animation-delay: 1.6s;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
 
-    .name.second {
-      animation: fadeUpSecond 1.3s ease forwards;
-      animation-delay: 2.2s;
-      margin-left: 140px; 
-      margin-top: -15px; 
-    }
+  .name.second {
+    animation: fadeUpSecond 1.3s ease forwards;
+    animation-delay: 2.2s;
+    margin-left: 140px; 
+    margin-top: -15px; 
+  }
 
-    .subtitle {
-      margin-top: 20px; 
-      font-family: 'Great Vibes', cursive;
-      font-size: 34px;
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3.2s;
-    }
+  .subtitle {
+    margin-top: 20px; 
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 3.2s;
+  }
 
-    .subtitle .date {
-      margin-left: 12px;
-      font-size: 30px;
-    }
+  .subtitle .date {
+    margin-left: 12px;
+    font-size: 30px;
+  }
 
-    .mini-player-wrapper { 
-      margin-top: 30px; 
-      opacity: 0; 
-      transform: translateY(20px); 
-      animation: fadeUpPlayer 1s ease forwards; 
-      animation-delay: 3.5s; 
-    }
-    
-    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
-    .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
-    #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
-    #progress { width: 0%; height: 100%; background: #fff; }
+  .mini-player-wrapper { 
+    margin-top: 30px; 
+    opacity: 0; 
+    transform: translateY(20px); 
+    animation: fadeUpPlayer 1s ease forwards; 
+    animation-delay: 3.5s; 
+  }
 
-    @keyframes fadeUpFirst { 
-      from { opacity: 0; transform: translateY(31px); }
-      to { opacity: 1; transform: translateY(11px); } 
-    }
+  .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
+  .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
+  .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
+  #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
+  #progress { width: 0%; height: 100%; background: #fff; }
 
-    @keyframes fadeUpSecond { 
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(-5px); } 
-    }
+  @keyframes fadeUpFirst { 
+    from { opacity: 0; transform: translateY(31px); }
+    to { opacity: 1; transform: translateY(11px); } 
+  }
 
-    @keyframes fadeIn { to { opacity: 1; } }
-    
-    @keyframes fadeInAndSlide { 
-      from { opacity: 0; transform: translateX(19px) translateY(0px); }
-      to { opacity: 1; transform: translateX(19px) translateY(-12px); } 
-    }
+  @keyframes fadeUpSecond { 
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(-5px); } 
+  }
 
-    @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { to { opacity: 1; } }
+  
+  @keyframes fadeInAndSlide { 
+    from { opacity: 0; transform: translateX(19px) translateY(0px); }
+    to { opacity: 1; transform: translateX(19px) translateY(-12px); } 
+  }
 
-    @media (max-width: 768px) {
-      .name { font-size: 70px; }
-      .name.first { margin-right: 100px; }
-      .name.second { margin-left: 100px; }
-      .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
-    }
-  </style>
+  @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    .name { font-size: 70px; }
+    .name.first { margin-right: 100px; }
+    .name.second { margin-left: 100px; }
+    .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
+  }
+
+  /* ================= TIMER STYLES ================= */
+  #wedding-timer {
+    background: #2B160E;
+    padding: 80px 0;
+    text-align: center;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px; /* 1 см від прогрес-бару */
+  }
+
+  .timer-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .timer-title {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  .timer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap; 
+  }
+
+  .timer-box {
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 20px;
+    min-width: 85px;
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .timer-box span {
+    display: block;
+    font-size: 38px;
+    font-weight: 300;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .timer-box label {
+    font-size: 9px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: 5px;
+  }
+
+</style>
 </head>
 <body>
 
@@ -186,99 +244,75 @@
       </div>
     </div>
   </div>
-
-  <style>
-    #wedding-timer { 
-      background: #2B160E; 
-      padding: 80px 0; 
-      text-align: center; 
-      color: #fff; 
-      position: relative; 
-      z-index: 5;
-      font-family: 'Montserrat', sans-serif;
-
-      margin-top: 10px; /* таймер під аудіо на 1 см */
-    }
-
-    .timer-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-
-    .timer-title {
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 30px;
-      opacity: 0.8;
-      font-weight: 400;
-    }
-
-    .timer-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap; 
-    }
-
-    .timer-box {
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 20px;
-      min-width: 85px;
-      border-radius: 2px;
-      flex: 0 0 auto;
-    }
-
-    .timer-box span {
-      display: block;
-      font-size: 38px;
-      font-weight: 300;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .timer-box label {
-      font-size: 9px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      letter-spacing: 2px;
-      display: block;
-      margin-top: 5px;
-    }
-  </style>
-
-  <script>
-    function updateWeddingTimer() {
-      const targetDate = new Date("July 17, 2026 00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.querySelector(".timer-grid").innerHTML = "<h3>Цей день настав!</h3>";
-        return;
-      }
-
-      const mS = 1000;
-      const mMin = mS * 60;
-      const mHour = mMin * 60;
-      const mDay = mHour * 24;
-
-      const d = Math.floor(diff / mDay);
-      const h = Math.floor((diff % mDay) / mHour);
-      const m = Math.floor((diff % mHour) / mMin);
-      const s = Math.floor((diff % mMin) / mS);
-
-      document.getElementById("d_new").innerText = d < 10 ? "0" + d : d;
-      document.getElementById("h_new").innerText = h < 10 ? "0" + h : h;
-      document.getElementById("m_new").innerText = m < 10 ? "0" + m : m;
-      document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
-    }
-
-    setInterval(updateWeddingTimer, 1000);
-    updateWeddingTimer();
-  </script>
 </section>
+
+<audio id="audio" preload="auto"></audio>
+
+<script>
+  const tracks = ["images/song1.mp3","images/song2.mp3","images/song3.mp3"];
+  let current = 0;
+  const audio = document.getElementById("audio");
+  const playBtn = document.getElementById("play");
+  const progress = document.getElementById("progress");
+  const progressContainer = document.getElementById("progress-container");
+
+  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+  function loadTrack(i, autoplay = false) {
+    audio.src = tracks[i];
+    audio.load();
+    if (autoplay) audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(()=>{});
+  }
+
+  playBtn.addEventListener("click", () => {
+    if(audio.paused){ audio.play(); playBtn.innerHTML = pauseIcon; } 
+    else { audio.pause(); playBtn.innerHTML = playIcon; }
+  });
+
+  document.getElementById("next").addEventListener("click", () => { current = (current+1)%tracks.length; loadTrack(current,true); });
+  document.getElementById("prev").addEventListener("click", () => { current = (current-1+tracks.length)%tracks.length; loadTrack(current,true); });
+
+  audio.addEventListener("timeupdate", () => {
+    if(audio.duration) progress.style.width = (audio.currentTime/audio.duration)*100+"%";
+  });
+
+  progressContainer.addEventListener("click",(e)=>{
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    if(audio.duration) audio.currentTime = (clickX/width)*audio.duration;
+  });
+
+  audio.addEventListener("ended",()=>{current=(current+1)%tracks.length; loadTrack(current,true);});
+  loadTrack(current,false);
+
+  document.addEventListener("click",function initAutoPlay(){
+    if(audio.paused) audio.play().then(()=>{ playBtn.innerHTML=pauseIcon; }).catch(()=>{});
+    document.removeEventListener("click",initAutoPlay);
+  });
+
+  function updateWeddingTimer() {
+    const targetDate = new Date("July 17, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = targetDate-now;
+
+    if(diff <= 0){ document.querySelector(".timer-grid").innerHTML="<h3>Цей день настав!</h3>"; return; }
+
+    const mS=1000,mMin=mS*60,mHour=mMin*60,mDay=mHour*24;
+    const d=Math.floor(diff/mDay);
+    const h=Math.floor((diff%mDay)/mHour);
+    const m=Math.floor((diff%mHour)/mMin);
+    const s=Math.floor((diff%mMin)/mS);
+
+    document.getElementById("d_new").innerText = d<10?"0"+d:d;
+    document.getElementById("h_new").innerText = h<10?"0"+h:h;
+    document.getElementById("m_new").innerText = m<10?"0"+m:m;
+    document.getElementById("s_new").innerText = s<10?"0"+s:s;
+  }
+
+  setInterval(updateWeddingTimer,1000);
+  updateWeddingTimer();
+</script>
   
 
 <!-- ================== EVENTS SECTION ================== -->
