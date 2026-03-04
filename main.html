@@ -57,7 +57,6 @@
       opacity: 0;
     }
 
-    /* Ірина: ще ближче до центру */
     .name.first {
       animation: fadeUpFirst 1.3s ease forwards;
       animation-delay: 0.6s;
@@ -69,14 +68,14 @@
       font-family: 'Great Vibes', cursive;
       font-size: 38px;
       opacity: 0;
-      transform: translateX(19px); 
+      /* Зсув вправо на 19px і піднято вгору (translateY -12px) */
+      transform: translateX(19px) translateY(-12px); 
       animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
       color: rgba(255, 255, 255, 0.9);
-      margin: 2px 0;
+      margin: 0; /* Прибрав зайві відступи */
     }
 
-    /* Богдан: підтягнули трохи вгору */
     .name.second {
       animation: fadeUpSecond 1.3s ease forwards;
       animation-delay: 2.2s;
@@ -112,7 +111,6 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* Анімації з урахуванням нових позицій */
     @keyframes fadeUpFirst { 
       from { opacity: 0; transform: translateY(35px); }
       to { opacity: 1; transform: translateY(15px); } 
@@ -125,9 +123,10 @@
 
     @keyframes fadeIn { to { opacity: 1; } }
     
+    /* Оновлена анімація для and, щоб він фіксувався вище */
     @keyframes fadeInAndSlide { 
-      from { opacity: 0; transform: translateX(19px) translateY(10px); }
-      to { opacity: 1; transform: translateX(19px) translateY(0); } 
+      from { opacity: 0; transform: translateX(19px) translateY(0px); }
+      to { opacity: 1; transform: translateX(19px) translateY(-12px); } 
     }
 
     @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
@@ -136,7 +135,7 @@
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
-      .and { font-size: 30px; transform: translateX(15px); }
+      .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
     }
   </style>
 </head>
