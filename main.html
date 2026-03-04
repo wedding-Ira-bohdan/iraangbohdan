@@ -111,9 +111,9 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* === СТИЛІ СТРІЛОК === */
+    /* === ОНОВЛЕНІ СТИЛІ ДЛЯ СТРІЛОК === */
     .scroll-arrow {
-      position: fixed;
+      position: absolute; /* Змінено з fixed на absolute */
       bottom: 25px;
       z-index: 10;
       color: #fff;
@@ -121,19 +121,17 @@
       cursor: pointer;
       pointer-events: none;
       
-      /* Анімація появи та плавний перехід для зникнення */
       animation: fadeIn 1s ease forwards;
       animation-delay: 4.5s;
-      transition: opacity 0.4s ease;
     }
 
-    /* Клас, який додаватиметься при скролі */
-    .scroll-arrow.hide {
-      opacity: 0 !important;
+    .scroll-arrow.left {
+      left: 20px;
     }
 
-    .scroll-arrow.left { left: 20px; }
-    .scroll-arrow.right { right: 20px; }
+    .scroll-arrow.right {
+      right: 20px;
+    }
 
     .scroll-arrow svg {
       width: 20px;
@@ -147,9 +145,18 @@
     }
 
     @keyframes arrowPulse {
-      0% { transform: translateY(0); opacity: 0.7; }
-      50% { transform: translateY(8px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.7; }
+      0% {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(8px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
     }
 
     @keyframes fadeUpFirst { 
@@ -209,14 +216,17 @@
   </div>
 
   <div class="scroll-arrow left">
-    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+    </svg>
   </div>
   <div class="scroll-arrow right">
-    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+    </svg>
   </div>
+  
 </section>
-
-<div style="height: 100vh; background: #111;"></div>
 
 <audio id="audio" autoplay muted preload="auto"></audio>
 
@@ -283,17 +293,6 @@
         playBtn.innerHTML = pauseIcon;
       }, 300);
     }).catch(() => {});
-  });
-
-  // === СКРИПТ ДЛЯ ЗНИКНЕННЯ СТРІЛОК ПРИ СКРОЛІ ===
-  window.addEventListener("scroll", () => {
-    const arrows = document.querySelectorAll('.scroll-arrow');
-    // Якщо проскролили більше ніж на 50px - ховаємо стрілки
-    if (window.scrollY > 50) {
-      arrows.forEach(arrow => arrow.classList.add('hide'));
-    } else {
-      arrows.forEach(arrow => arrow.classList.remove('hide'));
-    }
   });
 </script>
 
