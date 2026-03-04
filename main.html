@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,15 +39,10 @@
       padding-top: 150px;
     }
 
+    /* Змінено шрифт та розмір для імен */
     .name {
-      /* Застосовуємо наш новий каліграфічний шрифт */
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(80px, 15vw, 110px); /* Значно збільшив розмір, бо рукописні шрифти дрібніші */
-      font-weight: 400;
-      line-height: 0.9; /* Трохи зближуємо імена, щоб завитки красиво перепліталися */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Легка тінь, щоб тонкі лінії не губилися на трояндах */
-      
-      /* Твої анімації збережено */
+      font-family: 'Marck Script', cursive;
+      font-size: 80px;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
@@ -56,9 +50,11 @@
     .name.first { animation-delay: 0.6s; }
     .name.second { animation-delay: 2.2s; }
 
+    /* Змінено шрифт та розмір для and */
     .and {
-      font-size: 20px;
-      margin: 15px 0; /* Трохи збільшив відступ, щоб дати місце завиткам */
+      font-family: 'Marck Script', cursive;
+      font-size: 34px;
+      margin: 10px 0;
       letter-spacing: 2px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
@@ -159,7 +155,7 @@
 
     @media (max-width: 768px) {
       .content { padding-top: 100px; }
-      .name { font-size: 75px; } /* Трохи більший розмір на мобільних для завитків */
+      .name { font-size: 60px; } /* Трохи зменшив для мобільних, щоб влазило на екран */
       #progress-container { width: 160px; }
     }
   </style>
@@ -295,6 +291,7 @@
     }
   });
 </script>
+
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
