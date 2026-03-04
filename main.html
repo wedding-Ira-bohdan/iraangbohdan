@@ -16,7 +16,7 @@
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
       overflow-x: hidden;
-      color: #5C2D0C; /* насичений шоколадний колір */
+      color: #5C2D0C;
     }
 
     .hero {
@@ -31,9 +31,7 @@
       color: #5C2D0C;
     }
 
-    .overlay {
-      display: none; /* ефект темноти відключено */
-    }
+    .overlay { display: none; }
 
     .content {
       position: relative;
@@ -146,36 +144,37 @@
       background: #5C2D0C; 
     }
 
+    /* ===== ЛІВА ТА ПРАВА СТРІЛКИ ===== */
     .scroll-arrow {
       position: absolute;
       bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
       z-index: 10;
-      color: #ffffff; 
-      opacity: 0; 
-      cursor: pointer;
-      pointer-events: none;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 4.5s;
     }
 
     .scroll-arrow.left { left: 20px; }
     .scroll-arrow.right { right: 20px; }
 
     .scroll-arrow svg {
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
       fill: none;
-      stroke: currentColor;
-      stroke-width: 1.5;
+      stroke: white;
+      stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      animation: arrowPulse 2s ease-in-out infinite;
+      animation: arrowPulse 1.5s infinite;
     }
 
+    .scroll-arrow svg:nth-child(1) { animation-delay: 0s; }
+    .scroll-arrow svg:nth-child(2) { animation-delay: 0.5s; }
+    .scroll-arrow svg:nth-child(3) { animation-delay: 1s; }
+
     @keyframes arrowPulse {
-      0% { transform: translateY(0); opacity: 0.7; }
-      50% { transform: translateY(8px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.7; }
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.5); opacity: 1; }
     }
 
     @keyframes fadeUpFirst { 
@@ -204,7 +203,7 @@
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
-      .scroll-arrow { bottom: 20px; }
+      .scroll-arrow svg { width: 24px; height: 24px; }
       .scroll-arrow.left { left: 15px; }
       .scroll-arrow.right { right: 15px; }
     }
@@ -235,17 +234,19 @@
     </div>
   </div>
 
+  <!-- Ліва стрілка (3 шт) -->
   <div class="scroll-arrow left">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-    </svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
   </div>
+
+  <!-- Права стрілка (3 шт) -->
   <div class="scroll-arrow right">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-    </svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
   </div>
-  
 </section>
 
 <audio id="audio" autoplay muted preload="auto"></audio>
@@ -315,9 +316,6 @@
     }).catch(() => {});
   });
 </script>
-
-</body>
-</html>
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
