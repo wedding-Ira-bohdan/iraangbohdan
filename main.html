@@ -111,6 +111,55 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
+    /* === СТИЛІ ДЛЯ СТРІЛОК ВНИЗ (ДОДАНО) === */
+    .scroll-arrow {
+      position: fixed;
+      bottom: 25px; /* відстань від нижнього краю */
+      z-index: 10;
+      color: #fff; /* колір стрілок */
+      opacity: 0.7; /* початкова прозорість */
+      cursor: pointer;
+      pointer-events: none; /* стрілки не заважають натисканням на інші елементи */
+      
+      /* Анімація: назва, тривалість, тип, повторення */
+      animation: arrowPulse 2s ease-in-out infinite;
+    }
+
+    .scroll-arrow.left {
+      left: 20px; /* відстань від лівого краю */
+    }
+
+    .scroll-arrow.right {
+      right: 20px; /* відстань від правого краю */
+    }
+
+    .scroll-arrow svg {
+      width: 20px;  /* розмір стрілок */
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5; /* товщина ліній */
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* === КЛЮЧОВІ КАДРИ АНІМАЦІЇ (ДОДАНО) === */
+    @keyframes arrowPulse {
+      0% {
+        transform: translateY(0); /* початкова позиція */
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(8px); /* рух вниз */
+        opacity: 1; /* стають яскравішими */
+      }
+      100% {
+        transform: translateY(0); /* повернення назад */
+        opacity: 0.7;
+      }
+    }
+
+    /* АНІМАЦІЇ ДЛЯ КОНТЕНТУ (БЕЗ ЗМІН) */
     @keyframes fadeUpFirst { 
       from { opacity: 0; transform: translateY(31px); }
       to { opacity: 1; transform: translateY(11px); } 
@@ -135,6 +184,11 @@
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
+      
+      /* Трохи зменшуємо відступи для мобільних (опціонально) */
+      .scroll-arrow { bottom: 20px; }
+      .scroll-arrow.left { left: 15px; }
+      .scroll-arrow.right { right: 15px; }
     }
   </style>
 </head>
@@ -162,11 +216,24 @@
       </div>
     </div>
   </div>
+
+  <div class="scroll-arrow left">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+    </svg>
+  </div>
+  <div class="scroll-arrow right">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+    </svg>
+  </div>
+  
 </section>
 
 <audio id="audio" autoplay muted preload="auto"></audio>
 
 <script>
+  // Скрипт плеєра залишаю без змін
   const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
   let current = 0;
   const audio = document.getElementById("audio");
