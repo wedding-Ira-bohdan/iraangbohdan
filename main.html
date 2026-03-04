@@ -60,28 +60,30 @@
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 140px; /* Зміщення вліво */
-      margin-bottom: -10px; /* Зменшив наповзання */
+      margin-right: 140px; 
+      margin-bottom: -15px; 
     }
 
     .and {
       font-family: 'Alex Brush', cursive;
       font-size: 32px;
       opacity: 0;
-      animation: fadeIn 1s ease forwards;
+      /* Додано зсув вправо на 5мм (19px) */
+      transform: translateX(19px); 
+      animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
       color: rgba(255, 255, 255, 0.8);
-      margin: 5px 0; /* Додав трохи простору навколо and */
+      padding: 5px 0;
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 140px; /* Зміщення вправо */
-      margin-top: -10px; /* Зменшив наповзання, щоб Богдан не "залазив" на текст */
+      margin-left: 140px; 
+      margin-top: 0; 
     }
 
     .subtitle {
-      margin-top: 25px; /* Трохи більше повітря під іменами */
+      margin-top: 20px; 
       font-family: 'Alex Brush', cursive;
       font-size: 28px;
       opacity: 0;
@@ -95,7 +97,7 @@
     }
 
     .mini-player-wrapper { 
-      margin-top: 30px; 
+      margin-top: 25px; 
       opacity: 0; 
       transform: translateY(20px); 
       animation: fadeUp 1s ease forwards; 
@@ -110,11 +112,18 @@
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
+    
+    /* Спеціальна анімація для "and", щоб врахувати зсув */
+    @keyframes fadeInAndSlide { 
+      from { opacity: 0; transform: translateX(19px) translateY(10px); }
+      to { opacity: 1; transform: translateX(19px) translateY(0); } 
+    }
 
     @media (max-width: 768px) {
       .name { font-size: 65px; }
-      .name.first { margin-right: 90px; }
-      .name.second { margin-left: 90px; }
+      .name.first { margin-right: 100px; }
+      .name.second { margin-left: 100px; }
+      .and { transform: translateX(10px); } /* Менший зсув для мобільних */
       .subtitle { font-size: 24px; }
       .content { padding-top: 100px; }
     }
