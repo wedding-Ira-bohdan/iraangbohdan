@@ -48,6 +48,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      transform: translateX(-40px); /* зсув лівіше */
     }
 
     .name {
@@ -218,7 +219,7 @@
     loadTrack(current, true); 
   });
 
-  // 🔥 Автоматичний запуск
+  // Автоматичний запуск
   loadTrack(current, true);
 
   window.addEventListener("load", () => {
