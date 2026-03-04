@@ -36,7 +36,7 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 220px; /* Достатньо повітря зверху */
+      padding-top: 120px; 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -51,61 +51,72 @@
 
     .name {
       font-family: 'Alex Brush', cursive;
-      font-size: 90px; /* Збільшено для кращої видимості тонкого шрифту */
+      font-size: 85px;
       font-weight: 400;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
-      letter-spacing: 1px;
     }
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 180px; /* Зміщення Iryna вліво */
-      margin-bottom: -30px; /* Легке наповзання для художнього ефекту */
+      margin-right: 140px; 
+      margin-bottom: -35px;
     }
 
     .and {
       font-family: 'Alex Brush', cursive;
-      font-size: 35px;
+      font-size: 32px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
-      margin: 10px 0;
       color: rgba(255, 255, 255, 0.8);
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 180px; /* Зміщення Bohdan вправо */
-      margin-top: -30px;
+      margin-left: 140px;
+      margin-top: -35px;
     }
 
+    /* Оновлений Wedding Day: той самий шрифт, менше повітря */
     .subtitle {
-      margin-top: 60px; /* Багато повітря перед датою */
-      font-size: 13px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
+      margin-top: 15px; 
+      font-family: 'Alex Brush', cursive;
+      font-size: 28px;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
     }
 
-    .mini-player-wrapper { margin-top: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
+    .subtitle .date {
+      margin-left: 8px;
+      font-size: 24px;
+    }
+
+    .mini-player-wrapper { 
+      margin-top: 25px; 
+      opacity: 0; 
+      transform: translateY(20px); 
+      animation: fadeUp 1s ease forwards; 
+      animation-delay: 3.5s; 
+    }
+    
     .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
     .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 26px; height: 26px; fill: currentColor; }
-    #progress-container { width: 150px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 20px auto 0; border-radius: 2px; cursor: pointer; }
+    .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
+    #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .name { font-size: 70px; }
-      .name.first { margin-right: 130px; }
-      .name.second { margin-left: 130px; }
-      .content { padding-top: 180px; }
+      .name { font-size: 65px; }
+      .name.first { margin-right: 100px; }
+      .name.second { margin-left: 100px; }
+      .subtitle { font-size: 24px; }
+      .content { padding-top: 100px; }
     }
   </style>
 </head>
