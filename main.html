@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,7 +36,7 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 190px; /* Опустив ще трохи нижче */
+      padding-top: 210px; /* Опустив ще нижче */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -50,10 +50,9 @@
     }
 
     .name {
-      font-family: 'Bad Script', cursive;
-      font-size: 65px; /* Трохи зменшив для витонченості */
-      font-weight: 300;
-      letter-spacing: 2px; /* Додав повітря між літерами */
+      font-family: 'Pinyon Script', cursive;
+      font-size: 75px; /* Pinyon Script тонкий, тому розмір можна тримати більшим */
+      font-weight: 400;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
@@ -61,31 +60,30 @@
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 160px; /* Сильніше зміщення вліво */
-      margin-bottom: -15px;
+      margin-right: 180px; /* Більше простору вліво */
+      margin-bottom: -10px;
     }
 
     .and {
-      font-family: 'Bad Script', cursive;
-      font-size: 24px;
-      font-style: italic;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 32px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
-      margin: 10px 0; /* Додав вертикальних відступів (повітря) */
-      color: rgba(255, 255, 255, 0.8);
+      margin: 15px 0; /* Більше повітря навколо "and" */
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 160px; /* Сильніше зміщення вправо */
-      margin-top: -15px;
+      margin-left: 180px; /* Більше простору вправо */
+      margin-top: -10px;
     }
 
     .subtitle {
-      margin-top: 40px; /* Більше відступу до дати */
-      font-size: 14px;
-      letter-spacing: 3px;
+      margin-top: 50px;
+      font-size: 13px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
@@ -93,21 +91,21 @@
     }
 
     /* Плеєр */
-    .mini-player-wrapper { margin-top: 25px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
+    .mini-player-wrapper { margin-top: 30px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
     .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
     .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 30px; height: 30px; fill: currentColor; }
-    #progress-container { width: 180px; height: 3px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
-    #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
+    .mini-player button svg { width: 28px; height: 28px; fill: currentColor; }
+    #progress-container { width: 180px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
+    #progress { width: 0%; height: 100%; background: #fff; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .name { font-size: 48px; letter-spacing: 1px; }
-      .name.first { margin-right: 100px; }
-      .name.second { margin-left: 100px; }
-      .content { padding-top: 140px; }
+      .name { font-size: 55px; }
+      .name.first { margin-right: 120px; }
+      .name.second { margin-left: 120px; }
+      .content { padding-top: 160px; }
     }
   </style>
 </head>
@@ -186,6 +184,8 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
+</body>
+</html>
 
 
 
