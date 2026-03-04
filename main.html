@@ -57,7 +57,6 @@
       opacity: 0;
     }
 
-    /* Ірина: піднята на 1мм (4px) відносно попереднього стану */
     .name.first {
       animation: fadeUpFirst 1.3s ease forwards;
       animation-delay: 0.6s;
@@ -111,7 +110,6 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* Ірина тепер фінішує на 11px замість 15px (піднята на 4px/1мм) */
     @keyframes fadeUpFirst { 
       from { opacity: 0; transform: translateY(31px); }
       to { opacity: 1; transform: translateY(11px); } 
@@ -165,59 +163,6 @@
   </div>
 </section>
 
-<audio id="audio" preload="auto"></audio>
-
-<script>
-  const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
-  let current = 0;
-  const audio = document.getElementById("audio");
-  const playBtn = document.getElementById("play");
-  const progress = document.getElementById("progress");
-  const progressContainer = document.getElementById("progress-container");
-
-  const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-  const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-
-  function loadTrack(i, autoplay = false) {
-    audio.src = tracks[i];
-    audio.load();
-    if (autoplay) {
-      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {});
-    }
-  }
-
-  playBtn.addEventListener("click", () => {
-    if (audio.paused) { audio.play(); playBtn.innerHTML = pauseIcon; } 
-    else { audio.pause(); playBtn.innerHTML = playIcon; }
-  });
-
-  document.getElementById("next").addEventListener("click", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
-  document.getElementById("prev").addEventListener("click", () => { current = (current - 1 + tracks.length) % tracks.length; loadTrack(current, true); });
-
-  audio.addEventListener("timeupdate", () => {
-    if (audio.duration) { progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; }
-  });
-
-  progressContainer.addEventListener("click", (e) => {
-    const width = progressContainer.clientWidth;
-    const clickX = e.offsetX;
-    if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
-  });
-
-  audio.addEventListener("ended", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
-
-  loadTrack(current, false);
-
-  document.addEventListener("click", function initAutoPlay() {
-    if (audio.paused) { audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {}); }
-    document.removeEventListener("click", initAutoPlay);
-  });
-</script>
-</body>
-</html>
-
-
-    <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
   <div class="timer-wrapper">
     <p class="timer-title">До нашої події залишилося:</p>
@@ -243,7 +188,6 @@
   </div>
 
   <style>
-    /* Базові стилі секції */
     #wedding-timer { 
       background: #2B160E; 
       padding: 80px 0; 
@@ -252,6 +196,8 @@
       position: relative; 
       z-index: 5;
       font-family: 'Montserrat', sans-serif;
+
+      margin-top: 20px; /* таймер під аудіо на ~2 см */
     }
 
     .timer-wrapper {
@@ -269,7 +215,6 @@
       font-weight: 400;
     }
 
-    /* Контейнер сітки: nowrap гарантує один рядок */
     .timer-grid {
       display: flex;
       justify-content: center;
@@ -301,30 +246,10 @@
       display: block;
       margin-top: 5px;
     }
-
-    /* Адаптація для мобільних (щоб все влізло в один ряд) */
-    @media (max-width: 480px) {
-      #wedding-timer { padding: 50px 0; }
-      .timer-grid { gap: 8px; }
-      .timer-box {
-        padding: 15px 5px;
-        min-width: 70px;
-      }
-      .timer-box span { font-size: 28px; }
-      .timer-box label { font-size: 8px; letter-spacing: 1px; }
-    }
-
-    /* Для екстремально маленьких екранів */
-    @media (max-width: 340px) {
-      .timer-grid { gap: 5px; }
-      .timer-box { min-width: 62px; }
-      .timer-box span { font-size: 22px; }
-    }
   </style>
 
   <script>
     function updateWeddingTimer() {
-      // Встановлюємо дату весілля (17 липня 2026)
       const targetDate = new Date("July 17, 2026 00:00:00").getTime();
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -350,11 +275,11 @@
       document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
     }
 
-    // Запуск таймера
     setInterval(updateWeddingTimer, 1000);
     updateWeddingTimer();
   </script>
 </section>
+  
 
 <!-- ================== EVENTS SECTION ================== -->
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
