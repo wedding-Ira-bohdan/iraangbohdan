@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ірина & Богдан</title>
+  <title>Iryna & Bohdan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,83 +29,83 @@
 
     .overlay {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.3);
       z-index: 1;
     }
 
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 210px; /* Опустив ще нижче */
+      padding-top: 220px; /* Достатньо повітря зверху */
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .names-container {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     .name {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 75px; /* Pinyon Script тонкий, тому розмір можна тримати більшим */
+      font-family: 'Alex Brush', cursive;
+      font-size: 90px; /* Збільшено для кращої видимості тонкого шрифту */
       font-weight: 400;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
+      letter-spacing: 1px;
     }
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 180px; /* Більше простору вліво */
-      margin-bottom: -10px;
+      margin-right: 180px; /* Зміщення Iryna вліво */
+      margin-bottom: -30px; /* Легке наповзання для художнього ефекту */
     }
 
     .and {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 32px;
+      font-family: 'Alex Brush', cursive;
+      font-size: 35px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
-      margin: 15px 0; /* Більше повітря навколо "and" */
-      color: rgba(255, 255, 255, 0.7);
+      margin: 10px 0;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 180px; /* Більше простору вправо */
-      margin-top: -10px;
+      margin-left: 180px; /* Зміщення Bohdan вправо */
+      margin-top: -30px;
     }
 
     .subtitle {
-      margin-top: 50px;
+      margin-top: 60px; /* Багато повітря перед датою */
       font-size: 13px;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
     }
 
-    /* Плеєр */
-    .mini-player-wrapper { margin-top: 30px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
+    .mini-player-wrapper { margin-top: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
     .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
     .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 28px; height: 28px; fill: currentColor; }
-    #progress-container { width: 180px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
+    .mini-player button svg { width: 26px; height: 26px; fill: currentColor; }
+    #progress-container { width: 150px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 20px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .name { font-size: 55px; }
-      .name.first { margin-right: 120px; }
-      .name.second { margin-left: 120px; }
-      .content { padding-top: 160px; }
+      .name { font-size: 70px; }
+      .name.first { margin-right: 130px; }
+      .name.second { margin-left: 130px; }
+      .content { padding-top: 180px; }
     }
   </style>
 </head>
@@ -116,9 +116,9 @@
   <div class="overlay"></div>
   <div class="content">
     <div class="names-container">
-      <div class="name first">Ірина</div>
+      <div class="name first">Iryna</div>
       <div class="and">and</div>
-      <div class="name second">Богдан</div>
+      <div class="name second">Bohdan</div>
     </div>
 
     <div class="subtitle">
@@ -184,9 +184,6 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
-</body>
-</html>
-
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
