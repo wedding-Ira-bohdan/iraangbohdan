@@ -55,15 +55,14 @@
       font-size: 95px;
       font-weight: 400;
       opacity: 0;
-      animation: fadeUp 1.3s ease forwards;
     }
 
-    /* Ірина: зміщено на 2мм (8px) вниз */
+    /* Ірина: ще ближче до центру */
     .name.first {
+      animation: fadeUpFirst 1.3s ease forwards;
       animation-delay: 0.6s;
       margin-right: 140px; 
-      margin-bottom: -10px;
-      transform: translateY(8px); 
+      margin-bottom: -15px;
     }
 
     .and {
@@ -74,17 +73,19 @@
       animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
       color: rgba(255, 255, 255, 0.9);
+      margin: 2px 0;
     }
 
+    /* Богдан: підтягнули трохи вгору */
     .name.second {
+      animation: fadeUpSecond 1.3s ease forwards;
       animation-delay: 2.2s;
       margin-left: 140px; 
-      margin-top: -10px;
-      transform: translateY(20px); /* Початкова точка для анімації */
+      margin-top: -15px; 
     }
 
     .subtitle {
-      margin-top: 25px; 
+      margin-top: 20px; 
       font-family: 'Great Vibes', cursive;
       font-size: 34px;
       opacity: 0;
@@ -101,7 +102,7 @@
       margin-top: 30px; 
       opacity: 0; 
       transform: translateY(20px); 
-      animation: fadeUp 1s ease forwards; 
+      animation: fadeUpPlayer 1s ease forwards; 
       animation-delay: 3.5s; 
     }
     
@@ -111,13 +112,17 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* Оновлена анімація для Ірини, щоб вона закінчувалася на 8px */
+    /* Анімації з урахуванням нових позицій */
     @keyframes fadeUpFirst { 
-      from { opacity: 0; transform: translateY(28px); }
-      to { opacity: 1; transform: translateY(8px); } 
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(15px); } 
     }
 
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUpSecond { 
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(-5px); } 
+    }
+
     @keyframes fadeIn { to { opacity: 1; } }
     
     @keyframes fadeInAndSlide { 
@@ -125,10 +130,7 @@
       to { opacity: 1; transform: translateX(19px) translateY(0); } 
     }
 
-    /* Застосування специфічної анімації для Ірини */
-    .name.first {
-      animation: fadeUpFirst 1.3s ease forwards;
-    }
+    @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
       .name { font-size: 70px; }
@@ -212,6 +214,8 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
+</body>
+</html>
 
 
 
