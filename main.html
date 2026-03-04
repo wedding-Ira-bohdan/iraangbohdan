@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Iryna & Bohdan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +29,7 @@
 
     .overlay {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.35);
       z-index: 1;
     }
 
@@ -40,6 +40,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      /* Легка тінь для всього тексту для кращої читабельності */
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
     .names-container {
@@ -50,8 +52,8 @@
     }
 
     .name {
-      font-family: 'Alex Brush', cursive;
-      font-size: 85px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 95px; /* Збільшено розмір */
       font-weight: 400;
       opacity: 0;
       transform: translateY(20px);
@@ -61,43 +63,43 @@
     .name.first {
       animation-delay: 0.6s;
       margin-right: 140px; 
-      margin-bottom: -15px; 
+      margin-bottom: -10px; 
     }
 
     .and {
-      font-family: 'Alex Brush', cursive;
-      font-size: 32px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 38px;
       opacity: 0;
-      /* Додано зсув вправо на 5мм (19px) */
+      /* Зсув вправо на 5мм (приблизно 19px) */
       transform: translateX(19px); 
       animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
-      color: rgba(255, 255, 255, 0.8);
-      padding: 5px 0;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .name.second {
       animation-delay: 2.2s;
       margin-left: 140px; 
-      margin-top: 0; 
+      margin-top: -10px; 
     }
 
     .subtitle {
-      margin-top: 20px; 
-      font-family: 'Alex Brush', cursive;
-      font-size: 28px;
+      margin-top: 25px; 
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
     }
 
     .subtitle .date {
-      margin-left: 8px;
-      font-size: 24px;
+      margin-left: 12px;
+      font-size: 30px;
     }
 
+    /* Плеєр */
     .mini-player-wrapper { 
-      margin-top: 25px; 
+      margin-top: 30px; 
       opacity: 0; 
       transform: translateY(20px); 
       animation: fadeUp 1s ease forwards; 
@@ -113,19 +115,17 @@
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
     
-    /* Спеціальна анімація для "and", щоб врахувати зсув */
     @keyframes fadeInAndSlide { 
       from { opacity: 0; transform: translateX(19px) translateY(10px); }
       to { opacity: 1; transform: translateX(19px) translateY(0); } 
     }
 
     @media (max-width: 768px) {
-      .name { font-size: 65px; }
+      .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
-      .and { transform: translateX(10px); } /* Менший зсув для мобільних */
-      .subtitle { font-size: 24px; }
-      .content { padding-top: 100px; }
+      .and { font-size: 30px; transform: translateX(15px); }
+      .subtitle { font-size: 28px; }
     }
   </style>
 </head>
@@ -204,8 +204,7 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
-</body>
-</html>
+
 
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
