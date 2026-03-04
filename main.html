@@ -48,7 +48,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      transform: translateX(-20px); /* трохи лівіше */
+      transform: translateX(-20px);
     }
 
     .name {
@@ -111,55 +111,56 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* === СТИЛІ ДЛЯ СТРІЛОК ВНИЗ (ДОДАНО) === */
+    /* === ОНОВЛЕНІ СТИЛІ ДЛЯ СТРІЛОК === */
     .scroll-arrow {
       position: fixed;
-      bottom: 25px; /* відстань від нижнього краю */
+      bottom: 25px;
       z-index: 10;
-      color: #fff; /* колір стрілок */
-      opacity: 0.7; /* початкова прозорість */
+      color: #fff;
+      opacity: 0; /* Тепер спочатку приховано */
       cursor: pointer;
-      pointer-events: none; /* стрілки не заважають натисканням на інші елементи */
+      pointer-events: none;
       
-      /* Анімація: назва, тривалість, тип, повторення */
-      animation: arrowPulse 2s ease-in-out infinite;
+      /* Анімація появи стрілок ПІСЛЯ плеєра (затримка 4.5s) */
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 4.5s;
     }
 
     .scroll-arrow.left {
-      left: 20px; /* відстань від лівого краю */
+      left: 20px;
     }
 
     .scroll-arrow.right {
-      right: 20px; /* відстань від правого краю */
+      right: 20px;
     }
 
     .scroll-arrow svg {
-      width: 20px;  /* розмір стрілок */
+      width: 20px;
       height: 20px;
       fill: none;
       stroke: currentColor;
-      stroke-width: 1.5; /* товщина ліній */
+      stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
+      /* Анімація руху перенесена на саму іконку */
+      animation: arrowPulse 2s ease-in-out infinite;
     }
 
-    /* === КЛЮЧОВІ КАДРИ АНІМАЦІЇ (ДОДАНО) === */
     @keyframes arrowPulse {
       0% {
-        transform: translateY(0); /* початкова позиція */
+        transform: translateY(0);
         opacity: 0.7;
       }
       50% {
-        transform: translateY(8px); /* рух вниз */
-        opacity: 1; /* стають яскравішими */
+        transform: translateY(8px);
+        opacity: 1;
       }
       100% {
-        transform: translateY(0); /* повернення назад */
+        transform: translateY(0);
         opacity: 0.7;
       }
     }
 
-    /* АНІМАЦІЇ ДЛЯ КОНТЕНТУ (БЕЗ ЗМІН) */
     @keyframes fadeUpFirst { 
       from { opacity: 0; transform: translateY(31px); }
       to { opacity: 1; transform: translateY(11px); } 
@@ -185,7 +186,6 @@
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
       
-      /* Трохи зменшуємо відступи для мобільних (опціонально) */
       .scroll-arrow { bottom: 20px; }
       .scroll-arrow.left { left: 15px; }
       .scroll-arrow.right { right: 15px; }
@@ -233,7 +233,6 @@
 <audio id="audio" autoplay muted preload="auto"></audio>
 
 <script>
-  // Скрипт плеєра залишаю без змін
   const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
   let current = 0;
   const audio = document.getElementById("audio");
@@ -286,7 +285,6 @@
     loadTrack(current, true); 
   });
 
-  // Автоматичний запуск
   loadTrack(current, true);
 
   window.addEventListener("load", () => {
