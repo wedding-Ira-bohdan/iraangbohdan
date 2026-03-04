@@ -32,10 +32,7 @@
     }
 
     .overlay {
-      position: absolute; 
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
+      display: none; /* ← ефект темноти відключено */
     }
 
     .content {
@@ -153,7 +150,7 @@
       position: absolute;
       bottom: 25px;
       z-index: 10;
-      color: #ffffff; /* ← ЗМІНЕНО НА БІЛИЙ */
+      color: #ffffff; 
       opacity: 0; 
       cursor: pointer;
       pointer-events: none;
