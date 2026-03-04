@@ -113,7 +113,7 @@
 
     /* === ОНОВЛЕНІ СТИЛІ ДЛЯ СТРІЛОК === */
     .scroll-arrow {
-      position: absolute; /* Змінено з fixed на absolute */
+      position: absolute;
       bottom: 25px;
       z-index: 10;
       color: #fff;
@@ -145,18 +145,9 @@
     }
 
     @keyframes arrowPulse {
-      0% {
-        transform: translateY(0);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(8px);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 0.7;
-      }
+      0% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0.7; }
     }
 
     @keyframes fadeUpFirst { 
@@ -293,8 +284,146 @@
         playBtn.innerHTML = pauseIcon;
       }, 300);
     }).catch(() => {});
+    
+    // ====== Додаємо колір з фону таймера на текст першого блоку ======
+    const timerBg = getComputedStyle(document.getElementById("wedding-timer")).backgroundColor;
+    const nameElements = document.querySelectorAll(".names-container .name, .and, .subtitle");
+    nameElements.forEach(el => el.style.color = timerBg);
   });
 </script>
+
+<!-- ================== COUNTDOWN TIMER ================== -->
+<section id="wedding-timer">
+  <div class="timer-wrapper">
+    <p class="timer-title">До нашої події залишилося:</p>
+    
+    <div class="timer-grid">
+      <div class="timer-box">
+        <span id="d_new">00</span>
+        <label>днів</label>
+      </div>
+      <div class="timer-box">
+        <span id="h_new">00</span>
+        <label>год</label>
+      </div>
+      <div class="timer-box">
+        <span id="m_new">00</span>
+        <label>хв</label>
+      </div>
+      <div class="timer-box">
+        <span id="s_new">00</span>
+        <label>сек</label>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #wedding-timer { 
+      background: #2B160E; 
+      padding: 80px 0; 
+      text-align: center; 
+      color: #fff; 
+      position: relative; 
+      z-index: 5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .timer-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    .timer-title {
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 30px;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: nowrap; 
+    }
+
+    .timer-box {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 20px;
+      min-width: 85px;
+      border-radius: 2px;
+      flex: 0 0 auto;
+    }
+
+    .timer-box span {
+      display: block;
+      font-size: 38px;
+      font-weight: 300;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .timer-box label {
+      font-size: 9px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      letter-spacing: 2px;
+      display: block;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 480px) {
+      #wedding-timer { padding: 50px 0; }
+      .timer-grid { gap: 8px; }
+      .timer-box {
+        padding: 15px 5px;
+        min-width: 70px;
+      }
+      .timer-box span { font-size: 28px; }
+      .timer-box label { font-size: 8px; letter-spacing: 1px; }
+    }
+
+    @media (max-width: 340px) {
+      .timer-grid { gap: 5px; }
+      .timer-box { min-width: 62px; }
+      .timer-box span { font-size: 22px; }
+    }
+  </style>
+
+  <script>
+    function updateWeddingTimer() {
+      const targetDate = new Date("July 17, 2026 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.querySelector(".timer-grid").innerHTML = "<h3>Цей день настав!</h3>";
+        return;
+      }
+
+      const mS = 1000;
+      const mMin = mS * 60;
+      const mHour = mMin * 60;
+      const mDay = mHour * 24;
+
+      const d = Math.floor(diff / mDay);
+      const h = Math.floor((diff % mDay) / mHour);
+      const m = Math.floor((diff % mHour) / mMin);
+      const s = Math.floor((diff % mMin) / mS);
+
+      document.getElementById("d_new").innerText = d < 10 ? "0" + d : d;
+      document.getElementById("h_new").innerText = h < 10 ? "0" + h : h;
+      document.getElementById("m_new").innerText = m < 10 ? "0" + m : m;
+      document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
+    }
+
+    setInterval(updateWeddingTimer, 1000);
+    updateWeddingTimer();
+  </script>
+</section>
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
