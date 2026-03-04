@@ -21,21 +21,13 @@
       height: 100%;
       font-family: 'Cormorant Garamond', serif;
       background-image: url('images/photo7.jpg');
-      background-size: cover;
-      background-position: center;
+      background-size: cover;          /* Заповнює екран */
+      background-position: center center; /* Центрує */
       background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-    }
-
-    /* ✅ Щоб на телефонах фон не обрізався */
-    @media (max-width: 768px) {
-      html, body {
-        background-size: contain;
-        background-color: #000; /* щоб не було білих полів */
-      }
     }
 
     .text-layer {
