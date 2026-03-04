@@ -113,15 +113,14 @@
 
     /* === ОНОВЛЕНІ СТИЛІ ДЛЯ СТРІЛОК === */
     .scroll-arrow {
-      position: fixed;
+      position: absolute; /* Змінено з fixed на absolute */
       bottom: 25px;
       z-index: 10;
       color: #fff;
-      opacity: 0; /* Тепер спочатку приховано */
+      opacity: 0; 
       cursor: pointer;
       pointer-events: none;
       
-      /* Анімація появи стрілок ПІСЛЯ плеєра (затримка 4.5s) */
       animation: fadeIn 1s ease forwards;
       animation-delay: 4.5s;
     }
@@ -142,7 +141,6 @@
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      /* Анімація руху перенесена на саму іконку */
       animation: arrowPulse 2s ease-in-out infinite;
     }
 
