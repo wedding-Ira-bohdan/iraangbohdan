@@ -16,7 +16,7 @@
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
       overflow-x: hidden;
-      color: #5C2D0C; /* насичений шоколадний колір */
+      color: #5C2D0C;
     }
 
     .hero {
@@ -31,9 +31,7 @@
       color: #5C2D0C;
     }
 
-    .overlay {
-      display: none; /* ефект темноти відключено */
-    }
+    .overlay { display: none; }
 
     .content {
       position: relative;
@@ -61,30 +59,9 @@
       color: #5C2D0C;
     }
 
-    .name.first {
-      animation: fadeUpFirst 1.3s ease forwards;
-      animation-delay: 0.6s;
-      margin-right: 140px; 
-      margin-bottom: -15px;
-    }
-
-    .and {
-      font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      opacity: 0;
-      transform: translateX(19px) translateY(-12px); 
-      animation: fadeInAndSlide 1.5s ease forwards;
-      animation-delay: 1.6s;
-      color: #5C2D0C;
-      margin: 0;
-    }
-
-    .name.second {
-      animation: fadeUpSecond 1.3s ease forwards;
-      animation-delay: 2.2s;
-      margin-left: 140px; 
-      margin-top: -15px; 
-    }
+    .name.first { animation: fadeUpFirst 1.3s ease forwards; animation-delay: 0.6s; margin-right: 140px; margin-bottom: -15px; }
+    .and { font-family: 'Great Vibes', cursive; font-size: 38px; opacity: 0; transform: translateX(19px) translateY(-12px); animation: fadeInAndSlide 1.5s ease forwards; animation-delay: 1.6s; color: #5C2D0C; margin: 0; }
+    .name.second { animation: fadeUpSecond 1.3s ease forwards; animation-delay: 2.2s; margin-left: 140px; margin-top: -15px; }
 
     .subtitle {
       margin-top: 20px; 
@@ -96,117 +73,52 @@
       color: #5C2D0C;
     }
 
-    .subtitle .date {
-      margin-left: 12px;
-      font-size: 30px;
-      color: #5C2D0C;
-    }
+    .subtitle .date { margin-left: 12px; font-size: 30px; color: #5C2D0C; }
 
-    .mini-player-wrapper { 
-      margin-top: 30px; 
-      opacity: 0; 
-      transform: translateY(20px); 
-      animation: fadeUpPlayer 1s ease forwards; 
-      animation-delay: 3.5s; 
-    }
-    
-    .mini-player { 
-      display: flex; 
-      justify-content: center; 
-      gap: 30px; 
-      align-items: center; 
-    }
+    .mini-player-wrapper { margin-top: 30px; opacity: 0; transform: translateY(20px); animation: fadeUpPlayer 1s ease forwards; animation-delay: 3.5s; }
+    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
+    .mini-player button { background: transparent; border: none; cursor: pointer; color: #5C2D0C; outline: none; }
+    .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
+    #progress-container { width: 140px; height: 2px; background: rgba(92,45,12,0.3); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
+    #progress { width: 0%; height: 100%; background: #5C2D0C; }
 
-    .mini-player button { 
-      background: transparent; 
-      border: none; 
-      cursor: pointer; 
-      color: #5C2D0C; 
-      outline: none; 
-    }
+    /* Стрілки по боках - 3 підряд */
+    .scroll-arrow-group { position: absolute; bottom: 25px; display: flex; gap: 8px; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 4.5s; color: #5C2D0C; }
+    .scroll-left { left: 20px; }
+    .scroll-right { right: 20px; }
 
-    .mini-player button svg { 
-      width: 24px; 
-      height: 24px; 
-      fill: currentColor; 
-    }
-
-    #progress-container { 
-      width: 140px; 
-      height: 2px; 
-      background: rgba(92,45,12,0.3); 
-      margin: 15px auto 0; 
-      border-radius: 2px; 
-      cursor: pointer; 
-    }
-
-    #progress { 
-      width: 0%; 
-      height: 100%; 
-      background: #5C2D0C; 
-    }
-
-    .scroll-arrow {
-      position: absolute;
-      bottom: 25px;
-      z-index: 10;
-      color: #ffffff; 
-      opacity: 0; 
-      cursor: pointer;
-      pointer-events: none;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 4.5s;
-    }
-
-    .scroll-arrow.left { left: 20px; }
-    .scroll-arrow.right { right: 20px; }
-
-    .scroll-arrow svg {
-      width: 20px;
-      height: 20px;
+    .scroll-arrow-group svg {
+      width: 28px;
+      height: 28px;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      animation: arrowPulse 2s ease-in-out infinite;
+      animation: arrowPulse 1.5s ease-in-out infinite;
     }
 
-    @keyframes arrowPulse {
-      0% { transform: translateY(0); opacity: 0.7; }
-      50% { transform: translateY(8px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.7; }
-    }
+    /* Задаємо різні затримки для послідовної анімації */
+    .scroll-left svg:nth-child(1), .scroll-right svg:nth-child(1) { animation-delay: 0s; }
+    .scroll-left svg:nth-child(2), .scroll-right svg:nth-child(2) { animation-delay: 0.5s; }
+    .scroll-left svg:nth-child(3), .scroll-right svg:nth-child(3) { animation-delay: 1s; }
 
-    @keyframes fadeUpFirst { 
-      from { opacity: 0; transform: translateY(31px); }
-      to { opacity: 1; transform: translateY(11px); } 
-    }
+    @keyframes arrowPulse { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(1); opacity: 0.7; } }
 
-    @keyframes fadeUpSecond { 
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(-5px); } 
-    }
-
+    @keyframes fadeUpFirst { from { opacity: 0; transform: translateY(31px); } to { opacity: 1; transform: translateY(11px); } }
+    @keyframes fadeUpSecond { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(-5px); } }
     @keyframes fadeIn { to { opacity: 1; } }
-    
-    @keyframes fadeInAndSlide { 
-      from { opacity: 0; transform: translateX(19px) translateY(0px); }
-      to { opacity: 1; transform: translateX(19px) translateY(-12px); } 
-    }
-
-    @keyframes fadeUpPlayer { 
-      to { opacity: 1; transform: translateY(0); } 
-    }
+    @keyframes fadeInAndSlide { from { opacity: 0; transform: translateX(19px) translateY(0px); } to { opacity: 1; transform: translateX(19px) translateY(-12px); } }
+    @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px) translateY(-8px); }
-      .scroll-arrow { bottom: 20px; }
-      .scroll-arrow.left { left: 15px; }
-      .scroll-arrow.right { right: 15px; }
+      .scroll-arrow-group { bottom: 20px; }
+      .scroll-left { left: 15px; }
+      .scroll-right { right: 15px; }
     }
   </style>
 </head>
@@ -223,7 +135,6 @@
 
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
-      
       <div class="mini-player-wrapper">
         <div class="mini-player">
           <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
@@ -235,17 +146,20 @@
     </div>
   </div>
 
-  <div class="scroll-arrow left">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-    </svg>
+  <!-- Ліва група з 3 стрілок -->
+  <div class="scroll-arrow-group scroll-left">
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
   </div>
-  <div class="scroll-arrow right">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-    </svg>
+
+  <!-- Права група з 3 стрілок -->
+  <div class="scroll-arrow-group scroll-right">
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5" /></svg>
   </div>
-  
+
 </section>
 
 <audio id="audio" autoplay muted preload="auto"></audio>
@@ -315,6 +229,7 @@
     }).catch(() => {});
   });
 </script>
+
 
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
