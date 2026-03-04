@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Iryna & Bohdan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,16 +62,23 @@
     .name.second { animation: fadeUpSecond 1.3s ease forwards; animation-delay: 2.2s; margin-left: 140px; margin-top: -15px; }
 
     .subtitle {
-      margin-top: 20px; 
-      font-family: 'Great Vibes', cursive;
-      font-size: 34px;
+      margin-top: 25px; 
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px; /* Збільшено розмір */
+      font-weight: 600; /* Зроблено жирним */
+      letter-spacing: 3px;
+      text-transform: uppercase;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
       color: #5C2D0C;
     }
 
-    .subtitle .date { margin-left: 12px; font-size: 30px; color: #5C2D0C; }
+    .subtitle .date { 
+      margin-left: 8px; 
+      font-weight: 700; /* Дата ще жирніша */
+      color: #5C2D0C; 
+    }
 
     .mini-player-wrapper { margin-top: 30px; opacity: 0; transform: translateY(20px); animation: fadeUpPlayer 1s ease forwards; animation-delay: 3.5s; }
     .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
@@ -80,13 +87,12 @@
     #progress-container { width: 140px; height: 2px; background: rgba(92,45,12,0.3); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #5C2D0C; }
 
-    /* Групи стрілок по боках */
     .scroll-arrow-group { 
       position: absolute; 
       bottom: 40px; 
       display: flex; 
-      flex-direction: column; /* У стовпчик */
-      gap: 0px; /* Зменшив відступ, щоб виглядало як одна ціла стрілка */
+      flex-direction: column; 
+      gap: 0px; 
       opacity: 0; 
       animation: fadeIn 1s ease forwards; 
       animation-delay: 4.5s; 
@@ -97,15 +103,14 @@
 
     .scroll-arrow-group svg {
       width: 28px;
-      height: 16px; /* Зменшив висоту окремого блоку, щоб вони були ближче */
+      height: 16px;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2; /* Трохи жирніша лінія для кращого вигляду */
+      stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    /* Анімація для стрілок по черзі */
     .scroll-arrow-group .arrow1 { animation: pulseArrow1 2.1s ease-in-out infinite; }
     .scroll-arrow-group .arrow2 { animation: pulseArrow2 2.1s ease-in-out infinite; }
     .scroll-arrow-group .arrow3 { animation: pulseArrow3 2.1s ease-in-out infinite; }
@@ -142,6 +147,7 @@
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
+      .subtitle { font-size: 16px; letter-spacing: 2px; } /* Трохи збільшено для мобільних */
       .scroll-left { left: 15px; }
       .scroll-right { right: 15px; }
     }
@@ -236,6 +242,8 @@
 
   loadTrack(current, false);
 </script>
+</body>
+</html>
 
 
 
