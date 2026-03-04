@@ -40,7 +40,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Легка тінь для всього тексту для кращої читабельності */
       text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
@@ -53,24 +52,24 @@
 
     .name {
       font-family: 'Great Vibes', cursive;
-      font-size: 95px; /* Збільшено розмір */
+      font-size: 95px;
       font-weight: 400;
       opacity: 0;
-      transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
     }
 
+    /* Ірина: зміщено на 2мм (8px) вниз */
     .name.first {
       animation-delay: 0.6s;
       margin-right: 140px; 
-      margin-bottom: -10px; 
+      margin-bottom: -10px;
+      transform: translateY(8px); 
     }
 
     .and {
       font-family: 'Great Vibes', cursive;
       font-size: 38px;
       opacity: 0;
-      /* Зсув вправо на 5мм (приблизно 19px) */
       transform: translateX(19px); 
       animation: fadeInAndSlide 1.5s ease forwards;
       animation-delay: 1.6s;
@@ -80,7 +79,8 @@
     .name.second {
       animation-delay: 2.2s;
       margin-left: 140px; 
-      margin-top: -10px; 
+      margin-top: -10px;
+      transform: translateY(20px); /* Початкова точка для анімації */
     }
 
     .subtitle {
@@ -97,7 +97,6 @@
       font-size: 30px;
     }
 
-    /* Плеєр */
     .mini-player-wrapper { 
       margin-top: 30px; 
       opacity: 0; 
@@ -112,6 +111,12 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
+    /* Оновлена анімація для Ірини, щоб вона закінчувалася на 8px */
+    @keyframes fadeUpFirst { 
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(8px); } 
+    }
+
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
     
@@ -120,16 +125,19 @@
       to { opacity: 1; transform: translateX(19px) translateY(0); } 
     }
 
+    /* Застосування специфічної анімації для Ірини */
+    .name.first {
+      animation: fadeUpFirst 1.3s ease forwards;
+    }
+
     @media (max-width: 768px) {
       .name { font-size: 70px; }
       .name.first { margin-right: 100px; }
       .name.second { margin-left: 100px; }
       .and { font-size: 30px; transform: translateX(15px); }
-      .subtitle { font-size: 28px; }
     }
   </style>
 </head>
-
 <body>
 
 <section class="hero">
@@ -204,6 +212,7 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
+
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
