@@ -57,7 +57,6 @@
       opacity: 0;
     }
 
-    /* Ірина: піднята на 1мм (4px) відносно попереднього стану */
     .name.first {
       animation: fadeUpFirst 1.3s ease forwards;
       animation-delay: 0.6s;
@@ -111,7 +110,6 @@
     #progress-container { width: 140px; height: 2px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
     #progress { width: 0%; height: 100%; background: #fff; }
 
-    /* Ірина тепер фінішує на 11px замість 15px (піднята на 4px/1мм) */
     @keyframes fadeUpFirst { 
       from { opacity: 0; transform: translateY(31px); }
       to { opacity: 1; transform: translateY(11px); } 
@@ -165,7 +163,7 @@
   </div>
 </section>
 
-<audio id="audio" preload="auto"></audio>
+<audio id="audio" autoplay muted preload="auto"></audio>
 
 <script>
   const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
@@ -191,30 +189,48 @@
     else { audio.pause(); playBtn.innerHTML = playIcon; }
   });
 
-  document.getElementById("next").addEventListener("click", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
-  document.getElementById("prev").addEventListener("click", () => { current = (current - 1 + tracks.length) % tracks.length; loadTrack(current, true); });
+  document.getElementById("next").addEventListener("click", () => { 
+    current = (current + 1) % tracks.length; 
+    loadTrack(current, true); 
+  });
+
+  document.getElementById("prev").addEventListener("click", () => { 
+    current = (current - 1 + tracks.length) % tracks.length; 
+    loadTrack(current, true); 
+  });
 
   audio.addEventListener("timeupdate", () => {
-    if (audio.duration) { progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; }
+    if (audio.duration) { 
+      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; 
+    }
   });
 
   progressContainer.addEventListener("click", (e) => {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
-    if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
+    if (audio.duration) { 
+      audio.currentTime = (clickX / width) * audio.duration; 
+    }
   });
 
-  audio.addEventListener("ended", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
+  audio.addEventListener("ended", () => { 
+    current = (current + 1) % tracks.length; 
+    loadTrack(current, true); 
+  });
 
-  loadTrack(current, false);
+  // 🔥 Автоматичний запуск
+  loadTrack(current, true);
 
-  document.addEventListener("click", function initAutoPlay() {
-    if (audio.paused) { audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {}); }
-    document.removeEventListener("click", initAutoPlay);
+  window.addEventListener("load", () => {
+    audio.muted = true;
+    audio.play().then(() => {
+      setTimeout(() => {
+        audio.muted = false;
+        playBtn.innerHTML = pauseIcon;
+      }, 300);
+    }).catch(() => {});
   });
 </script>
-</body>
-</html>
 
 
     <!-- ================== COUNTDOWN TIMER ================== -->
