@@ -60,8 +60,8 @@
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 140px; 
-      margin-bottom: -35px;
+      margin-right: 140px; /* Зміщення вліво */
+      margin-bottom: -10px; /* Зменшив наповзання */
     }
 
     .and {
@@ -71,17 +71,17 @@
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
       color: rgba(255, 255, 255, 0.8);
+      margin: 5px 0; /* Додав трохи простору навколо and */
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 140px;
-      margin-top: -35px;
+      margin-left: 140px; /* Зміщення вправо */
+      margin-top: -10px; /* Зменшив наповзання, щоб Богдан не "залазив" на текст */
     }
 
-    /* Оновлений Wedding Day: той самий шрифт, менше повітря */
     .subtitle {
-      margin-top: 15px; 
+      margin-top: 25px; /* Трохи більше повітря під іменами */
       font-family: 'Alex Brush', cursive;
       font-size: 28px;
       opacity: 0;
@@ -95,7 +95,7 @@
     }
 
     .mini-player-wrapper { 
-      margin-top: 25px; 
+      margin-top: 30px; 
       opacity: 0; 
       transform: translateY(20px); 
       animation: fadeUp 1s ease forwards; 
@@ -113,8 +113,8 @@
 
     @media (max-width: 768px) {
       .name { font-size: 65px; }
-      .name.first { margin-right: 100px; }
-      .name.second { margin-left: 100px; }
+      .name.first { margin-right: 90px; }
+      .name.second { margin-left: 90px; }
       .subtitle { font-size: 24px; }
       .content { padding-top: 100px; }
     }
@@ -195,7 +195,8 @@
     document.removeEventListener("click", initAutoPlay);
   });
 </script>
-
+</body>
+</html>
 
     <!-- ================== COUNTDOWN TIMER ================== -->
 <section id="wedding-timer">
