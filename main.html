@@ -13,6 +13,7 @@
       background: #000;
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     .hero {
@@ -35,44 +36,46 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 180px; /* Опустив весь блок нижче */
+      padding-top: 180px; /* Опущено вниз */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* Контейнер для імен в один рядок */
-    .names-row {
-      display: flex;
-      justify-content: center;
-      align-items: baseline;
-      gap: 0;
+    /* Стилі для рознесення імен */
+    .names-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
     }
 
     .name {
       font-family: 'Marck Script', cursive;
-      font-size: 80px;
+      font-size: 70px;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
     }
 
-    .name.first { 
+    .name.first {
       animation-delay: 0.6s;
-      margin-right: -18px; /* Зближення останніх букв Ірини з and */
-    }
-
-    .name.second { 
-      animation-delay: 2.2s; 
-      margin-left: -18px; /* Зближення перших букв Богдана з and */
+      margin-right: 120px; /* Зміщення Ірини вліво */
+      margin-bottom: -25px; /* Наповзання наступного рядка */
     }
 
     .and {
       font-family: 'Marck Script', cursive;
-      font-size: 30px;
+      font-size: 28px;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
-      padding: 0 10px;
-      position: relative;
-      top: -5px; /* Коригування по вертикалі для кращого вигляду в рядку */
+      margin: 0;
+    }
+
+    .name.second {
+      animation-delay: 2.2s;
+      margin-left: 120px; /* Зміщення Богдана вправо */
+      margin-top: -25px; /* Наповзання на попередній рядок */
     }
 
     .subtitle {
@@ -83,93 +86,32 @@
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
     }
-    .subtitle .date {
-      margin-left: 10px;
-      font-weight: 500;
-      font-size: 14px;
-    }
 
-    .mini-player-wrapper {
-      margin-top: 22px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 3.5s;
-    }
-
-    .mini-player {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .mini-player button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      outline: none;
-    }
-
-    .mini-player button svg {
-      width: 32px;
-      height: 32px;
-      fill: currentColor;
-    }
-
-    #progress-container {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.3);
-      margin: 12px auto 0;
-      border-radius: 2px;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    #progress {
-      width: 0%;
-      height: 100%;
-      background: #fff;
-      transition: width 0.1s linear;
-    }
-
-    .scroll-indicator {
-      position: fixed;
-      top: 0; bottom: 0; right: 0;
-      width: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      z-index: 9999;
-    }
-
-    .scroll-progress-bar {
-      width: 100%;
-      height: 0%;
-      background: #fff;
-    }
+    /* Плеєр та інші елементи */
+    .mini-player-wrapper { margin-top: 22px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
+    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
+    .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
+    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
+    #progress-container { width: 200px; height: 4px; background: rgba(255, 255, 255, 0.3); margin: 12px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
+    #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .name { font-size: 50px; }
-      .and { font-size: 24px; }
-      .name.first { margin-right: -10px; }
-      .name.second { margin-left: -10px; }
+      .name { font-size: 55px; }
+      .name.first { margin-right: 80px; }
+      .name.second { margin-left: 80px; }
     }
   </style>
 </head>
 
 <body>
 
-<div class="scroll-indicator">
-  <div class="scroll-progress-bar" id="scrollBar"></div>
-</div>
-
 <section class="hero">
   <div class="overlay"></div>
   <div class="content">
-    <div class="names-row">
+    <div class="names-container">
       <div class="name first">Ірина</div>
       <div class="and">and</div>
       <div class="name second">Богдан</div>
@@ -177,7 +119,6 @@
 
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
-
       <div class="mini-player-wrapper">
         <div class="mini-player">
           <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
@@ -212,29 +153,15 @@
   }
 
   playBtn.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play();
-      playBtn.innerHTML = pauseIcon;
-    } else {
-      audio.pause();
-      playBtn.innerHTML = playIcon;
-    }
+    if (audio.paused) { audio.play(); playBtn.innerHTML = pauseIcon; } 
+    else { audio.pause(); playBtn.innerHTML = playIcon; }
   });
 
-  document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
-  });
-
-  document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + tracks.length) % tracks.length;
-    loadTrack(current, true);
-  });
+  document.getElementById("next").addEventListener("click", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
+  document.getElementById("prev").addEventListener("click", () => { current = (current - 1 + tracks.length) % tracks.length; loadTrack(current, true); });
 
   audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    }
+    if (audio.duration) { progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; }
   });
 
   progressContainer.addEventListener("click", (e) => {
@@ -243,26 +170,13 @@
     if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
   });
 
-  audio.addEventListener("ended", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
-  });
+  audio.addEventListener("ended", () => { current = (current + 1) % tracks.length; loadTrack(current, true); });
 
   loadTrack(current, false);
 
   document.addEventListener("click", function initAutoPlay() {
-    if (audio.paused) {
-      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {});
-    }
+    if (audio.paused) { audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(() => {}); }
     document.removeEventListener("click", initAutoPlay);
-  });
-
-  window.addEventListener("scroll", () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (height > 0) {
-      document.getElementById("scrollBar").style.height = (winScroll / height) * 100 + "%";
-    }
   });
 </script>
 
