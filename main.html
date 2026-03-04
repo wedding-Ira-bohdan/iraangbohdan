@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Ірина & Богдан</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,22 +36,24 @@
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 180px; /* Опущено вниз */
+      padding-top: 190px; /* Опустив ще трохи нижче */
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Стилі для рознесення імен */
     .names-container {
       position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .name {
-      font-family: 'Marck Script', cursive;
-      font-size: 70px;
+      font-family: 'Bad Script', cursive;
+      font-size: 65px; /* Трохи зменшив для витонченості */
+      font-weight: 300;
+      letter-spacing: 2px; /* Додав повітря між літерами */
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 1.3s ease forwards;
@@ -59,49 +61,53 @@
 
     .name.first {
       animation-delay: 0.6s;
-      margin-right: 120px; /* Зміщення Ірини вліво */
-      margin-bottom: -25px; /* Наповзання наступного рядка */
+      margin-right: 160px; /* Сильніше зміщення вліво */
+      margin-bottom: -15px;
     }
 
     .and {
-      font-family: 'Marck Script', cursive;
-      font-size: 28px;
+      font-family: 'Bad Script', cursive;
+      font-size: 24px;
+      font-style: italic;
       opacity: 0;
       animation: fadeIn 1s ease forwards;
       animation-delay: 1.6s;
-      margin: 0;
+      margin: 10px 0; /* Додав вертикальних відступів (повітря) */
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .name.second {
       animation-delay: 2.2s;
-      margin-left: 120px; /* Зміщення Богдана вправо */
-      margin-top: -25px; /* Наповзання на попередній рядок */
+      margin-left: 160px; /* Сильніше зміщення вправо */
+      margin-top: -15px;
     }
 
     .subtitle {
-      margin-top: 15px;
-      font-size: 16px;
-      letter-spacing: 1px;
+      margin-top: 40px; /* Більше відступу до дати */
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 3.2s;
     }
 
-    /* Плеєр та інші елементи */
-    .mini-player-wrapper { margin-top: 22px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
+    /* Плеєр */
+    .mini-player-wrapper { margin-top: 25px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards; animation-delay: 3.5s; }
     .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
     .mini-player button { background: transparent; border: none; cursor: pointer; color: #fff; outline: none; }
-    .mini-player button svg { width: 32px; height: 32px; fill: currentColor; }
-    #progress-container { width: 200px; height: 4px; background: rgba(255, 255, 255, 0.3); margin: 12px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
+    .mini-player button svg { width: 30px; height: 30px; fill: currentColor; }
+    #progress-container { width: 180px; height: 3px; background: rgba(255, 255, 255, 0.2); margin: 15px auto 0; border-radius: 2px; cursor: pointer; overflow: hidden; }
     #progress { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .name { font-size: 55px; }
-      .name.first { margin-right: 80px; }
-      .name.second { margin-left: 80px; }
+      .name { font-size: 48px; letter-spacing: 1px; }
+      .name.first { margin-right: 100px; }
+      .name.second { margin-left: 100px; }
+      .content { padding-top: 140px; }
     }
   </style>
 </head>
@@ -119,6 +125,7 @@
 
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
+      
       <div class="mini-player-wrapper">
         <div class="mini-player">
           <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
