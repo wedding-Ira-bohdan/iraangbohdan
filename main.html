@@ -734,7 +734,7 @@
   </style>
 </section>
 
-<!-- ================== CHURCH LOCATION ================== -->
+<!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
 
 <style>
   body {
@@ -743,6 +743,7 @@
     background-color: #f4ece4;
   }
 
+  /* ===== Загальна секція локацій ===== */
   .location-section {
     background-color: #f4ece4;
     padding: 80px 20px;
@@ -754,11 +755,23 @@
     margin: 0 auto;
   }
 
+  /* ===== Універсальний стиль заголовків під Dress Code ===== */
   .location-title {
     font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    color: #6b5c52;
+    font-size: 38px;
+    font-weight: 500;
+    font-style: italic;
     margin-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Колір для конкретних секцій */
+  .location-section.church .location-title {
+    color: #6b5c52; /* Церква */
+  }
+
+  .location-section.hotel .location-title {
+    color: #4a4038; /* Готель */
   }
 
   .location-icon {
@@ -800,8 +813,14 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
-    animation: pulse 2s infinite; /* постійна пульсація */
+    animation: pulse 2s infinite;
     transition: all 0.3s ease;
+  }
+
+  .map-button:hover {
+    background-color: #4a4038;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }
 
   @keyframes pulse {
@@ -819,12 +838,6 @@
     }
   }
 
-  .map-button:hover {
-    background-color: #4a4038;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  }
-
   /* ===== РВАНА ПАПЕРОВА ЛІНІЯ ===== */
   .ripped-white-line {
     width: 100%;
@@ -839,6 +852,7 @@
     height: 100%;
   }
 
+  /* ===== Мобільна адаптація ===== */
   @media (max-width: 600px) {
     .location-title {
       font-size: 32px;
@@ -852,87 +866,55 @@
 
 <body>
 
-<!-- ================== CHURCH LOCATION ================== -->
+  <!-- ================== CHURCH LOCATION ================== -->
+  <section class="location-section church">
+    <div class="location-container">
+      <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
+      <p class="location-name">Церква святих апостолів Петра і Павла</p>
+      <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+    </div>
+  </section>
 
-<section class="location-section">
-
-  <div class="location-container">
-
-    <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
-
-    <p class="location-name">Церква святих апостолів Петра і Павла</p>
-
-    <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
-
-    <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
-      Місце проведення церемонії
-    </a>
-
+  <!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
+  <div class="ripped-white-line">
+    <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+      <path d="
+        M0,38
+        C60,5 90,65 140,32
+        C190,60 230,10 280,40
+        C310,20 360,75 420,35
+        C470,5 520,55 560,30
+        C610,70 650,15 700,45
+        C760,20 820,80 860,35
+        C910,15 960,60 1000,40
+        L1000,85
+        C950,110 920,45 870,80
+        C820,50 780,115 720,70
+        C680,105 630,40 590,95
+        C540,45 500,115 450,70
+        C410,105 360,40 310,95
+        C260,50 220,115 170,70
+        C120,105 80,45 40,80
+        C20,90 0,70 0,80
+        Z
+      " fill="#ffffff"/>
+    </svg>
   </div>
 
-</section>
+  <!-- ================== HOTEL LOCATION ================== -->
+  <section class="location-section hotel">
+    <div class="location-container">
+      <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
+      <p class="location-name">Готельно-ресторанний комплекс «Айвенго»</p>
+      <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
+    </div>
+  </section>
 
-<!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
-
-<div class="ripped-white-line">
-  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path d="
-      M0,38
-      C60,5 90,65 140,32
-      C190,60 230,10 280,40
-      C310,20 360,75 420,35
-      C470,5 520,55 560,30
-      C610,70 650,15 700,45
-      C760,20 820,80 860,35
-      C910,15 960,60 1000,40
-
-      L1000,85
-      C950,110 920,45 870,80
-      C820,50 780,115 720,70
-      C680,105 630,40 590,95
-      C540,45 500,115 450,70
-      C410,105 360,40 310,95
-      C260,50 220,115 170,70
-      C120,105 80,45 40,80
-      C20,90 0,70 0,80
-      Z
-    " fill="#ffffff"/>
-  </svg>
-</div>
-
-<!-- ================== HOTEL LOCATION ================== -->
-
-<section class="location-section hotel">
-
-  <div class="location-container">
-
-    <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
-
-    <p class="location-name">Готельно ресторанний комплекс «Айвенго»</p>
-
-    <p class="location-address">
-      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область
-    </p>
-
-    <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
-      target="_blank"
-      rel="noopener"
-      class="map-button">
-      Місце проведення святкування
-    </a>
-
-  </div>
-
-</section>
+</body>
   
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite">
