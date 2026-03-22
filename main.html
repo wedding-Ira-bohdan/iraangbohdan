@@ -442,6 +442,7 @@
   </div>
 
   <style>
+    /* ================== СТИЛІ СЕКЦІЇ EVENT ================== */
     .events-section { 
       position: relative; 
       background-size: cover; 
@@ -465,17 +466,19 @@
       background: rgba(255,255,255,0.8);
       z-index: 1;
     }
-    
-    .events-title { 
-      font-family: 'Playfair Display', serif; 
-      font-size: 42px; 
-      margin-bottom: 80px; 
-      text-align: center; 
-      font-style: normal; 
-      position: relative; 
-      z-index: 2; 
+
+    /* ==== УНІВЕРСАЛЬНИЙ ЗАГОЛОВОК (як у Dress Code, колір білий) ==== */
+    .events-title,
+    .location-title {
+      font-family: 'Playfair Display', serif; /* шрифт як у Dress Code */
+      font-size: 38px;       /* розмір як у Dress Code */
+      font-weight: 500;
+      font-style: italic;    /* курсив як у Dress Code */
+      margin-bottom: 20px;   /* відступ нижче заголовка */
+      text-align: center;    /* по центру */
+      color: #fff;           /* колір залишаємо як у секції подій */
     }
-    
+
     .event-item {
       position: relative;
       width: 50%;
@@ -518,27 +521,21 @@
         padding-right: 10px;
         padding-bottom: 10px; 
       }
-      .events-title { font-size: 32px; margin-bottom: 50px; }
-      
+      .events-title { font-size: 32px; margin-bottom: 50px; }      
       .events-content::before { 
         top: 80px; 
         bottom: 40px; 
-      }
-      
-      .event-item { margin-bottom: 50px; }
-      
+      }      
+      .event-item { margin-bottom: 50px; }      
       .event-item::after { 
         width: 20px; 
         height: 20px; 
         top: 11px; 
-      }
-      
+      }      
       .event-item.left::after { right: -10px; }
-      .event-item.right::after { left: -10px; }
-      
+      .event-item.right::after { left: -10px; }      
       .event-item.left { padding-right: 30px; }
-      .event-item.right { padding-left: 30px; }
-      
+      .event-item.right { padding-left: 30px; }      
       .event-time { font-size: 18px; }
       .event-name { font-size: 16px; }
     }
