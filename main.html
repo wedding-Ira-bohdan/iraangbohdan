@@ -388,6 +388,7 @@
   
 <!-- ================== EVENT ================== -->
 
+
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -456,7 +457,8 @@
     .event-item::after {
       content: '';
       position: absolute;
-      top: 5px;
+      /* ОНОВЛЕНО: Опустили на 2мм (було top: 5px) */
+      top: 12px; 
       width: 24px;
       height: 24px;
       background-image: url('images/photo14.jpg');
@@ -485,13 +487,24 @@
         padding-top: 50px;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 10px; /* Зменшено відступ знизу */
+        padding-bottom: 10px; 
       }
       .events-title { font-size: 32px; margin-bottom: 50px; }
-      .events-content::before { top: 80px; }
+      
+      .events-content::before { 
+        top: 80px; 
+        bottom: 40px; 
+      }
       
       .event-item { margin-bottom: 50px; }
-      .event-item::after { width: 20px; height: 20px; top: 4px; }
+      
+      /* Мобільні перлинки */
+      .event-item::after { 
+        width: 20px; 
+        height: 20px; 
+        /* ОНОВЛЕНО: Опустили на 2мм (було top: 4px) */
+        top: 11px; 
+      }
       
       .event-item.left::after { right: -10px; }
       .event-item.right::after { left: -10px; }
