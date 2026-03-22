@@ -614,8 +614,8 @@
       flex-shrink: 0;
       opacity: 0; 
       
-      /* Загальний час анімації та найплавніший рух */
-      animation-duration: 6s; 
+      /* ЧАС АНІМАЦІЇ ЗМЕНШЕНО ДЛЯ ПРИСКОРЕННЯ */
+      animation-duration: 2s; 
       animation-timing-function: ease-in-out; 
       animation-fill-mode: forwards; 
     }
@@ -627,9 +627,8 @@
       display: block; 
     }
 
-    /* === Анімація КРИХІТНОГО ПЕРЕКОЧУВАННЯ З ПЕРШОГО ФОТО (rollout from first) === */
+    /* === Анімація викочування === */
 
-    /* Усі елементи тепер починають рух без затримки (0s) */
     .is-visible .item-1 { animation-name: appear_and_settle_1; animation-delay: 0s; }
     @keyframes appear_and_settle_1 {
       0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
