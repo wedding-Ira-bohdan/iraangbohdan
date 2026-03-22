@@ -899,11 +899,14 @@
 </body>
   
 <!-- ================== CELEBRATION INVITE ================== -->
+
 <section class="celebration-invite">
 
   <div class="celebration-text-block">
     <p class="celebration-text-top">Святкуйте з нами</p>
-    <p class="celebration-text-bottom">Чекаємо на зворотній зв`язок до <strong>17.05.2026</strong></p>
+    <p class="celebration-text-bottom">
+      Чекаємо на зворотній зв`язок до <strong>17.05.2026</strong>
+    </p>
   </div>
   
 </section>
@@ -916,37 +919,38 @@
   background: url('images/photo11.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* вирівнювання по низу */
-  padding-bottom: 20px; /* відстань від блоку до низу секції ~2см */
+  align-items: flex-end;
+  padding-bottom: 20px;
   text-align: center;
 }
 
+/* 🔥 БЕЗ затемнення */
 .celebration-text-block {
   display: inline-block;
   padding: 25px 40px;
   border-radius: 14px;
-  backdrop-filter: blur(18px);
-  background: rgba(0, 0, 0, 0.25);
+  background: transparent; /* прибрали чорний фон */
   color: #fff;
-  box-shadow: 0 0 20px rgba(0,0,0,0.15);
   text-align: center;
 }
 
+/* ✨ текст */
 .celebration-text-top {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 12px;
-  text-shadow: 0 0 12px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5); /* тільки для читабельності */
 }
 
 .celebration-text-bottom {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   letter-spacing: 0.5px;
-  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
+/* 📱 адаптив */
 @media (max-width: 768px) {
   .celebration-text-block { padding: 18px 30px; }
   .celebration-text-top { font-size: 28px; }
