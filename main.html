@@ -245,9 +245,8 @@
 </body>
 </html>
 
-
-
     <!-- ================== COUNTDOWN TIMER ================== -->
+
 <section id="wedding-timer">
   <div class="timer-wrapper">
     <p class="timer-title">До нашої події залишилося:</p>
@@ -388,145 +387,144 @@
   
 <!-- ================== EVENT ================== -->
 
+<section class="dress-code-section">
+  <div class="dress-title">Dress Code</div>
+  <div class="divider"></div>
+  <p class="dress-text">
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах.
+    Це допоможе створити особливу гармонію нашої події.
+  </p>
 
-<section class="events-section" style="background-image: url('images/photo6.jpg');">
-  <div class="events-overlay"></div>
-  <div class="events-content">
-    <h2 class="events-title">Програма дня</h2>
-    
-    <div class="event-item left">
-      <span class="event-time">10:30</span>
-      <span class="event-name">Вінчання</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">13:30</span>
-      <span class="event-name">Збір гостей</span>
-    </div>
-    
-    <div class="event-item left">
-      <span class="event-time">16:00</span>
-      <span class="event-name">Перший танець</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">23:00</span>
-      <span class="event-name">Завершення свята</span>
+  <div class="palette-container">
+    <div class="palette">
+      <div class="color-item delay-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
+      <div class="color-item delay-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
+      <div class="color-item delay-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
+      <div class="color-item delay-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
+      <div class="color-item delay-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
     </div>
   </div>
 
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6; margin-top: 30px;">Стиль: Elegant</p>
+
   <style>
-    .events-section { 
-      position: relative; 
-      background-size: cover; 
-      background-position: center; 
-      padding: 80px 20px; 
-      color: #fff; 
-      font-family: 'Montserrat', sans-serif; 
-      overflow: hidden; 
+    .dress-code-section {
+      background: #E0DDD5;
+      padding: 100px 0;
+      text-align: center;
+      color: #2B160E;
+      overflow: hidden; /* Щоб елементи не вилітали за межі екрану при анімації */
     }
-    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
-    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
-    
-    /* Центральна лінія */
-    .events-content::before {
-      content: '';
-      position: absolute;
-      left: 50% !important;
-      transform: translateX(-50%);
-      top: 100px;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255,255,255,0.8);
-      z-index: 1;
-    }
-    
-    .events-title { font-family: 'Playfair Display', serif; font-size: 40px; margin-bottom: 80px; text-align: center; font-style: italic; position: relative; z-index: 2; }
-    
-    .event-item {
+    .dress-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; margin-bottom: 20px; font-style: italic; }
+    .divider { width: 50px; height: 1px; background: #2B160E; margin: 0 auto 30px; opacity: 0.3; }
+    .dress-text { font-size: 15px; line-height: 1.8; max-width: 600px; margin: 0 auto 40px; font-weight: 300; padding: 0 20px; }
+
+    /* Контейнер, який тримає місце для кульок, поки вони анімуються */
+    .palette-container {
+      min-height: 85px; /* Висота кульки + тінь */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
-      width: 50%;
-      margin-bottom: 70px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-      z-index: 2;
     }
 
-    /* ПЕРЛИНКИ (Фото) на лінії */
-    .event-item::after {
-      content: '';
-      position: absolute;
-      /* ОНОВЛЕНО: Опустили на 2мм (було top: 5px) */
-      top: 12px; 
-      width: 24px;
-      height: 24px;
-      background-image: url('images/photo14.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-      border: none !important;
-      z-index: 5;
+    .palette { 
+      display: flex; 
+      justify-content: center; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      /* margin-bottom прибрано, перенесено margin-top на текст знизу */
     }
 
-    /* Прив'язка до центральної лінії */
-    .event-item.left::after { right: -12px; } 
-    .event-item.right::after { left: -12px; }
+    .color-item { 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      border: 1px solid rgba(0,0,0,0.05); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      flex-shrink: 0; 
+      
+      /* Налаштування анімації */
+      opacity: 0; /* Початково невидимі */
+      animation: explodeIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
 
-    .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
-    .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
-    
-    .event-time { display: block; font-size: 20px; letter-spacing: 1px; margin-bottom: 5px; font-weight: 300; }
-    .event-name { display: block; font-size: 18px; font-weight: 500; }
-    
-    .event-item.show { opacity: 1; transform: translateY(0); }
+    .color-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Мобільна адаптація */
+    /* Затримки для кожної кульки, щоб вони вилітали по черзі */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+
+    /* Ключові кадри анімації: з центру до своєї позиції */
+    @keyframes explodeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0) translate(0, 0); /* В центрі, маленькі */
+      }
+      1% {
+        opacity: 1; /* Стають видимими в момент старту руху */
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translate(0, 0); /* Повертаються на своє місце у флексбоксі */
+      }
+    }
+
+    /* Логіка для того, щоб на старті вони всі були в одній точці (центрі) */
+    .palette {
+      position: relative;
+    }
+    
+    /* Модифікація анімації: використовуємо негативні margin, щоб стягнути їх в центр в 0% */
+    @keyframes explodeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+        /* Хитрість: зсуваємо елементи так, щоб вони перекривали один одного в центрі ряду */
+        margin-left: -42px; 
+        margin-right: -42px;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        /* Повертаємо стандартні відступи (половина gap) */
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+    }
+
     @media (max-width: 768px) {
-      .events-section { 
-        padding-top: 50px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px; 
+      .dress-title { font-size: 32px; }
+      .color-item { width: 60px; height: 60px; }
+      .palette-container { min-height: 75px; }
+      
+      /* Коригування анімації для менших розмірів */
+      @keyframes explodeIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+          margin-left: -37px; 
+          margin-right: -37px;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+          margin-left: 0px;
+          margin-right: 0px;
+        }
       }
-      .events-title { font-size: 32px; margin-bottom: 50px; }
-      
-      .events-content::before { 
-        top: 80px; 
-        bottom: 40px; 
-      }
-      
-      .event-item { margin-bottom: 50px; }
-      
-      /* Мобільні перлинки */
-      .event-item::after { 
-        width: 20px; 
-        height: 20px; 
-        /* ОНОВЛЕНО: Опустили на 2мм (було top: 4px) */
-        top: 11px; 
-      }
-      
-      .event-item.left::after { right: -10px; }
-      .event-item.right::after { left: -10px; }
-      
-      .event-item.left { padding-right: 30px; }
-      .event-item.right { padding-left: 30px; }
-      
-      .event-time { font-size: 18px; }
-      .event-name { font-size: 16px; }
     }
   </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){ entry.target.classList.add('show'); }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.event-item').forEach(item => observer.observe(item));
-    });
-  </script>
 </section>
 
 <!-- ================== DRESS CODE SECTION ================== -->
