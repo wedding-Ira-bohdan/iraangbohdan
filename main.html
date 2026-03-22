@@ -743,7 +743,6 @@
     background-color: #f4ece4;
   }
 
-  /* ===== Загальна секція локацій ===== */
   .location-section {
     background-color: #f4ece4;
     padding: 80px 20px;
@@ -755,28 +754,31 @@
     margin: 0 auto;
   }
 
-  /* ===== Універсальний стиль заголовків під Dress Code ===== */
+  /* ===== Заголовки під Dress Code ===== */
   .location-title {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
     font-weight: 500;
-    font-style: italic;
+    font-style: italic; /* курсив тільки для тексту */
     margin-bottom: 30px;
     text-align: center;
   }
 
-  /* Колір для конкретних секцій */
   .location-section.church .location-title {
-    color: #6b5c52; /* Церква */
+    color: #6b5c52;
   }
 
   .location-section.hotel .location-title {
-    color: #4a4038; /* Готель */
+    color: #4a4038;
   }
 
+  /* ===== Смайлик без нахилу ===== */
   .location-icon {
     font-size: 32px;
     margin-left: 10px;
+    display: inline-block;
+    font-style: normal; /* прямий, не нахиляється */
+    vertical-align: middle;
   }
 
   .location-name {
@@ -801,7 +803,6 @@
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   }
 
-  /* ================== Кнопка з пульсацією ================== */
   .map-button {
     display: inline-block;
     padding: 14px 36px;
@@ -824,21 +825,11 @@
   }
 
   @keyframes pulse {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    50% {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    100% {
-      transform: scale(1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
   }
 
-  /* ===== РВАНА ПАПЕРОВА ЛІНІЯ ===== */
   .ripped-white-line {
     width: 100%;
     height: 50px;
@@ -852,20 +843,13 @@
     height: 100%;
   }
 
-  /* ===== Мобільна адаптація ===== */
   @media (max-width: 600px) {
-    .location-title {
-      font-size: 32px;
-    }
-
-    .ripped-white-line {
-      height: 40px;
-    }
+    .location-title { font-size: 32px; }
+    .ripped-white-line { height: 40px; }
   }
 </style>
 
 <body>
-
   <!-- ================== CHURCH LOCATION ================== -->
   <section class="location-section church">
     <div class="location-container">
@@ -877,7 +861,6 @@
     </div>
   </section>
 
-  <!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
   <div class="ripped-white-line">
     <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
       <path d="
@@ -913,7 +896,6 @@
       <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
     </div>
   </section>
-
 </body>
   
 <!-- ================== CELEBRATION INVITE ================== -->
