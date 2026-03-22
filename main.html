@@ -535,7 +535,7 @@
   <div class="dress-title">Dress Code</div>
   <div class="divider"></div>
   <p class="dress-text">
-    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
     Це допоможе створити особливу гармонію нашої події.
   </p>
   
@@ -628,9 +628,8 @@
     }
 
     /* === Анімація КРИХІТНОГО ПЕРЕКОЧУВАННЯ З ПЕРШОГО ФОТО (rollout from first) === */
-    /* Ширина 70px + gap 15px = крок 85px. Всі item-n (n>1) збираються на item-1 position. */
 
-    /* Коло 1 (ліве): просто з'являється і злегка погойдується (-10deg -> 0) */
+    /* Усі елементи тепер починають рух без затримки (0s) */
     .is-visible .item-1 { animation-name: appear_and_settle_1; animation-delay: 0s; }
     @keyframes appear_and_settle_1 {
       0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
@@ -638,8 +637,7 @@
       100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 2: викочується з item-1 (-85px), хитається (-60deg) */
-    .is-visible .item-2 { animation-name: rollout_subtle_2; animation-delay: 0.3s; }
+    .is-visible .item-2 { animation-name: rollout_subtle_2; animation-delay: 0s; }
     @keyframes rollout_subtle_2 {
       0% { transform: translateX(-85px) scale(0) rotate(-60deg); opacity: 0; }
       20% { transform: translateX(-85px) scale(1) rotate(-60deg); opacity: 1; }
@@ -648,8 +646,7 @@
       100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 3: викочується з item-1 (-170px), хитається (-60deg) */
-    .is-visible .item-3 { animation-name: rollout_subtle_3; animation-delay: 0.6s; }
+    .is-visible .item-3 { animation-name: rollout_subtle_3; animation-delay: 0s; }
     @keyframes rollout_subtle_3 {
       0% { transform: translateX(-170px) scale(0) rotate(-60deg); opacity: 0; }
       20% { transform: translateX(-170px) scale(1) rotate(-60deg); opacity: 1; }
@@ -658,8 +655,7 @@
       100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 4: викочується з item-1 (-255px), хитається (-60deg) */
-    .is-visible .item-4 { animation-name: rollout_subtle_4; animation-delay: 0.9s; }
+    .is-visible .item-4 { animation-name: rollout_subtle_4; animation-delay: 0s; }
     @keyframes rollout_subtle_4 {
       0% { transform: translateX(-255px) scale(0) rotate(-60deg); opacity: 0; }
       20% { transform: translateX(-255px) scale(1) rotate(-60deg); opacity: 1; }
@@ -668,8 +664,7 @@
       100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 5 (праве): викочується з item-1 (-340px), хитається (-60deg) */
-    .is-visible .item-5 { animation-name: rollout_subtle_5; animation-delay: 1.2s; }
+    .is-visible .item-5 { animation-name: rollout_subtle_5; animation-delay: 0s; }
     @keyframes rollout_subtle_5 {
       0% { transform: translateX(-340px) scale(0) rotate(-60deg); opacity: 0; }
       20% { transform: translateX(-340px) scale(1) rotate(-60deg); opacity: 1; }
@@ -683,7 +678,6 @@
       .dress-title { font-size: 32px; }
       .color-item { width: 60px; height: 60px; }
       
-      /* Перерахунок відстані для менших кіл (60px + 15px gap = 75px крок). Offsets: -75, -150, -225, -300 */
       .is-visible .item-2 { animation-name: rollout_subtle_2_m; }
       @keyframes rollout_subtle_2_m {
         0% { transform: translateX(-75px) scale(0) rotate(-60deg); opacity: 0; }
