@@ -1,208 +1,200 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ірина & Богдан</title>
+  <title>Iryna & Bohdan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html, body {
-      width: 100%; height: 100%;
+      width: 100%; 
+      height: 100%;
       background: #000;
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      color: #5C2D0C;
     }
-    a { text-decoration: none; color: inherit; }
 
     .hero {
       position: relative;
-      width: 100%; min-height: 100vh;
+      width: 100%; 
+      min-height: 100vh;
       background: url('https://i.ibb.co/q3ssQp2K/photo-5211134531375667288-y.jpg') center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: #fff;
-    }
-
-    .overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
+      color: #5C2D0C;
     }
 
     .content {
       position: relative;
       z-index: 2;
-      padding-top: 150px;
-    }
-
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: 64px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1.3s ease forwards;
-    }
-    .name.first { animation-delay: 0.6s; }
-    .name.second { animation-delay: 2.2s; }
-
-    .and {
-      font-size: 22px;
-      margin: 10px 0;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 1.6s;
-    }
-
-    .subtitle {
-      margin-top: 25px;
-      font-size: 16px;
-      letter-spacing: 1px;
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 3.2s;
-    }
-    .subtitle .date {
-      margin-left: 10px;
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    .mini-player-wrapper {
-      margin-top: 22px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 3.5s;
-    }
-
-    .mini-player {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .mini-player button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      transition: transform 0.2s;
-      outline: none;
-    }
-
-    .mini-player button svg {
-      width: 32px;
-      height: 32px;
-      fill: currentColor;
-    }
-
-    #progress-container {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.3);
-      margin: 12px auto 0;
-      border-radius: 2px;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    #progress {
-      width: 0%;
-      height: 100%;
-      background: #fff;
-      transition: width 0.1s linear;
-    }
-
-    .scroll-down {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
+      padding-top: 120px; 
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 10;
-    }
-    .scroll-down .line {
-      width: 2px;
-      height: 30px;
-      background: #fff;
-      animation: bounce 1.2s infinite;
-    }
-    .scroll-down .arrow {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 15px solid #fff;
-      animation: bounce 1.2s infinite;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     }
 
-    @keyframes bounce {
-      0%,20%,50%,80%,100% { transform: translateY(0); }
-      40% { transform: translateY(8px); }
-      60% { transform: translateY(4px); }
+    .names-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transform: translateX(-20px);
     }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    .name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 95px;
+      font-weight: 400;
+      opacity: 0;
+      color: #5C2D0C;
+    }
+
+    .name.first { animation: fadeUpFirst 1.3s ease forwards; animation-delay: 0.6s; margin-right: 140px; margin-bottom: -15px; }
+    .and { font-family: 'Great Vibes', cursive; font-size: 38px; opacity: 0; transform: translateX(19px) translateY(-12px); animation: fadeInAndSlide 1.5s ease forwards; animation-delay: 1.6s; color: #5C2D0C; margin: 0; }
+    .name.second { animation: fadeUpSecond 1.3s ease forwards; animation-delay: 2.2s; margin-left: 140px; margin-top: -15px; }
+
+    .subtitle {
+      margin-top: 25px; 
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px; /* Збільшено розмір */
+      font-weight: 600; /* Зроблено жирним */
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+      animation-delay: 3.2s;
+      color: #5C2D0C;
+    }
+
+    .subtitle .date { 
+      margin-left: 8px; 
+      font-weight: 700; /* Дата ще жирніша */
+      color: #5C2D0C; 
+    }
+
+    .mini-player-wrapper { margin-top: 30px; opacity: 0; transform: translateY(20px); animation: fadeUpPlayer 1s ease forwards; animation-delay: 3.5s; }
+    .mini-player { display: flex; justify-content: center; gap: 30px; align-items: center; }
+    .mini-player button { background: transparent; border: none; cursor: pointer; color: #5C2D0C; outline: none; }
+    .mini-player button svg { width: 24px; height: 24px; fill: currentColor; }
+    #progress-container { width: 140px; height: 2px; background: rgba(92,45,12,0.3); margin: 15px auto 0; border-radius: 2px; cursor: pointer; }
+    #progress { width: 0%; height: 100%; background: #5C2D0C; }
+
+    .scroll-arrow-group { 
+      position: absolute; 
+      bottom: 40px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0px; 
+      opacity: 0; 
+      animation: fadeIn 1s ease forwards; 
+      animation-delay: 4.5s; 
+      color: #5C2D0C; 
+    }
+    .scroll-left { left: 30px; }
+    .scroll-right { right: 30px; }
+
+    .scroll-arrow-group svg {
+      width: 28px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .scroll-arrow-group .arrow1 { animation: pulseArrow1 2.1s ease-in-out infinite; }
+    .scroll-arrow-group .arrow2 { animation: pulseArrow2 2.1s ease-in-out infinite; }
+    .scroll-arrow-group .arrow3 { animation: pulseArrow3 2.1s ease-in-out infinite; }
+
+    @keyframes pulseArrow1 {
+      0% { transform: scale(1); opacity: 0.4; }
+      16.66% { transform: scale(1.3); opacity: 1; } 
+      33.33% { transform: scale(1); opacity: 0.4; } 
+      100% { transform: scale(1); opacity: 0.4; } 
+    }
+
+    @keyframes pulseArrow2 {
+      0% { transform: scale(1); opacity: 0.4; }
+      33.33% { transform: scale(1); opacity: 0.4; } 
+      50% { transform: scale(1.3); opacity: 1; } 
+      66.66% { transform: scale(1); opacity: 0.4; } 
+      100% { transform: scale(1); opacity: 0.4; } 
+    }
+
+    @keyframes pulseArrow3 {
+      0% { transform: scale(1); opacity: 0.4; }
+      66.66% { transform: scale(1); opacity: 0.4; } 
+      83.33% { transform: scale(1.3); opacity: 1; } 
+      100% { transform: scale(1); opacity: 0.4; } 
+    }
+    
+    @keyframes fadeUpFirst { from { opacity: 0; transform: translateY(31px); } to { opacity: 1; transform: translateY(11px); } }
+    @keyframes fadeUpSecond { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(-5px); } }
     @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeInAndSlide { from { opacity: 0; transform: translateX(19px) translateY(0px); } to { opacity: 1; transform: translateX(19px) translateY(-12px); } }
+    @keyframes fadeUpPlayer { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
-      .content { padding-top: 100px; }
-      .name { font-size: 44px; }
-      #progress-container { width: 160px; }
+      .name { font-size: 70px; }
+      .name.first { margin-right: 100px; }
+      .name.second { margin-left: 100px; }
+      .subtitle { font-size: 16px; letter-spacing: 2px; } /* Трохи збільшено для мобільних */
+      .scroll-left { left: 15px; }
+      .scroll-right { right: 15px; }
     }
   </style>
 </head>
-
 <body>
 
 <section class="hero">
-  <div class="overlay"></div>
   <div class="content">
-    <div class="name first">Ірина</div>
-    <div class="and">and</div>
-    <div class="name second">Богдан</div>
+    <div class="names-container">
+      <div class="name first">Iryna</div>
+      <div class="and">and</div>
+      <div class="name second">Bohdan</div>
+    </div>
 
     <div class="subtitle">
       Wedding Day <span class="date">17.07.2026</span>
-
       <div class="mini-player-wrapper">
         <div class="mini-player">
-          <button id="prev">
-            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-          </button>
-          <button id="play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <button id="next">
-            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-          </button>
+          <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+          <button id="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          <button id="next"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
         </div>
         <div id="progress-container"><div id="progress"></div></div>
       </div>
     </div>
   </div>
 
-  <a href="#wedding-timer" class="scroll-down">
-    <div class="line"></div>
-    <div class="arrow"></div>
-  </a>
+  <div class="scroll-arrow-group scroll-left">
+    <svg class="arrow1" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+    <svg class="arrow2" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+    <svg class="arrow3" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+  </div>
+
+  <div class="scroll-arrow-group scroll-right">
+    <svg class="arrow1" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+    <svg class="arrow2" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+    <svg class="arrow3" viewBox="0 0 24 14"><path d="M6 4l6 6 6-6" /></svg>
+  </div>
+
 </section>
 
 <audio id="audio" preload="auto"></audio>
 
 <script>
-  const tracks = [
-    "images/song1.mp3",
-    "images/song2.mp3",
-    "images/song3.mp3"
-  ];
-
+  const tracks = ["images/song1.mp3", "images/song2.mp3", "images/song3.mp3"];
   let current = 0;
-
   const audio = document.getElementById("audio");
   const playBtn = document.getElementById("play");
   const progress = document.getElementById("progress");
@@ -211,209 +203,51 @@
   const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   const pauseIcon = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
-  function loadTrack(i, autoplay = false) {
+  function loadTrack(i, shouldPlay = false) {
     audio.src = tracks[i];
-    audio.load();
-    if (autoplay) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
+    if (shouldPlay) {
+      audio.play().then(() => { playBtn.innerHTML = pauseIcon; }).catch(e => console.log("Playback blocked"));
     }
   }
 
   playBtn.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play();
-      playBtn.innerHTML = pauseIcon;
-    } else {
-      audio.pause();
-      playBtn.innerHTML = playIcon;
-    }
+    if (audio.paused) { audio.play(); playBtn.innerHTML = pauseIcon; } 
+    else { audio.pause(); playBtn.innerHTML = playIcon; }
   });
 
-  document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
+  document.getElementById("next").addEventListener("click", () => { 
+    current = (current + 1) % tracks.length; 
+    loadTrack(current, true); 
   });
 
-  document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + tracks.length) % tracks.length;
-    loadTrack(current, true);
+  document.getElementById("prev").addEventListener("click", () => { 
+    current = (current - 1 + tracks.length) % tracks.length; 
+    loadTrack(current, true); 
   });
 
   audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
-      progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    }
+    if (audio.duration) { progress.style.width = (audio.currentTime / audio.duration) * 100 + "%"; }
   });
 
   progressContainer.addEventListener("click", (e) => {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
-    if (audio.duration) {
-      audio.currentTime = (clickX / width) * audio.duration;
-    }
+    if (audio.duration) { audio.currentTime = (clickX / width) * audio.duration; }
   });
 
-  audio.addEventListener("ended", () => {
-    current = (current + 1) % tracks.length;
-    loadTrack(current, true);
+  audio.addEventListener("ended", () => { 
+    current = (current + 1) % tracks.length; 
+    loadTrack(current, true); 
   });
 
-  // автозапуск першої пісні
-  loadTrack(current, true);
-
-  // якщо браузер заблокує — запуск після першого кліку
-  document.addEventListener("click", function initAutoPlay() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        playBtn.innerHTML = pauseIcon;
-      }).catch(() => {});
-    }
-    document.removeEventListener("click", initAutoPlay);
-  });
+  loadTrack(current, false);
 </script>
-  
+</body>
+</html>
+
+
+
     <!-- ================== COUNTDOWN TIMER ================== -->
-<section id="wedding-timer">
-  <div class="timer-wrapper">
-    <p class="timer-title">До нашої події залишилося:</p>
-    
-    <div class="timer-grid">
-      <div class="timer-box">
-        <span id="d_new">00</span>
-        <label>днів</label>
-      </div>
-      <div class="timer-box">
-        <span id="h_new">00</span>
-        <label>год</label>
-      </div>
-      <div class="timer-box">
-        <span id="m_new">00</span>
-        <label>хв</label>
-      </div>
-      <div class="timer-box">
-        <span id="s_new">00</span>
-        <label>сек</label>
-      </div>
-    </div>
-  </div>
-
-  <style>
-    /* Базові стилі секції */
-    #wedding-timer { 
-      background: #2B160E; 
-      padding: 80px 0; 
-      text-align: center; 
-      color: #fff; 
-      position: relative; 
-      z-index: 5;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .timer-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-
-    .timer-title {
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 30px;
-      opacity: 0.8;
-      font-weight: 400;
-    }
-
-    /* Контейнер сітки: nowrap гарантує один рядок */
-    .timer-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap; 
-    }
-
-    .timer-box {
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 20px;
-      min-width: 85px;
-      border-radius: 2px;
-      flex: 0 0 auto;
-    }
-
-    .timer-box span {
-      display: block;
-      font-size: 38px;
-      font-weight: 300;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .timer-box label {
-      font-size: 9px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      letter-spacing: 2px;
-      display: block;
-      margin-top: 5px;
-    }
-
-    /* Адаптація для мобільних (щоб все влізло в один ряд) */
-    @media (max-width: 480px) {
-      #wedding-timer { padding: 50px 0; }
-      .timer-grid { gap: 8px; }
-      .timer-box {
-        padding: 15px 5px;
-        min-width: 70px;
-      }
-      .timer-box span { font-size: 28px; }
-      .timer-box label { font-size: 8px; letter-spacing: 1px; }
-    }
-
-    /* Для екстремально маленьких екранів */
-    @media (max-width: 340px) {
-      .timer-grid { gap: 5px; }
-      .timer-box { min-width: 62px; }
-      .timer-box span { font-size: 22px; }
-    }
-  </style>
-
-  <script>
-    function updateWeddingTimer() {
-      // Встановлюємо дату весілля (17 липня 2026)
-      const targetDate = new Date("July 17, 2026 00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.querySelector(".timer-grid").innerHTML = "<h3>Цей день настав!</h3>";
-        return;
-      }
-
-      const mS = 1000;
-      const mMin = mS * 60;
-      const mHour = mMin * 60;
-      const mDay = mHour * 24;
-
-      const d = Math.floor(diff / mDay);
-      const h = Math.floor((diff % mDay) / mHour);
-      const m = Math.floor((diff % mHour) / mMin);
-      const s = Math.floor((diff % mMin) / mS);
-
-      document.getElementById("d_new").innerText = d < 10 ? "0" + d : d;
-      document.getElementById("h_new").innerText = h < 10 ? "0" + h : h;
-      document.getElementById("m_new").innerText = m < 10 ? "0" + m : m;
-      document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
-    }
-
-    // Запуск таймера
-    setInterval(updateWeddingTimer, 1000);
-    updateWeddingTimer();
-  </script>
-</section>
-
-<!-- ================== EVENTS SECTION ================== -->
 <section id="wedding-timer">
   <div class="timer-wrapper">
     <p class="timer-title">До нашої події залишилося:</p>
@@ -597,7 +431,6 @@
       padding: 75px 20px; /* Відступи для ПК (~2 см) */
       color: #fff;
       overflow: hidden;
-      font-family: 'Montserrat', sans-serif;
     }
     
     .events-overlay {
@@ -613,7 +446,6 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      /* ВАЖЛИВО: тепер цей контейнер є основою для позиціонування перлинок */
     }
     
     /* Біла лінія по центру */
@@ -626,7 +458,6 @@
       width: 1px;
       background: white;
       transform: translateX(-50%);
-      z-index: 1; /* Лінія знизу */
     }
     
     .events-title {
@@ -635,8 +466,6 @@
       margin-bottom: 80px;
       text-align: center;
       font-style: italic;
-      z-index: 2;
-      position: relative;
     }
     
     .event-item {
@@ -647,56 +476,47 @@
       transform: translateY(30px);
       transition: all 0.8s ease;
       box-sizing: border-box;
-      z-index: 2; /* Текст поверх лінії */
     }
 
-    /* --- ОНОВЛЕНО: Ідеально рівні перлинки завжди на лінії --- */
+    /* --- Оновлено: Перлинки з фото --- */
     .event-item::after {
       content: '';
       position: absolute;
-      
-      /* 1. Фіксуємо строго по центру контейнера .events-content (на білій лінії) */
-      left: 50% !important; 
-      right: auto !important;
-      
-      /* 2. Вирівнюємо по вертикалі (приблизно посередині першого рядка тексту) */
-      top: 10px; 
-      
-      /* 3. Розмір */
+      /* Трохи опустив, щоб краще рівнялося по центру тексту */
+      top: 0px; 
+      /* Збільшив розмір, щоб фото було видно (було 12px, стало 24px) */
       width: 24px;
       height: 24px;
       
-      /* 4. Фото */
+      /* Шлях до вашого фото */
       background-image: url('images/photo14.jpg');
-      background-size: cover;
-      background-position: center;
+      background-size: cover; /* Фото заповнює все коло */
+      background-position: center; /* Центрування фото */
       
-      /* 5. Стиль (БЕЗ ОБВОДКИ) */
-      border-radius: 50%;
-      border: none; /* Прибрано обводку */
-      
-      /* Легка тінь для об'єму (опціонально, можна прибрати) */
-      box-shadow: 0 0 8px rgba(255,255,255,0.3); 
-      
-      z-index: 3; /* Перлинка поверх лінії */
-
-      /* 6. ЦЕНТРУВАННЯ: зсув на половину власної ширини вліво */
-      transform: translateX(-50%); 
+      border-radius: 50%; /* Робимо коло */
+      border: 2px solid white; /* Біла рамка, щоб виділялося */
+      box-shadow: 0 0 5px rgba(255,255,255,0.5); /* Легке світіння */
+      z-index: 3;
     }
-    
-    /* Старі стилі для лівих/правих перлинок більше не потрібні, 
-       оскільки ми зафіксували їх по центру вище через !important */
     
     .event-item.left {
       align-self: flex-start;
       text-align: right;
       padding-right: 40px;
     }
+    /* Центрування перлинки на лінії для лівого елемента */
+    .event-item.left::after {
+      right: -12px; /* половина ширини (24/2) */
+    }
     
     .event-item.right {
       align-self: flex-end;
       text-align: left;
       padding-left: 40px;
+    }
+    /* Центрування перлинки на лінії для правого елемента */
+    .event-item.right::after {
+      left: -12px; /* половина ширини (24/2) */
     }
     
     .event-time {
@@ -729,8 +549,6 @@
         margin-bottom: 40px; 
       }
       
-      .events-content::before { top: 80px; }
-
       .event-item {
         margin-bottom: 40px;
       }
@@ -739,15 +557,21 @@
       .event-item::after {
         width: 18px;
         height: 18px;
-        top: 4px; /* Корекція висоти під менший шрифт */
+        top: 2px;
       }
       
       .event-item.left {
         padding-right: 25px;
       }
+      .event-item.left::after {
+        right: -9px; /* 18/2 */
+      }
       
       .event-item.right {
         padding-left: 25px;
+      }
+      .event-item.right::after {
+        left: -9px; /* 18/2 */
       }
       
       .event-time { font-size: 18px; }
@@ -758,27 +582,20 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const eventItems = document.querySelectorAll('.event-item');
-      
-      // Перевірка чи браузер підтримує IntersectionObserver
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if(entry.isIntersecting){
-              entry.target.classList.add('show');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
-        eventItems.forEach(item => observer.observe(item));
-      } else {
-        // Якщо браузер старий, просто показуємо елементи
-        eventItems.forEach(item => item.classList.add('show'));
-      }
+      eventItems.forEach(item => observer.observe(item));
     });
   </script>
 </section>
-  
+
 <!-- ================== DRESS CODE SECTION ================== -->
 <section class="dress-code-section">
   <div class="dress-title">Dress Code</div>
@@ -817,69 +634,6 @@
     }
   </style>
 </section>
-
- <section class="celebration-invite" style="position: relative; width: 100%; min-height: 60vh; background: url('images/photo12.jpg') center/cover no-repeat; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 60px; text-align: center;">
-
-  <div class="celebration-text-block">
-    <p class="celebration-text-top">Святкуйте з нами</p>
-    <p class="celebration-text-bottom">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
-  </div>
-
-  <!-- Новий блок тексту -->
-  <div class="extra-text-block">
-    <p>Додатковий текст або інформація тут</p>
-  </div>
-</section>
-
-<style>
-/* Попередній блок */
-.celebration-text-block {
-  display: inline-block;
-  padding: 25px 40px;
-  border-radius: 14px;
-  backdrop-filter: blur(18px);
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(0,0,0,0.15);
-  text-align: center;
-  margin-bottom: 20px; /* відстань до нового блоку */
-}
-
-/* Новий блок */
-.extra-text-block {
-  display: inline-block;
-  padding: 20px 30px;
-  border: 2px solid #fff; /* рамка */
-  border-radius: 12px;
-  background: rgba(0,0,0,0.3); /* трохи прозорий фон */
-  color: #fff;
-  text-align: center;
-  margin-bottom: 20px; /* відстань від низу секції ~1-2 см */
-  backdrop-filter: blur(12px);
-}
-
-.extra-text-block p {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-}
-
-@media (max-width: 768px) {
-  .celebration-text-block { padding: 18px 30px; }
-  .celebration-text-top { font-size: 28px; }
-  .celebration-text-bottom { font-size: 16px; }
-
-  .extra-text-block { padding: 15px 20px; font-size: 14px; }
-}
-
-@media (max-width: 480px) {
-  .celebration-text-block { padding: 15px 20px; }
-  .celebration-text-top { font-size: 24px; }
-  .celebration-text-bottom { font-size: 14px; }
-
-  .extra-text-block { padding: 12px 15px; font-size: 13px; }
-}
-</style>
 
 
 <!-- ================== CHURCH LOCATION ================== -->
@@ -990,7 +744,7 @@
 
     <p class="location-name">Церква святих апостолів Петра і Павла</p>
 
-    <p class="location-address">Адреса: вулиця Паркова 21, смт. Клевань, Рівненська область</p>
+    <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
 
     <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
 
@@ -1045,7 +799,7 @@
     <p class="location-name">Готельно ресторанний комплекс «Айвенго»</p>
 
     <p class="location-address">
-      Адреса: вулиця Зелена 53, Колоденка, Рівненська область
+      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область
     </p>
 
     <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
@@ -1061,3 +815,65 @@
   </div>
 
 </section>
+  
+<!-- ================== CELEBRATION INVITE ================== -->
+<section class="celebration-invite">
+
+  <div class="celebration-text-block">
+    <p class="celebration-text-top">Святкуйте з нами</p>
+    <p class="celebration-text-bottom">Будь ласка, відгукніться до <strong>17.06.2026</strong></p>
+  </div>
+  
+</section>
+
+<style>
+.celebration-invite {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  background: url('images/photo12.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* вирівнювання по низу */
+  padding-bottom: 20px; /* відстань від блоку до низу секції ~2см */
+  text-align: center;
+}
+
+.celebration-text-block {
+  display: inline-block;
+  padding: 25px 40px;
+  border-radius: 14px;
+  backdrop-filter: blur(18px);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.celebration-text-top {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.celebration-text-bottom {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .celebration-text-block { padding: 18px 30px; }
+  .celebration-text-top { font-size: 28px; }
+  .celebration-text-bottom { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+  .celebration-text-block { padding: 15px 20px; }
+  .celebration-text-top { font-size: 24px; }
+  .celebration-text-bottom { font-size: 14px; }
+}
+</style>
