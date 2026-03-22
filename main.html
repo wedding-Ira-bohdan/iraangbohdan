@@ -390,7 +390,7 @@
 <!-- ================== EVENT ================== -->
 
 <!-- ПІДКЛЮЧЕННЯ ШРИФТУ -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
@@ -443,10 +443,9 @@
       z-index: 1;
     }
     
-    /* Заголовок - каліграфічний */
     .events-title { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 46px; 
+      font-size: 42px; 
       margin-bottom: 80px; 
       text-align: center; 
       font-style: normal; 
@@ -484,14 +483,8 @@
     .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
     .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
     
-    /* Весь текст подій простий */
-    .event-time, .event-name { 
-      font-family: 'Montserrat', sans-serif; 
-      font-weight: 400; 
-    }
-    
-    .event-time { font-size: 32px; margin-bottom: 5px; }
-    .event-name { font-size: 30px; }
+    .event-time { display: block; font-size: 20px; letter-spacing: 1px; margin-bottom: 5px; font-weight: 300; }
+    .event-name { display: block; font-size: 18px; font-weight: 500; }
     
     .event-item.show { opacity: 1; transform: translateY(0); }
 
@@ -502,7 +495,7 @@
         padding-right: 10px;
         padding-bottom: 10px; 
       }
-      .events-title { font-size: 36px; margin-bottom: 50px; }
+      .events-title { font-size: 32px; margin-bottom: 50px; }
       
       .events-content::before { 
         top: 80px; 
@@ -523,8 +516,8 @@
       .event-item.left { padding-right: 30px; }
       .event-item.right { padding-left: 30px; }
       
-      .event-time { font-size: 26px; }
-      .event-name { font-size: 24px; }
+      .event-time { font-size: 18px; }
+      .event-name { font-size: 16px; }
     }
   </style>
 
