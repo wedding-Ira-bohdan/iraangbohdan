@@ -734,9 +734,14 @@
   </style>
 </section>
 
-<!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
-
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Локації Вінчання та Святкування</title>
 <style>
+  /* ===== Загальні стилі ===== */
   body {
     margin: 0;
     font-family: sans-serif;
@@ -744,53 +749,72 @@
   }
 
   .location-section {
-    background-color: #f4ece4;
+    position: relative;
+    overflow: hidden;
     padding: 80px 20px;
     text-align: center;
+    color: #fff;
   }
 
   .location-container {
+    position: relative;
+    z-index: 1;
     max-width: 900px;
     margin: 0 auto;
   }
 
-  /* ===== Заголовки під Dress Code ===== */
+  /* ===== Розмитий фон для секцій ===== */
+  .location-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px) brightness(0.6);
+    z-index: 0;
+  }
+
+  .location-section.church::before {
+    background-image: url('images/photo9.jpg');
+  }
+
+  .location-section.hotel::before {
+    background-image: url('images/photo10.jpg');
+  }
+
+  /* ===== Заголовки ===== */
   .location-title {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
     font-weight: 500;
-    font-style: italic; /* курсив тільки для тексту */
+    font-style: italic;
     margin-bottom: 30px;
     text-align: center;
+    color: #ffffff;
   }
 
-  .location-section.church .location-title {
-    color: #6b5c52;
-  }
+  .location-section.church .location-title { color: #f4ece4; }
+  .location-section.hotel .location-title { color: #f4ece4; }
 
-  .location-section.hotel .location-title {
-    color: #4a4038;
-  }
-
-  /* ===== Смайлик без нахилу ===== */
   .location-icon {
     font-size: 32px;
     margin-left: 10px;
     display: inline-block;
-    font-style: normal; /* прямий, не нахиляється */
+    font-style: normal;
     vertical-align: middle;
   }
 
+  /* ===== Контент локацій ===== */
   .location-name {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #4a4038;
+    color: #ffffff;
   }
 
   .location-address {
     font-size: 18px;
-    color: #7a6a60;
+    color: #f0e8e0;
     margin-bottom: 25px;
   }
 
@@ -801,8 +825,11 @@
     margin: 0 auto 30px;
     display: block;
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    position: relative;
+    z-index: 1;
   }
 
+  /* ===== Кнопка карти ===== */
   .map-button {
     display: inline-block;
     padding: 14px 36px;
@@ -830,6 +857,7 @@
     100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
   }
 
+  /* ===== Рвана біла лінія ===== */
   .ripped-white-line {
     width: 100%;
     height: 50px;
@@ -843,21 +871,23 @@
     height: 100%;
   }
 
+  /* ===== Адаптивність ===== */
   @media (max-width: 600px) {
     .location-title { font-size: 32px; }
     .ripped-white-line { height: 40px; }
   }
 </style>
-
+</head>
 <body>
+
   <!-- ================== CHURCH LOCATION ================== -->
   <section class="location-section church">
     <div class="location-container">
       <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
       <p class="location-name">Церква святих апостолів Петра і Павла</p>
       <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
-      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image" loading="lazy">
+      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button" aria-label="Перейти на карту локації">Місце проведення церемонії</a>
     </div>
   </section>
 
@@ -892,11 +922,13 @@
       <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
       <p class="location-name">Готельно-ресторанний комплекс «Айвенго»</p>
       <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
-      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image" loading="lazy">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button" aria-label="Перейти на карту локації">Місце проведення святкування</a>
     </div>
   </section>
+
 </body>
+</html>
   
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite">
