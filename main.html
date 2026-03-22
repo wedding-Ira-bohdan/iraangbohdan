@@ -442,7 +442,6 @@
   </div>
 
   <style>
-    /* ================== СТИЛІ СЕКЦІЇ EVENT ================== */
     .events-section { 
       position: relative; 
       background-size: cover; 
@@ -466,19 +465,17 @@
       background: rgba(255,255,255,0.8);
       z-index: 1;
     }
-
-    /* ==== УНІВЕРСАЛЬНИЙ ЗАГОЛОВОК (як у Dress Code, колір білий) ==== */
-    .events-title,
-    .location-title {
-      font-family: 'Playfair Display', serif; /* шрифт як у Dress Code */
-      font-size: 38px;       /* розмір як у Dress Code */
-      font-weight: 500;
-      font-style: italic;    /* курсив як у Dress Code */
-      margin-bottom: 20px;   /* відступ нижче заголовка */
-      text-align: center;    /* по центру */
-      color: #fff;           /* колір залишаємо як у секції подій */
+    
+    .events-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 42px; 
+      margin-bottom: 80px; 
+      text-align: center; 
+      font-style: normal; 
+      position: relative; 
+      z-index: 2; 
     }
-
+    
     .event-item {
       position: relative;
       width: 50%;
@@ -521,21 +518,27 @@
         padding-right: 10px;
         padding-bottom: 10px; 
       }
-      .events-title { font-size: 32px; margin-bottom: 50px; }      
+      .events-title { font-size: 32px; margin-bottom: 50px; }
+      
       .events-content::before { 
         top: 80px; 
         bottom: 40px; 
-      }      
-      .event-item { margin-bottom: 50px; }      
+      }
+      
+      .event-item { margin-bottom: 50px; }
+      
       .event-item::after { 
         width: 20px; 
         height: 20px; 
         top: 11px; 
-      }      
+      }
+      
       .event-item.left::after { right: -10px; }
-      .event-item.right::after { left: -10px; }      
+      .event-item.right::after { left: -10px; }
+      
       .event-item.left { padding-right: 30px; }
-      .event-item.right { padding-left: 30px; }      
+      .event-item.right { padding-left: 30px; }
+      
       .event-time { font-size: 18px; }
       .event-name { font-size: 16px; }
     }
@@ -553,7 +556,8 @@
   </script>
 </section>
 
-<!-- ================== DRESS CODE ================== -->
+<!-- ================== DRESS CODE SECTION ================== -->
+
 <section class="dress-code-section">
   <div class="dress-title">Dress Code</div>
   <div class="divider"></div>
@@ -562,16 +566,6 @@
     Це допоможе створити особливу гармонію нашої події.
   </p>
   
-  <div class="palette" id="palette-container">
-    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
-    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
-    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
-    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
-    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
-  </div>
-  
-  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
-
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const palette = document.getElementById('palette-container');
@@ -583,9 +577,155 @@
           }
         });
       }, { threshold: 0.3 });
+
       if (palette) observer.observe(palette);
     });
   </script>
+
+  <div class="palette" id="palette-container">
+    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
+  </div>
+  
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
+
+  <style>
+    .dress-code-section {
+      background: #E0DDD5;
+      padding: 100px 0;
+      text-align: center;
+      color: #2B160E;
+      overflow: hidden; 
+    }
+    .dress-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 38px; 
+      font-weight: 500; 
+      margin-bottom: 20px; 
+      font-style: italic; 
+    }
+    .divider { 
+      width: 50px; 
+      height: 1px; 
+      background: #2B160E; 
+      margin: 0 auto 30px; 
+      opacity: 0.3; 
+    }
+    .dress-text { 
+      font-size: 15px; 
+      line-height: 1.8; 
+      max-width: 600px; 
+      margin: 0 auto 40px; 
+      font-weight: 300; 
+      padding: 0 20px; 
+    }
+    .palette { 
+      display: flex; 
+      justify-content: center; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      margin-bottom: 30px; 
+      position: relative; 
+    }
+    
+    .color-item { 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      border: 1px solid rgba(0,0,0,0.05); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      flex-shrink: 0;
+      opacity: 0; 
+      
+      /* ЧАС АНІМАЦІЇ - 2s ДЛЯ ЕФЕКТУ КОТІННЯ */
+      animation-duration: 2s; 
+      animation-timing-function: ease-in-out; 
+      animation-fill-mode: forwards; 
+    }
+    
+    .color-item img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; 
+    }
+
+    /* === НОВА АНІМАЦІЯ БЕЗПОСЕРЕДНЬОГО КОТІННЯ (roll straight) === */
+
+    /* Усі елементи починають рух одночасно (0s) */
+    .is-visible .item-1 { animation-name: appear_central_settle; animation-delay: 0s; }
+    @keyframes appear_central_settle {
+      0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    /* Для ефекту котіння вправо, вони починають з повною прозорістю зліва, 
+       швидко з'являються та здійснюють повний оберт clockwise (-360deg -> 0deg),
+       щоб виглядати як forward roll до фіналу */
+
+    .is-visible .item-2 { animation-name: rollout_straight_2; animation-delay: 0s; }
+    @keyframes rollout_straight_2 {
+      0% { transform: translateX(-85px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-85px) scale(1) rotate(0deg); opacity: 1; } /* Швидка поява на старті */
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; } /* Котиться вправо + повний оберт clockwise */
+    }
+
+    .is-visible .item-3 { animation-name: rollout_straight_3; animation-delay: 0s; }
+    @keyframes rollout_straight_3 {
+      0% { transform: translateX(-170px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-170px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    .is-visible .item-4 { animation-name: rollout_straight_4; animation-delay: 0s; }
+    @keyframes rollout_straight_4 {
+      0% { transform: translateX(-255px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-255px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    .is-visible .item-5 { animation-name: rollout_straight_5; animation-delay: 0s; }
+    @keyframes rollout_straight_5 {
+      0% { transform: translateX(-340px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-340px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    /* === Адаптивність для мобільних === */
+    @media (max-width: 768px) {
+      .dress-title { font-size: 32px; }
+      .color-item { width: 60px; height: 60px; }
+      
+      .is-visible .item-2 { animation-name: rollout_straight_2_m; }
+      @keyframes rollout_straight_2_m {
+        0% { transform: translateX(-75px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-75px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-3 { animation-name: rollout_straight_3_m; }
+      @keyframes rollout_straight_3_m {
+        0% { transform: translateX(-150px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-150px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-4 { animation-name: rollout_straight_4_m; }
+      @keyframes rollout_straight_4_m {
+        0% { transform: translateX(-225px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-225px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-5 { animation-name: rollout_straight_5_m; }
+      @keyframes rollout_straight_5_m {
+        0% { transform: translateX(-300px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-300px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+    }
+  </style>
 </section>
 
 <!-- ================== CHURCH LOCATION ================== -->
