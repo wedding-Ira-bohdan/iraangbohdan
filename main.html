@@ -387,7 +387,6 @@
 </section>
   
 
-<!-- ================== EVENTS SECTION ================== -->
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -479,15 +478,24 @@
       box-sizing: border-box;
     }
 
-    /* Кружечки на лінії */
+    /* --- Оновлено: Перлинки з фото --- */
     .event-item::after {
       content: '';
       position: absolute;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      background-color: white;
-      border-radius: 50%;
+      /* Трохи опустив, щоб краще рівнялося по центру тексту */
+      top: 0px; 
+      /* Збільшив розмір, щоб фото було видно (було 12px, стало 24px) */
+      width: 24px;
+      height: 24px;
+      
+      /* Шлях до вашого фото */
+      background-image: url('images/photo14.jpg');
+      background-size: cover; /* Фото заповнює все коло */
+      background-position: center; /* Центрування фото */
+      
+      border-radius: 50%; /* Робимо коло */
+      border: 2px solid white; /* Біла рамка, щоб виділялося */
+      box-shadow: 0 0 5px rgba(255,255,255,0.5); /* Легке світіння */
       z-index: 3;
     }
     
@@ -496,8 +504,9 @@
       text-align: right;
       padding-right: 40px;
     }
+    /* Центрування перлинки на лінії для лівого елемента */
     .event-item.left::after {
-      right: -6px;
+      right: -12px; /* половина ширини (24/2) */
     }
     
     .event-item.right {
@@ -505,8 +514,9 @@
       text-align: left;
       padding-left: 40px;
     }
+    /* Центрування перлинки на лінії для правого елемента */
     .event-item.right::after {
-      left: -6px;
+      left: -12px; /* половина ширини (24/2) */
     }
     
     .event-time {
@@ -531,7 +541,7 @@
     /* Адаптивність для мобільних пристроїв */
     @media (max-width: 768px) {
       .events-section {
-        padding: 40px 20px; /* Зменшений фон для мобілки */
+        padding: 40px 20px;
       }
 
       .events-title { 
@@ -543,12 +553,25 @@
         margin-bottom: 40px;
       }
       
+      /* На мобілці робимо перлинки трохи меншими */
+      .event-item::after {
+        width: 18px;
+        height: 18px;
+        top: 2px;
+      }
+      
       .event-item.left {
         padding-right: 25px;
+      }
+      .event-item.left::after {
+        right: -9px; /* 18/2 */
       }
       
       .event-item.right {
         padding-left: 25px;
+      }
+      .event-item.right::after {
+        left: -9px; /* 18/2 */
       }
       
       .event-time { font-size: 18px; }
