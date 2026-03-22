@@ -390,7 +390,7 @@
 <!-- ================== EVENT ================== -->
 
 <!-- ПІДКЛЮЧЕННЯ ШРИФТУ -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
@@ -443,6 +443,7 @@
       z-index: 1;
     }
     
+    /* Заголовок - каліграфічний */
     .events-title { 
       font-family: 'Great Vibes', cursive; 
       font-size: 46px; 
@@ -483,20 +484,14 @@
     .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
     .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
     
-    .event-time { 
-      display: block; 
-      font-size: 32px; 
-      margin-bottom: 5px; 
-      font-family: 'Great Vibes', cursive;
-      font-weight: normal;
+    /* Весь текст подій простий */
+    .event-time, .event-name { 
+      font-family: 'Montserrat', sans-serif; 
+      font-weight: 400; 
     }
     
-    .event-name { 
-      display: block; 
-      font-size: 30px; 
-      font-family: 'Great Vibes', cursive;
-      font-weight: normal;
-    }
+    .event-time { font-size: 32px; margin-bottom: 5px; }
+    .event-name { font-size: 30px; }
     
     .event-item.show { opacity: 1; transform: translateY(0); }
 
