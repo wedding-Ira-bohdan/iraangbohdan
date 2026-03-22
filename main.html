@@ -571,7 +571,7 @@
       padding: 100px 0;
       text-align: center;
       color: #2B160E;
-      overflow: hidden;
+      overflow: hidden; 
     }
     .dress-title { 
       font-family: 'Playfair Display', serif; 
@@ -614,9 +614,9 @@
       flex-shrink: 0;
       opacity: 0; 
       
-      /* Загальний час анімації */
-      animation-duration: 4s; 
-      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); /* Легка "пружинистість" під час кочення */
+      /* Загальний час анімації та найплавніший рух */
+      animation-duration: 6s; 
+      animation-timing-function: ease-in-out; 
       animation-fill-mode: forwards; 
     }
     
@@ -627,56 +627,55 @@
       display: block; 
     }
 
-    /* === Анімація ПЕРЕКОЧУВАННЯ (збирання в центрі -> розлітання) === */
-    
-    /* Коло 1 (ліве): котиться праворуч до центру (+170px), крутиться за годинниковою (360deg) */
-    .is-visible .item-1 { animation-name: roll_1; animation-delay: 0.2s; }
-    @keyframes roll_1 {
-      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-      20% { transform: translate(170px, 0) scale(1) rotate(360deg); opacity: 1; }
-      50% { transform: translate(170px, 0) scale(1) rotate(360deg); opacity: 1; }
-      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    /* === Анімація КРИХІТНОГО ПЕРЕКОЧУВАННЯ З ПЕРШОГО ФОТО (rollout from first) === */
+    /* Ширина 70px + gap 15px = крок 85px. Всі item-n (n>1) збираються на item-1 position. */
+
+    /* Коло 1 (ліве): просто з'являється і злегка погойдується (-10deg -> 0) */
+    .is-visible .item-1 { animation-name: appear_and_settle_1; animation-delay: 0s; }
+    @keyframes appear_and_settle_1 {
+      0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
+      20% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 2: котиться праворуч до центру (+85px) */
-    .is-visible .item-2 { animation-name: roll_2; animation-delay: 0.4s; }
-    @keyframes roll_2 {
-      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-      20% { transform: translate(85px, 0) scale(1) rotate(360deg); opacity: 1; }
-      50% { transform: translate(85px, 0) scale(1) rotate(360deg); opacity: 1; }
-      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    /* Коло 2: викочується з item-1 (-85px), хитається (-60deg) */
+    .is-visible .item-2 { animation-name: rollout_subtle_2; animation-delay: 0.3s; }
+    @keyframes rollout_subtle_2 {
+      0% { transform: translateX(-85px) scale(0) rotate(-60deg); opacity: 0; }
+      20% { transform: translateX(-85px) scale(1) rotate(-60deg); opacity: 1; }
+      50% { transform: translateX(-85px) scale(1) rotate(-60deg); opacity: 1; }
+      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 3 (Центр): ефектно прокручується на місці */
-    .is-visible .item-3 { animation-name: roll_3; animation-delay: 0.6s; }
-    @keyframes roll_3 {
-      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-      20% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 1; }
-      50% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 1; }
-      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    /* Коло 3: викочується з item-1 (-170px), хитається (-60deg) */
+    .is-visible .item-3 { animation-name: rollout_subtle_3; animation-delay: 0.6s; }
+    @keyframes rollout_subtle_3 {
+      0% { transform: translateX(-170px) scale(0) rotate(-60deg); opacity: 0; }
+      20% { transform: translateX(-170px) scale(1) rotate(-60deg); opacity: 1; }
+      50% { transform: translateX(-170px) scale(1) rotate(-60deg); opacity: 1; }
+      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 4: котиться ліворуч до центру (-85px), крутиться проти годинникової (-360deg) */
-    .is-visible .item-4 { animation-name: roll_4; animation-delay: 0.8s; }
-    @keyframes roll_4 {
-      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-      20% { transform: translate(-85px, 0) scale(1) rotate(-360deg); opacity: 1; }
-      50% { transform: translate(-85px, 0) scale(1) rotate(-360deg); opacity: 1; }
-      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    /* Коло 4: викочується з item-1 (-255px), хитається (-60deg) */
+    .is-visible .item-4 { animation-name: rollout_subtle_4; animation-delay: 0.9s; }
+    @keyframes rollout_subtle_4 {
+      0% { transform: translateX(-255px) scale(0) rotate(-60deg); opacity: 0; }
+      20% { transform: translateX(-255px) scale(1) rotate(-60deg); opacity: 1; }
+      50% { transform: translateX(-255px) scale(1) rotate(-60deg); opacity: 1; }
+      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Коло 5 (праве): котиться ліворуч до центру (-170px) */
-    .is-visible .item-5 { animation-name: roll_5; animation-delay: 1.0s; }
-    @keyframes roll_5 {
-      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-      20% { transform: translate(-170px, 0) scale(1) rotate(-360deg); opacity: 1; }
-      50% { transform: translate(-170px, 0) scale(1) rotate(-360deg); opacity: 1; }
-      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    /* Коло 5 (праве): викочується з item-1 (-340px), хитається (-60deg) */
+    .is-visible .item-5 { animation-name: rollout_subtle_5; animation-delay: 1.2s; }
+    @keyframes rollout_subtle_5 {
+      0% { transform: translateX(-340px) scale(0) rotate(-60deg); opacity: 0; }
+      20% { transform: translateX(-340px) scale(1) rotate(-60deg); opacity: 1; }
+      50% { transform: translateX(-340px) scale(1) rotate(-60deg); opacity: 1; }
+      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
     /* === Адаптивність для мобільних === */
@@ -684,33 +683,38 @@
       .dress-title { font-size: 32px; }
       .color-item { width: 60px; height: 60px; }
       
-      @keyframes roll_1 {
-        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-        20% { transform: translate(150px, 0) scale(1) rotate(360deg); opacity: 1; }
-        50% { transform: translate(150px, 0) scale(1) rotate(360deg); opacity: 1; }
-        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      /* Перерахунок відстані для менших кіл (60px + 15px gap = 75px крок). Offsets: -75, -150, -225, -300 */
+      .is-visible .item-2 { animation-name: rollout_subtle_2_m; }
+      @keyframes rollout_subtle_2_m {
+        0% { transform: translateX(-75px) scale(0) rotate(-60deg); opacity: 0; }
+        20% { transform: translateX(-75px) scale(1) rotate(-60deg); opacity: 1; }
+        50% { transform: translateX(-75px) scale(1) rotate(-60deg); opacity: 1; }
+        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes roll_2 {
-        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-        20% { transform: translate(75px, 0) scale(1) rotate(360deg); opacity: 1; }
-        50% { transform: translate(75px, 0) scale(1) rotate(360deg); opacity: 1; }
-        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-3 { animation-name: rollout_subtle_3_m; }
+      @keyframes rollout_subtle_3_m {
+        0% { transform: translateX(-150px) scale(0) rotate(-60deg); opacity: 0; }
+        20% { transform: translateX(-150px) scale(1) rotate(-60deg); opacity: 1; }
+        50% { transform: translateX(-150px) scale(1) rotate(-60deg); opacity: 1; }
+        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes roll_4 {
-        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-        20% { transform: translate(-75px, 0) scale(1) rotate(-360deg); opacity: 1; }
-        50% { transform: translate(-75px, 0) scale(1) rotate(-360deg); opacity: 1; }
-        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-4 { animation-name: rollout_subtle_4_m; }
+      @keyframes rollout_subtle_4_m {
+        0% { transform: translateX(-225px) scale(0) rotate(-60deg); opacity: 0; }
+        20% { transform: translateX(-225px) scale(1) rotate(-60deg); opacity: 1; }
+        50% { transform: translateX(-225px) scale(1) rotate(-60deg); opacity: 1; }
+        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes roll_5 {
-        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
-        20% { transform: translate(-150px, 0) scale(1) rotate(-360deg); opacity: 1; }
-        50% { transform: translate(-150px, 0) scale(1) rotate(-360deg); opacity: 1; }
-        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-5 { animation-name: rollout_subtle_5_m; }
+      @keyframes rollout_subtle_5_m {
+        0% { transform: translateX(-300px) scale(0) rotate(-60deg); opacity: 0; }
+        20% { transform: translateX(-300px) scale(1) rotate(-60deg); opacity: 1; }
+        50% { transform: translateX(-300px) scale(1) rotate(-60deg); opacity: 1; }
+        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
       }
     }
   </style>
