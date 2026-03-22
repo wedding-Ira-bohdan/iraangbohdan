@@ -410,10 +410,11 @@
   </script>
 </section>
   
-<!-- ================== ПІДКЛЮЧЕННЯ ШРИФТІВ ================== -->
+<!-- ================== EVENT ================== -->
+
+<!-- ПІДКЛЮЧЕННЯ ШРИФТІВ -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap" rel="stylesheet">
 
-<!-- ================== EVENT ================== -->
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -441,20 +442,6 @@
   </div>
 
   <style>
-    /* ================== ЗАГОЛОВКИ ================== */
-    .dress-title,
-    .events-title,
-    .location-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 38px;
-      font-weight: 500;
-      font-style: italic;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #2B160E;
-    }
-
-    /* ================== EVENT ================== */
     .events-section { 
       position: relative; 
       background-size: cover; 
@@ -477,6 +464,16 @@
       width: 1px;
       background: rgba(255,255,255,0.8);
       z-index: 1;
+    }
+    
+    .events-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 42px; 
+      margin-bottom: 80px; 
+      text-align: center; 
+      font-style: normal; 
+      position: relative; 
+      z-index: 2; 
     }
     
     .event-item {
@@ -523,14 +520,25 @@
       }
       .events-title { font-size: 32px; margin-bottom: 50px; }
       
-      .events-content::before { top: 80px; bottom: 40px; }
+      .events-content::before { 
+        top: 80px; 
+        bottom: 40px; 
+      }
       
       .event-item { margin-bottom: 50px; }
-      .event-item::after { width: 20px; height: 20px; top: 11px; }
+      
+      .event-item::after { 
+        width: 20px; 
+        height: 20px; 
+        top: 11px; 
+      }
+      
       .event-item.left::after { right: -10px; }
       .event-item.right::after { left: -10px; }
+      
       .event-item.left { padding-right: 30px; }
       .event-item.right { padding-left: 30px; }
+      
       .event-time { font-size: 18px; }
       .event-name { font-size: 16px; }
     }
@@ -548,7 +556,8 @@
   </script>
 </section>
 
-<!-- ================== DRESS CODE ================== -->
+<!-- ================== DRESS CODE SECTION ================== -->
+
 <section class="dress-code-section">
   <div class="dress-title">Dress Code</div>
   <div class="divider"></div>
@@ -557,16 +566,6 @@
     Це допоможе створити особливу гармонію нашої події.
   </p>
   
-  <div class="palette" id="palette-container">
-    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
-    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
-    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
-    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
-    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
-  </div>
-  
-  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
-
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const palette = document.getElementById('palette-container');
@@ -578,24 +577,303 @@
           }
         });
       }, { threshold: 0.3 });
+
       if (palette) observer.observe(palette);
     });
   </script>
+
+  <div class="palette" id="palette-container">
+    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
+  </div>
+  
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
+
+  <style>
+    .dress-code-section {
+      background: #E0DDD5;
+      padding: 100px 0;
+      text-align: center;
+      color: #2B160E;
+      overflow: hidden; 
+    }
+    .dress-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 38px; 
+      font-weight: 500; 
+      margin-bottom: 20px; 
+      font-style: italic; 
+    }
+    .divider { 
+      width: 50px; 
+      height: 1px; 
+      background: #2B160E; 
+      margin: 0 auto 30px; 
+      opacity: 0.3; 
+    }
+    .dress-text { 
+      font-size: 15px; 
+      line-height: 1.8; 
+      max-width: 600px; 
+      margin: 0 auto 40px; 
+      font-weight: 300; 
+      padding: 0 20px; 
+    }
+    .palette { 
+      display: flex; 
+      justify-content: center; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      margin-bottom: 30px; 
+      position: relative; 
+    }
+    
+    .color-item { 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      border: 1px solid rgba(0,0,0,0.05); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      flex-shrink: 0;
+      opacity: 0; 
+      
+      /* ЧАС АНІМАЦІЇ - 2s ДЛЯ ЕФЕКТУ КОТІННЯ */
+      animation-duration: 2s; 
+      animation-timing-function: ease-in-out; 
+      animation-fill-mode: forwards; 
+    }
+    
+    .color-item img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; 
+    }
+
+    /* === НОВА АНІМАЦІЯ БЕЗПОСЕРЕДНЬОГО КОТІННЯ (roll straight) === */
+
+    /* Усі елементи починають рух одночасно (0s) */
+    .is-visible .item-1 { animation-name: appear_central_settle; animation-delay: 0s; }
+    @keyframes appear_central_settle {
+      0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
+      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    /* Для ефекту котіння вправо, вони починають з повною прозорістю зліва, 
+       швидко з'являються та здійснюють повний оберт clockwise (-360deg -> 0deg),
+       щоб виглядати як forward roll до фіналу */
+
+    .is-visible .item-2 { animation-name: rollout_straight_2; animation-delay: 0s; }
+    @keyframes rollout_straight_2 {
+      0% { transform: translateX(-85px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-85px) scale(1) rotate(0deg); opacity: 1; } /* Швидка поява на старті */
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; } /* Котиться вправо + повний оберт clockwise */
+    }
+
+    .is-visible .item-3 { animation-name: rollout_straight_3; animation-delay: 0s; }
+    @keyframes rollout_straight_3 {
+      0% { transform: translateX(-170px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-170px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    .is-visible .item-4 { animation-name: rollout_straight_4; animation-delay: 0s; }
+    @keyframes rollout_straight_4 {
+      0% { transform: translateX(-255px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-255px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    .is-visible .item-5 { animation-name: rollout_straight_5; animation-delay: 0s; }
+    @keyframes rollout_straight_5 {
+      0% { transform: translateX(-340px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-340px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+    }
+
+    /* === Адаптивність для мобільних === */
+    @media (max-width: 768px) {
+      .dress-title { font-size: 32px; }
+      .color-item { width: 60px; height: 60px; }
+      
+      .is-visible .item-2 { animation-name: rollout_straight_2_m; }
+      @keyframes rollout_straight_2_m {
+        0% { transform: translateX(-75px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-75px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-3 { animation-name: rollout_straight_3_m; }
+      @keyframes rollout_straight_3_m {
+        0% { transform: translateX(-150px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-150px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-4 { animation-name: rollout_straight_4_m; }
+      @keyframes rollout_straight_4_m {
+        0% { transform: translateX(-225px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-225px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+      .is-visible .item-5 { animation-name: rollout_straight_5_m; }
+      @keyframes rollout_straight_5_m {
+        0% { transform: translateX(-300px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-300px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
+      }
+    }
+  </style>
 </section>
 
 <!-- ================== CHURCH LOCATION ================== -->
+
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f4ece4;
+  }
+
+  .location-section {
+    background-color: #f4ece4;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .location-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .location-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #6b5c52;
+    margin-bottom: 30px;
+  }
+
+  .location-icon {
+    font-size: 32px;
+    margin-left: 10px;
+  }
+
+  .location-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #4a4038;
+  }
+
+  .location-address {
+    font-size: 18px;
+    color: #7a6a60;
+    margin-bottom: 25px;
+  }
+
+  .location-image {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 18px;
+    margin: 0 auto 30px;
+    display: block;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+
+  /* ================== Кнопка з пульсацією ================== */
+  .map-button {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: #6b5c52;
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite; /* постійна пульсація */
+    transition: all 0.3s ease;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  }
+
+  .map-button:hover {
+    background-color: #4a4038;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ===== РВАНА ПАПЕРОВА ЛІНІЯ ===== */
+  .ripped-white-line {
+    width: 100%;
+    height: 50px;
+    background-color: #f4ece4;
+    overflow: hidden;
+  }
+
+  .ripped-white-line svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .location-title {
+      font-size: 32px;
+    }
+
+    .ripped-white-line {
+      height: 40px;
+    }
+  }
+</style>
+
+<body>
+
+<!-- ================== CHURCH LOCATION ================== -->
+
 <section class="location-section">
+
   <div class="location-container">
+
     <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
+
     <p class="location-name">Церква святих апостолів Петра і Павла</p>
+
     <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
+
     <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-    <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
-       target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань"
+      target="_blank"
+      rel="noopener"
+      class="map-button">
+      Місце проведення церемонії
+    </a>
+
   </div>
+
 </section>
 
 <!-- ===== РВАНА БІЛА ЛІНІЯ ===== -->
+
 <div class="ripped-white-line">
   <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
     <path d="
@@ -607,6 +885,7 @@
       C610,70 650,15 700,45
       C760,20 820,80 860,35
       C910,15 960,60 1000,40
+
       L1000,85
       C950,110 920,45 870,80
       C820,50 780,115 720,70
@@ -622,15 +901,31 @@
 </div>
 
 <!-- ================== HOTEL LOCATION ================== -->
+
 <section class="location-section hotel">
+
   <div class="location-container">
+
     <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
+
     <p class="location-name">Готельно ресторанний комплекс «Айвенго»</p>
-    <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
+
+    <p class="location-address">
+      Адреса: вулиця Зелена, 53, Колоденка, Рівненська область
+    </p>
+
     <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-    <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
-       target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
+
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка"
+      target="_blank"
+      rel="noopener"
+      class="map-button">
+      Місце проведення святкування
+    </a>
+
   </div>
+
 </section>
   
 <!-- ================== CELEBRATION INVITE ================== -->
