@@ -539,7 +539,7 @@
     Це допоможе створити особливу гармонію нашої події.
   </p>
   
-  <div class="palette">
+  <div class="palette" id="palette-container">
     <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
     <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
     <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
@@ -555,7 +555,7 @@
       padding: 100px 0;
       text-align: center;
       color: #2B160E;
-      overflow: hidden; /* Запобігає появі горизонтального скролу під час анімації */
+      overflow: hidden;
     }
     .dress-title { 
       font-family: 'Playfair Display', serif; 
@@ -596,13 +596,12 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
       flex-shrink: 0;
       
-      /* Початковий стан: прозорі, чекають своєї черги */
+      /* За замовчуванням прозорі */
       opacity: 0; 
       
-      /* Налаштування анімації */
       animation-duration: 0.8s;
-      animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Плавне гальмування в кінці */
-      animation-fill-mode: forwards; /* Залишатись у фінальному стані після закінчення */
+      animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+      animation-fill-mode: forwards;
     }
     
     .color-item img { 
@@ -612,55 +611,48 @@
       display: block; 
     }
 
-    /* === Анімація вильоту з центру по одному === */
-    /* Елементи зміщені в центр (елемент 3) і повертаються на свої нульові позиції у flex-сітці */
-
-    /* 1-й елемент: вилітає першим */
-    .item-1 { animation-name: slide-from-center-1; animation-delay: 0.2s; }
+    /* === Анімації запускаються ТІЛЬКИ коли у батька є клас .is-visible === */
+    
+    .is-visible .item-1 { animation-name: slide-from-center-1; animation-delay: 0.2s; }
     @keyframes slide-from-center-1 {
       0% { transform: translateX(170px) scale(0.3); opacity: 0; }
       50% { opacity: 1; }
       100% { transform: translateX(0) scale(1); opacity: 1; }
     }
 
-    /* 2-й елемент: вилітає другим */
-    .item-2 { animation-name: slide-from-center-2; animation-delay: 0.6s; }
+    .is-visible .item-2 { animation-name: slide-from-center-2; animation-delay: 0.6s; }
     @keyframes slide-from-center-2 {
       0% { transform: translateX(85px) scale(0.3); opacity: 0; }
       50% { opacity: 1; }
       100% { transform: translateX(0) scale(1); opacity: 1; }
     }
 
-    /* 3-й елемент (центр): просто з'являється */
-    .item-3 { animation-name: slide-from-center-3; animation-delay: 1.0s; }
+    .is-visible .item-3 { animation-name: slide-from-center-3; animation-delay: 1.0s; }
     @keyframes slide-from-center-3 {
       0% { transform: scale(0.3); opacity: 0; }
       50% { opacity: 1; }
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* 4-й елемент: вилітає четвертим */
-    .item-4 { animation-name: slide-from-center-4; animation-delay: 1.4s; }
+    .is-visible .item-4 { animation-name: slide-from-center-4; animation-delay: 1.4s; }
     @keyframes slide-from-center-4 {
       0% { transform: translateX(-85px) scale(0.3); opacity: 0; }
       50% { opacity: 1; }
       100% { transform: translateX(0) scale(1); opacity: 1; }
     }
 
-    /* 5-й елемент: вилітає останнім */
-    .item-5 { animation-name: slide-from-center-5; animation-delay: 1.8s; }
+    .is-visible .item-5 { animation-name: slide-from-center-5; animation-delay: 1.8s; }
     @keyframes slide-from-center-5 {
       0% { transform: translateX(-170px) scale(0.3); opacity: 0; }
       50% { opacity: 1; }
       100% { transform: translateX(0) scale(1); opacity: 1; }
     }
 
-    /* === Адаптивність для мобільних пристроїв === */
+    /* === Адаптивність для мобільних === */
     @media (max-width: 768px) {
       .dress-title { font-size: 32px; }
       .color-item { width: 60px; height: 60px; }
       
-      /* Перерахунок відстані для менших кіл (60px + 15px gap = 75px крок) */
       @keyframes slide-from-center-1 {
         0% { transform: translateX(150px) scale(0.3); opacity: 0; }
         50% { opacity: 1; }
@@ -683,8 +675,35 @@
       }
     }
   </style>
-</section>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Знаходимо контейнер з картинками
+      const palette = document.getElementById('palette-container');
+
+      // Налаштовуємо "спостерігача"
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          // Якщо блок з'явився на екрані
+          if (entry.isIntersecting) {
+            // Додаємо клас, який запускає анімацію
+            entry.target.classList.add('is-visible');
+            // Припиняємо спостереження, щоб анімація не програвалася повторно при скролі туди-сюди
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        // threshold: 0.3 означає, що анімація почнеться, коли 30% блоку буде видно на екрані
+        threshold: 0.3 
+      });
+
+      // Запускаємо спостереження за нашим блоком
+      if (palette) {
+        observer.observe(palette);
+      }
+    });
+  </script>
+</section>
 
 <!-- ================== CHURCH LOCATION ================== -->
 
