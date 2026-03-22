@@ -614,7 +614,7 @@
       flex-shrink: 0;
       opacity: 0; 
       
-      /* ЧАС АНІМАЦІЇ ЗМЕНШЕНО ДЛЯ ПРИСКОРЕННЯ */
+      /* ЧАС АНІМАЦІЇ - 2s ДЛЯ ЕФЕКТУ КОТІННЯ */
       animation-duration: 2s; 
       animation-timing-function: ease-in-out; 
       animation-fill-mode: forwards; 
@@ -627,49 +627,45 @@
       display: block; 
     }
 
-    /* === Анімація викочування === */
+    /* === НОВА АНІМАЦІЯ БЕЗПОСЕРЕДНЬОГО КОТІННЯ (roll straight) === */
 
-    .is-visible .item-1 { animation-name: appear_and_settle_1; animation-delay: 0s; }
-    @keyframes appear_and_settle_1 {
+    /* Усі елементи починають рух одночасно (0s) */
+    .is-visible .item-1 { animation-name: appear_central_settle; animation-delay: 0s; }
+    @keyframes appear_central_settle {
       0% { transform: translateX(0) scale(0) rotate(-10deg); opacity: 0; }
-      20% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
       100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    .is-visible .item-2 { animation-name: rollout_subtle_2; animation-delay: 0s; }
-    @keyframes rollout_subtle_2 {
-      0% { transform: translateX(-85px) scale(0) rotate(-60deg); opacity: 0; }
-      20% { transform: translateX(-85px) scale(1) rotate(-60deg); opacity: 1; }
-      50% { transform: translateX(-85px) scale(1) rotate(-60deg); opacity: 1; }
-      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    /* Для ефекту котіння вправо, вони починають з повною прозорістю зліва, 
+       швидко з'являються та здійснюють повний оберт clockwise (-360deg -> 0deg),
+       щоб виглядати як forward roll до фіналу */
+
+    .is-visible .item-2 { animation-name: rollout_straight_2; animation-delay: 0s; }
+    @keyframes rollout_straight_2 {
+      0% { transform: translateX(-85px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-85px) scale(1) rotate(0deg); opacity: 1; } /* Швидка поява на старті */
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; } /* Котиться вправо + повний оберт clockwise */
     }
 
-    .is-visible .item-3 { animation-name: rollout_subtle_3; animation-delay: 0s; }
-    @keyframes rollout_subtle_3 {
-      0% { transform: translateX(-170px) scale(0) rotate(-60deg); opacity: 0; }
-      20% { transform: translateX(-170px) scale(1) rotate(-60deg); opacity: 1; }
-      50% { transform: translateX(-170px) scale(1) rotate(-60deg); opacity: 1; }
-      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    .is-visible .item-3 { animation-name: rollout_straight_3; animation-delay: 0s; }
+    @keyframes rollout_straight_3 {
+      0% { transform: translateX(-170px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-170px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
     }
 
-    .is-visible .item-4 { animation-name: rollout_subtle_4; animation-delay: 0s; }
-    @keyframes rollout_subtle_4 {
-      0% { transform: translateX(-255px) scale(0) rotate(-60deg); opacity: 0; }
-      20% { transform: translateX(-255px) scale(1) rotate(-60deg); opacity: 1; }
-      50% { transform: translateX(-255px) scale(1) rotate(-60deg); opacity: 1; }
-      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    .is-visible .item-4 { animation-name: rollout_straight_4; animation-delay: 0s; }
+    @keyframes rollout_straight_4 {
+      0% { transform: translateX(-255px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-255px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
     }
 
-    .is-visible .item-5 { animation-name: rollout_subtle_5; animation-delay: 0s; }
-    @keyframes rollout_subtle_5 {
-      0% { transform: translateX(-340px) scale(0) rotate(-60deg); opacity: 0; }
-      20% { transform: translateX(-340px) scale(1) rotate(-60deg); opacity: 1; }
-      50% { transform: translateX(-340px) scale(1) rotate(-60deg); opacity: 1; }
-      85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-      100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+    .is-visible .item-5 { animation-name: rollout_straight_5; animation-delay: 0s; }
+    @keyframes rollout_straight_5 {
+      0% { transform: translateX(-340px) scale(0) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-340px) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
     }
 
     /* === Адаптивність для мобільних === */
@@ -677,37 +673,29 @@
       .dress-title { font-size: 32px; }
       .color-item { width: 60px; height: 60px; }
       
-      .is-visible .item-2 { animation-name: rollout_subtle_2_m; }
-      @keyframes rollout_subtle_2_m {
-        0% { transform: translateX(-75px) scale(0) rotate(-60deg); opacity: 0; }
-        20% { transform: translateX(-75px) scale(1) rotate(-60deg); opacity: 1; }
-        50% { transform: translateX(-75px) scale(1) rotate(-60deg); opacity: 1; }
-        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-2 { animation-name: rollout_straight_2_m; }
+      @keyframes rollout_straight_2_m {
+        0% { transform: translateX(-75px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-75px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
       }
-      .is-visible .item-3 { animation-name: rollout_subtle_3_m; }
-      @keyframes rollout_subtle_3_m {
-        0% { transform: translateX(-150px) scale(0) rotate(-60deg); opacity: 0; }
-        20% { transform: translateX(-150px) scale(1) rotate(-60deg); opacity: 1; }
-        50% { transform: translateX(-150px) scale(1) rotate(-60deg); opacity: 1; }
-        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-3 { animation-name: rollout_straight_3_m; }
+      @keyframes rollout_straight_3_m {
+        0% { transform: translateX(-150px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-150px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
       }
-      .is-visible .item-4 { animation-name: rollout_subtle_4_m; }
-      @keyframes rollout_subtle_4_m {
-        0% { transform: translateX(-225px) scale(0) rotate(-60deg); opacity: 0; }
-        20% { transform: translateX(-225px) scale(1) rotate(-60deg); opacity: 1; }
-        50% { transform: translateX(-225px) scale(1) rotate(-60deg); opacity: 1; }
-        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-4 { animation-name: rollout_straight_4_m; }
+      @keyframes rollout_straight_4_m {
+        0% { transform: translateX(-225px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-225px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
       }
-      .is-visible .item-5 { animation-name: rollout_subtle_5_m; }
-      @keyframes rollout_subtle_5_m {
-        0% { transform: translateX(-300px) scale(0) rotate(-60deg); opacity: 0; }
-        20% { transform: translateX(-300px) scale(1) rotate(-60deg); opacity: 1; }
-        50% { transform: translateX(-300px) scale(1) rotate(-60deg); opacity: 1; }
-        85% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
-        100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+      .is-visible .item-5 { animation-name: rollout_straight_5_m; }
+      @keyframes rollout_straight_5_m {
+        0% { transform: translateX(-300px) scale(0) rotate(0deg); opacity: 0; }
+        10% { transform: translateX(-300px) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translateX(0) scale(1) rotate(-360deg); opacity: 1; }
       }
     }
   </style>
