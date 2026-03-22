@@ -388,7 +388,6 @@
   
 <!-- ================== EVENT ================== -->
 
-
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -416,7 +415,15 @@
   </div>
 
   <style>
-    .events-section { position: relative; background-size: cover; background-position: center; padding: 80px 20px; color: #fff; font-family: 'Montserrat', sans-serif; overflow: hidden; }
+    .events-section { 
+      position: relative; 
+      background-size: cover; 
+      background-position: center; 
+      padding: 80px 20px; 
+      color: #fff; 
+      font-family: 'Montserrat', sans-serif; 
+      overflow: hidden; 
+    }
     .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
     .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
     
@@ -461,7 +468,7 @@
     }
 
     /* Прив'язка до центральної лінії */
-    .event-item.left::after { right: -12px; } /* половина ширини кружечка */
+    .event-item.left::after { right: -12px; } 
     .event-item.right::after { left: -12px; }
 
     .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
@@ -474,7 +481,12 @@
 
     /* Мобільна адаптація */
     @media (max-width: 768px) {
-      .events-section { padding: 50px 10px; }
+      .events-section { 
+        padding-top: 50px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px; /* Зменшено відступ знизу */
+      }
       .events-title { font-size: 32px; margin-bottom: 50px; }
       .events-content::before { top: 80px; }
       
