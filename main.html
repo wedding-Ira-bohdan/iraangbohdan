@@ -553,141 +553,37 @@
   </script>
 </section>
 
-<!-- ================== DRESS CODE SECTION ================== -->
-
-<section class="events-section" style="background-image: url('images/photo6.jpg');">
-  <div class="events-overlay"></div>
-  <div class="events-content">
-    <h2 class="events-title">Програма дня</h2>
-    
-    <div class="event-item left">
-      <span class="event-time">10:30</span>
-      <span class="event-name">Вінчання</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">13:30</span>
-      <span class="event-name">Збір гостей в ресторані</span>
-    </div>
-    
-    <div class="event-item left">
-      <span class="event-time">16:00</span>
-      <span class="event-name">Перший танець</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">23:00</span>
-      <span class="event-name">Завершення свята</span>
-    </div>
+<!-- ================== DRESS CODE ================== -->
+<section class="dress-code-section">
+  <div class="dress-title">Dress Code</div>
+  <div class="divider"></div>
+  <p class="dress-text">
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+    Це допоможе створити особливу гармонію нашої події.
+  </p>
+  
+  <div class="palette" id="palette-container">
+    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
   </div>
-
-  <style>
-    .events-section { 
-      position: relative; 
-      background-size: cover; 
-      background-position: center; 
-      padding: 80px 20px; 
-      color: #fff; 
-      font-family: 'Montserrat', sans-serif; 
-      overflow: hidden; 
-    }
-    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
-    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
-    
-    .events-content::before {
-      content: '';
-      position: absolute;
-      left: 50% !important;
-      transform: translateX(-50%);
-      top: 100px;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255,255,255,0.8);
-      z-index: 1;
-    }
-
-    /* ==== УНІВЕРСАЛЬНИЙ ЗАГОЛОВОК (як у Dress Code, але з білим кольором) ==== */
-    .events-title,
-    .location-title {
-      font-family: 'Playfair Display', serif; /* шрифт з Dress Code */
-      font-size: 38px;       /* розмір як у Dress Code */
-      font-weight: 500;
-      font-style: italic;    /* курсив як у Dress Code */
-      margin-bottom: 20px;   /* відступ як у Dress Code */
-      text-align: center;    /* по центру */
-      color: #fff;           /* залишаємо колір секції подій */
-    }
-
-    .event-item {
-      position: relative;
-      width: 50%;
-      margin-bottom: 70px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-      z-index: 2;
-    }
-
-    .event-item::after {
-      content: '';
-      position: absolute;
-      top: 12px; 
-      width: 24px;
-      height: 24px;
-      background-image: url('images/photo14.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-      border: none !important;
-      z-index: 5;
-    }
-
-    .event-item.left::after { right: -12px; } 
-    .event-item.right::after { left: -12px; }
-
-    .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
-    .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
-    
-    .event-time { display: block; font-size: 20px; letter-spacing: 1px; margin-bottom: 5px; font-weight: 300; }
-    .event-name { display: block; font-size: 18px; font-weight: 500; }
-    
-    .event-item.show { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 768px) {
-      .events-section { 
-        padding-top: 50px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px; 
-      }
-      .events-title { font-size: 32px; margin-bottom: 50px; }      
-      .events-content::before { 
-        top: 80px; 
-        bottom: 40px; 
-      }      
-      .event-item { margin-bottom: 50px; }      
-      .event-item::after { 
-        width: 20px; 
-        height: 20px; 
-        top: 11px; 
-      }      
-      .event-item.left::after { right: -10px; }
-      .event-item.right::after { left: -10px; }      
-      .event-item.left { padding-right: 30px; }
-      .event-item.right { padding-left: 30px; }      
-      .event-time { font-size: 18px; }
-      .event-name { font-size: 16px; }
-    }
-  </style>
+  
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver(entries => {
+    document.addEventListener("DOMContentLoaded", function() {
+      const palette = document.getElementById('palette-container');
+      const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-          if(entry.isIntersecting){ entry.target.classList.add('show'); }
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
         });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.event-item').forEach(item => observer.observe(item));
+      }, { threshold: 0.3 });
+      if (palette) observer.observe(palette);
     });
   </script>
 </section>
