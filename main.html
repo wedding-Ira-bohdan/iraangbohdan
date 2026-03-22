@@ -736,167 +736,238 @@
 
 <!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
 
-<style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #f4ece4;
-  }
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Church & Hotel Locations</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f4ece4; /* Основний фон сайту */
+    }
 
-  .location-section {
-    background-color: #f4ece4;
-    padding: 80px 20px;
-    text-align: center;
-  }
+    .location-section {
+      background-color: #f4ece4; /* Фон секції, такий самий, як у body */
+      padding: 80px 20px;
+      text-align: center;
+      position: relative; /* Дозволяє позиціонувати лінії всередині секції */
+    }
 
-  .location-container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+    .location-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-  /* ===== Заголовки під Dress Code ===== */
-  .location-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    font-weight: 500;
-    font-style: italic; /* курсив тільки для тексту */
-    margin-bottom: 30px;
-    text-align: center;
-  }
+    /* ===== Заголовки під Dress Code ===== */
+    .location-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 500;
+      font-style: italic; /* курсив тільки для тексту */
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-  .location-section.church .location-title {
-    color: #6b5c52;
-  }
+    .location-section.church .location-title {
+      color: #6b5c52;
+    }
 
-  .location-section.hotel .location-title {
-    color: #4a4038;
-  }
+    .location-section.hotel .location-title {
+      color: #4a4038;
+    }
 
-  /* ===== Смайлик без нахилу ===== */
-  .location-icon {
-    font-size: 32px;
-    margin-left: 10px;
-    display: inline-block;
-    font-style: normal; /* прямий, не нахиляється */
-    vertical-align: middle;
-  }
+    /* ===== Смайлик без нахилу ===== */
+    .location-icon {
+      font-size: 32px;
+      margin-left: 10px;
+      display: inline-block;
+      font-style: normal; /* прямий, не нахиляється */
+      vertical-align: middle;
+    }
 
-  .location-name {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #4a4038;
-  }
+    .location-name {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #4a4038;
+    }
 
-  .location-address {
-    font-size: 18px;
-    color: #7a6a60;
-    margin-bottom: 25px;
-  }
+    .location-address {
+      font-size: 18px;
+      color: #7a6a60;
+      margin-bottom: 25px;
+    }
 
-  .location-image {
-    width: 100%;
-    max-width: 720px;
-    border-radius: 18px;
-    margin: 0 auto 30px;
-    display: block;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-  }
+    .location-image {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 18px;
+      margin: 0 auto 30px;
+      display: block;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    }
 
-  .map-button {
-    display: inline-block;
-    padding: 14px 36px;
-    background-color: #6b5c52;
-    color: #ffffff;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    animation: pulse 2s infinite;
-    transition: all 0.3s ease;
-  }
+    .map-button {
+      display: inline-block;
+      padding: 14px 36px;
+      background-color: #6b5c52;
+      color: #ffffff;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+    }
 
-  .map-button:hover {
-    background-color: #4a4038;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
+    .map-button:hover {
+      background-color: #4a4038;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
 
-  @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-  }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+      50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+      100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    }
 
-  .ripped-white-line {
-    width: 100%;
-    height: 50px;
-    background-color: #f4ece4;
-    overflow: hidden;
-  }
+    /* ===== НОВИЙ СТИЛЬ ДЛЯ ЛІНІЇ-РОЗДІЛЮВАЧА ===== */
+    .divider-curve {
+      position: absolute; /* Накладання поверх секції */
+      left: 0;
+      width: 100%;
+      height: 60px; /* Висота самої кривої */
+      overflow: hidden;
+      line-height: 0;
+      z-index: 10; /* Щоб лінія була поверх фону секції */
+    }
 
-  .ripped-white-line svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+    .divider-curve svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
-  @media (max-width: 600px) {
-    .location-title { font-size: 32px; }
-    .ripped-white-line { height: 40px; }
-  }
-</style>
+    /* Розташування лінії знизу */
+    .divider-curve.bottom {
+      bottom: 0;
+    }
 
+    /* Розташування лінії зверху */
+    .divider-curve.top {
+      top: 0;
+      transform: rotate(180deg); /* Віддзеркалення, щоб крива дивилася вгору */
+    }
+
+    @media (max-width: 600px) {
+      .location-title { font-size: 32px; }
+      .divider-curve { height: 40px; } /* Менша висота для мобільних */
+    }
+  </style>
+</head>
 <body>
-  <!-- ================== CHURCH LOCATION ================== -->
-  <section class="location-section church">
-    <div class="location-container">
-      <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
-      <p class="location-name">ЦЕРКВА СВЯТИХ АПОСТОЛІВ ПЕТРА І ПАВЛА</p>
-      <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
-      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
-    </div>
-  </section>
 
-  <div class="ripped-white-line">
-    <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-      <path d="
-        M0,38
-        C60,5 90,65 140,32
-        C190,60 230,10 280,40
-        C310,20 360,75 420,35
-        C470,5 520,55 560,30
-        C610,70 650,15 700,45
-        C760,20 820,80 860,35
-        C910,15 960,60 1000,40
-        L1000,85
-        C950,110 920,45 870,80
-        C820,50 780,115 720,70
-        C680,105 630,40 590,95
-        C540,45 500,115 450,70
-        C410,105 360,40 310,95
-        C260,50 220,115 170,70
-        C120,105 80,45 40,80
-        C20,90 0,70 0,80
-        Z
-      " fill="#ffffff"/>
-    </svg>
-  </div>
+    <section class="location-section church">
+        <div class="divider-curve top">
+      <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+        <path d="
+          M0,38
+          C60,5 90,65 140,32
+          C190,60 230,10 280,40
+          C310,20 360,75 420,35
+          C470,5 520,55 560,30
+          C610,70 650,15 700,45
+          C760,20 820,80 860,35
+          C910,15 960,60 1000,40
+          L1000,85
+          C950,110 920,45 870,80
+        
+C820,50 780,115 720,70
+          C680,105 630,40 590,95
+          C540,45 500,115 450,70
+          C410,105 360,40 310,95
+          C260,50 220,115 170,70
+          C120,105 80,45 40,80
+          C20,90 0,70 0,80
+          Z
+        " fill="#ffffff"/>
+      </svg>
+    </div>
 
-  <!-- ================== HOTEL LOCATION ================== -->
-  <section class="location-section hotel">
-    <div class="location-container">
-      <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
-      <p class="location-name">ГОТЕЛЬНО-РЕСТОРАННИЙ КОМПЛЕКС «АЙВЕНГО»</p>
-      <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
-      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
-    </div>
-  </section>
-</body>
+    <div class="location-container">
+      <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
+      <p class="location-name">ЦЕРКВА СВЯТИХ АПОСТОЛІВ ПЕТРА І ПАВЛА</p>
+      <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+    </div>
+
+        <div class="divider-curve bottom">
+      <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+        <path d="
+          M0,38
+          C60,5 90,65 140,32
+          C190,60 230,10 280,40
+          C310,20 360,75 420,35
+          C470,5 520,55 560,30
+          C610,70 650,15 700,45
+          C760,20 820,80 860,35
+          C910,15 960,60 1000,40
+          L1000,85
+          C950,110 920,45 870,80
+          C820,50 780,115 720,70
+          C680,105 630,40 590,95
+          C540,45 500,115 450,70
+          C410,105 360,40 310,95
+          C260,50 220,115 170,70
+          C120,105 80,45 40,80
+          C20,90 0,70 0,80
+          Z
+        " fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+    <section class="location-section hotel">
+    <div class="location-container">
+      <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
+      <p class="location-name">ГОТЕЛЬНО-РЕСТОРАННИЙ КОМПЛЕКС «АЙВЕНГО»</p>
+      <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
+    </div>
+
+        <div class="divider-curve bottom">
+      <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+        <path d="
+          M0,38
+          C60,5 90,65 140,32
+          C190,60 230,10 280,40
+          C310,20 360,75 420,35
+          C470,5 520,55 560,30
+          C610,70 650,15 700,45
+          C760,20 820,80 860,35
+          C910,15 960,60 1000,40
+          L1000,85
+          C950,110 920,45 870,80
+          C820,50 780,115 720,70
+          C680,105 630,40 590,95
+          C540,45 500,115 450,70
+          C410,105 360,40 310,95
+          C260,50 220,115 170,70
+          C120,105 80,45 40,80
+          C20,90 0,70 0,80
+          Z
+        " fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
   
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite">
