@@ -388,6 +388,76 @@
   
 <!-- ================== EVENT ================== -->
 
+<section id="wedding-timer">
+  <div class="timer-wrapper">
+    <p class="timer-title">До нашої події залишилося:</p>
+    
+    <div class="timer-grid">
+      <div class="timer-box">
+        <span id="d_new">00</span>
+        <label>днів</label>
+      </div>
+      <div class="timer-box">
+        <span id="h_new">00</span>
+        <label>год</label>
+      </div>
+      <div class="timer-box">
+        <span id="m_new">00</span>
+        <label>хв</label>
+      </div>
+      <div class="timer-box">
+        <span id="s_new">00</span>
+        <label>сек</label>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #wedding-timer { 
+      background: #2B160E; 
+      padding: 80px 0; 
+      text-align: center; 
+      color: #fff; 
+      position: relative; 
+      z-index: 5;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .timer-wrapper { max-width: 800px; margin: 0 auto; padding: 0 10px; }
+    .timer-title { letter-spacing: 4px; text-transform: uppercase; font-size: 12px; margin-bottom: 30px; opacity: 0.8; }
+    .timer-grid { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: nowrap; }
+    .timer-box { border: 1px solid rgba(255,255,255,0.15); padding: 20px; min-width: 85px; flex: 0 0 auto; }
+    .timer-box span { display: block; font-size: 38px; font-family: 'Playfair Display', serif; }
+    .timer-box label { font-size: 9px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px; display: block; margin-top: 5px; }
+
+    @media (max-width: 480px) {
+      #wedding-timer { padding: 50px 0; }
+      .timer-grid { gap: 8px; }
+      .timer-box { padding: 15px 5px; min-width: 70px; }
+      .timer-box span { font-size: 28px; }
+    }
+  </style>
+
+  <script>
+    function updateWeddingTimer() {
+      const targetDate = new Date("July 17, 2026 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.querySelector(".timer-grid").innerHTML = "<h3>Цей день настав!</h3>";
+        return;
+      }
+      const mS = 1000, mMin = mS * 60, mHour = mMin * 60, mDay = mHour * 24;
+      const d = Math.floor(diff / mDay), h = Math.floor((diff % mDay) / mHour), m = Math.floor((diff % mHour) / mMin), s = Math.floor((diff % mMin) / mS);
+      document.getElementById("d_new").innerText = d < 10 ? "0" + d : d;
+      document.getElementById("h_new").innerText = h < 10 ? "0" + h : h;
+      document.getElementById("m_new").innerText = m < 10 ? "0" + m : m;
+      document.getElementById("s_new").innerText = s < 10 ? "0" + s : s;
+    }
+    setInterval(updateWeddingTimer, 1000);
+    updateWeddingTimer();
+  </script>
+</section>
+
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -429,45 +499,28 @@
       position: relative;
       background-size: cover;
       background-position: center;
-      padding: 75px 20px; /* Відступи для ПК (~2 см) */
+      padding: 80px 20px;
       color: #fff;
       overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
     }
+    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
     
-    .events-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-    }
-    
-    .events-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Біла лінія по центру */
+    /* Біла лінія - завжди строго по центру */
     .events-content::before {
       content: '';
       position: absolute;
-      left: 50%;
+      left: 50% !important;
       top: 100px;
       bottom: 0;
       width: 1px;
       background: white;
       transform: translateX(-50%);
+      z-index: 1;
     }
     
-    .events-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      margin-bottom: 80px;
-      text-align: center;
-      font-style: italic;
-    }
+    .events-title { font-family: 'Playfair Display', serif; font-size: 40px; margin-bottom: 80px; text-align: center; font-style: italic; }
     
     .event-item {
       position: relative;
@@ -477,106 +530,52 @@
       transform: translateY(30px);
       transition: all 0.8s ease;
       box-sizing: border-box;
+      z-index: 2;
     }
 
-    /* --- Оновлено: Перлинки з фото --- */
+    /* ПЕРЛИНКИ: Завжди на лінії, без обводки */
     .event-item::after {
       content: '';
       position: absolute;
-      /* Трохи опустив, щоб краще рівнялося по центру тексту */
-      top: 0px; 
-      /* Збільшив розмір, щоб фото було видно (було 12px, стало 24px) */
-      width: 24px;
-      height: 24px;
-      
-      /* Шлях до вашого фото */
+      left: 50% !important; /* Центр контейнера */
+      top: 10px;
+      width: 26px;
+      height: 26px;
       background-image: url('images/photo14.jpg');
-      background-size: cover; /* Фото заповнює все коло */
-      background-position: center; /* Центрування фото */
-      
-      border-radius: 50%; /* Робимо коло */
-      border: 2px solid white; /* Біла рамка, щоб виділялося */
-      box-shadow: 0 0 5px rgba(255,255,255,0.5); /* Легке світіння */
-      z-index: 3;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: none !important; /* ПРИБРАНО ОБВОДКУ */
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 5;
+      transform: translateX(-50%) !important; /* Ідеальне центрування по лінії */
     }
     
-    .event-item.left {
-      align-self: flex-start;
-      text-align: right;
-      padding-right: 40px;
-    }
-    /* Центрування перлинки на лінії для лівого елемента */
-    .event-item.left::after {
-      right: -12px; /* половина ширини (24/2) */
-    }
+    .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
+    .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
     
-    .event-item.right {
-      align-self: flex-end;
-      text-align: left;
-      padding-left: 40px;
-    }
-    /* Центрування перлинки на лінії для правого елемента */
-    .event-item.right::after {
-      left: -12px; /* половина ширини (24/2) */
-    }
-    
-    .event-time {
-      display: block;
-      font-size: 20px;
-      letter-spacing: 2px;
-      opacity: 0.9;
-      margin-bottom: 5px;
-    }
-    
-    .event-name {
-      display: block;
-      font-size: 18px;
-      font-weight: 500;
-    }
-    
-    .event-item.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .event-time { display: block; font-size: 20px; letter-spacing: 2px; opacity: 0.9; margin-bottom: 5px; }
+    .event-name { display: block; font-size: 18px; font-weight: 500; }
+    .event-item.show { opacity: 1; transform: translateY(0); }
 
-    /* Адаптивність для мобільних пристроїв */
+    /* МОБІЛЬНА ВЕРСІЯ: Перлинки залишаються на лінії */
     @media (max-width: 768px) {
-      .events-section {
-        padding: 40px 20px;
-      }
-
-      .events-title { 
-        font-size: 32px; 
-        margin-bottom: 40px; 
-      }
+      .events-section { padding: 50px 15px; }
+      .events-title { font-size: 32px; margin-bottom: 50px; }
+      .events-content::before { left: 50% !important; top: 80px; }
       
-      .event-item {
-        margin-bottom: 40px;
-      }
-      
-      /* На мобілці робимо перлинки трохи меншими */
+      .event-item { width: 50% !important; margin-bottom: 45px; }
       .event-item::after {
-        width: 18px;
-        height: 18px;
-        top: 2px;
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
       }
-      
-      .event-item.left {
-        padding-right: 25px;
-      }
-      .event-item.left::after {
-        right: -9px; /* 18/2 */
-      }
-      
-      .event-item.right {
-        padding-left: 25px;
-      }
-      .event-item.right::after {
-        left: -9px; /* 18/2 */
-      }
-      
-      .event-time { font-size: 18px; }
-      .event-name { font-size: 16px; }
+      .event-item.left { padding-right: 30px; }
+      .event-item.right { padding-left: 30px; }
+      .event-time { font-size: 17px; }
+      .event-name { font-size: 15px; }
     }
   </style>
 
@@ -591,7 +590,6 @@
           }
         });
       }, { threshold: 0.1 });
-
       eventItems.forEach(item => observer.observe(item));
     });
   </script>
