@@ -395,7 +395,7 @@
     
     <div class="event-item right">
       <span class="event-time">10:30</span>
-      <span class="event-name">Вінчання</span>
+      <span class="event-name">Початок вінчальної церемонії</span>
     </div>
     
     <div class="event-item left">
@@ -432,7 +432,6 @@
       padding: 100px 20px;
       color: #fff;
       overflow: hidden;
-      font-family: sans-serif;
     }
     
     .events-overlay {
@@ -480,14 +479,14 @@
       box-sizing: border-box;
     }
     
-    /* Контент зліва */
+    /* Контент зліва від лінії */
     .event-item.left {
       align-self: flex-start;
       text-align: right;
       padding-right: 40px;
     }
     
-    /* Контент справа */
+    /* Контент справа від лінії */
     .event-item.right {
       align-self: flex-end;
       text-align: left;
@@ -508,13 +507,13 @@
       font-weight: 500;
     }
     
-    /* Клас для анімації */
+    /* Клас для анімації появи */
     .event-item.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Адаптивність для мобільних */
+    /* Адаптивність для мобільних пристроїв */
     @media (max-width: 768px) {
       .events-title { font-size: 32px; margin-bottom: 60px; }
       
@@ -537,36 +536,19 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const observerOptions = {
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver((entries) => {
+      // ================== EVENTS FADE IN ON SCROLL ==================
+      const eventItems = document.querySelectorAll('.event-item');
+      const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+          if(entry.isIntersecting){
+            entry.target.classList.add('show'); // додаємо клас, щоб елемент з’явився
+            observer.unobserve(entry.target); // один раз показати
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.1 });
 
-      const eventItems = document.querySelectorAll('.event-item');
       eventItems.forEach(item => observer.observe(item));
     });
-  </script>
-</section>
-    
-    // ================== EVENTS FADE IN ON SCROLL ==================
-    const eventItems = document.querySelectorAll('.event-item');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show'); // додаємо клас, щоб елемент з’явився
-          observer.unobserve(entry.target); // один раз показати
-        }
-      });
-    }, { threshold: 0.1 });
-
-    eventItems.forEach(item => observer.observe(item));
   </script>
 </section>
 
