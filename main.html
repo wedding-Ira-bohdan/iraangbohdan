@@ -541,29 +541,17 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Знаходимо контейнер з картинками
       const palette = document.getElementById('palette-container');
-
-      // Налаштовуємо "спостерігача"
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-          // Якщо блок з'явився на екрані
           if (entry.isIntersecting) {
-            // Додаємо клас, який запускає анімацію
             entry.target.classList.add('is-visible');
-            // Припиняємо спостереження, щоб анімація не програвалася повторно при скролі туди-сюди
             observer.unobserve(entry.target);
           }
         });
-      }, {
-        // threshold: 0.3 означає, що анімація почнеться, коли 30% блоку буде видно на екрані
-        threshold: 0.3 
-      });
+      }, { threshold: 0.3 });
 
-      // Запускаємо спостереження за нашим блоком
-      if (palette) {
-        observer.observe(palette);
-      }
+      if (palette) observer.observe(palette);
     });
   </script>
 
@@ -583,7 +571,7 @@
       padding: 100px 0;
       text-align: center;
       color: #2B160E;
-      overflow: hidden; /* Запобігає появі горизонтального скролу під час анімації */
+      overflow: hidden;
     }
     .dress-title { 
       font-family: 'Playfair Display', serif; 
@@ -613,7 +601,6 @@
       gap: 15px; 
       flex-wrap: wrap; 
       margin-bottom: 30px; 
-      /* Додано відносне позиціонування, щоб translate працював відцентровано */
       position: relative; 
     }
     
@@ -625,14 +612,12 @@
       border: 1px solid rgba(0,0,0,0.05); 
       box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
       flex-shrink: 0;
-      
-      /* За замовчуванням прозорі */
       opacity: 0; 
       
-      /* Налаштування анімації: довший час, cubic-bezier для плавності */
-      animation-duration: 4s; /* Загальний час анімації */
-      animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); /* Плавне гальмування в кінці */
-      animation-fill-mode: forwards; /* Залишатись у фінальному стані після закінчення */
+      /* Загальний час анімації */
+      animation-duration: 4s; 
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); /* Легка "пружинистість" під час кочення */
+      animation-fill-mode: forwards; 
     }
     
     .color-item img { 
@@ -642,59 +627,56 @@
       display: block; 
     }
 
-    /* === Специфічні анімації збирання -> розлітання для кожного кола === */
-    /* Ширина 70px + gap 15px = крок 85px. Центр — це 3-й елемент */
-
-    /* Елементи збираються і розлітаються по черзі (0.2s затримки між кожним) */
+    /* === Анімація ПЕРЕКОЧУВАННЯ (збирання в центрі -> розлітання) === */
     
-    /* Кіло 1: збирається першим, розлітається першим */
-    .is-visible .item-1 { animation-name: gatherScatter_1; animation-delay: 0.2s; }
-    @keyframes gatherScatter_1 {
-      0% { transform: translate(0, 0) scale(0); opacity: 0; }
-      15% { transform: translate(170px, 0) scale(1); opacity: 1; } /* Збирається в центрі (stack) */
-      50% { transform: translate(170px, 0) scale(1); opacity: 1; } /* Пауза в центрі */
-      65% { transform: translate(0, 0) scale(1); opacity: 1; } /* Розлітається на місце */
-      100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    /* Коло 1 (ліве): котиться праворуч до центру (+170px), крутиться за годинниковою (360deg) */
+    .is-visible .item-1 { animation-name: roll_1; animation-delay: 0.2s; }
+    @keyframes roll_1 {
+      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+      20% { transform: translate(170px, 0) scale(1) rotate(360deg); opacity: 1; }
+      50% { transform: translate(170px, 0) scale(1) rotate(360deg); opacity: 1; }
+      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Кіло 2: збирається другим, розлітається другим */
-    .is-visible .item-2 { animation-name: gatherScatter_2; animation-delay: 0.4s; }
-    @keyframes gatherScatter_2 {
-      0% { transform: translate(0, 0) scale(0); opacity: 0; }
-      15% { transform: translate(85px, 0) scale(1); opacity: 1; }
-      50% { transform: translate(85px, 0) scale(1); opacity: 1; }
-      65% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    /* Коло 2: котиться праворуч до центру (+85px) */
+    .is-visible .item-2 { animation-name: roll_2; animation-delay: 0.4s; }
+    @keyframes roll_2 {
+      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+      20% { transform: translate(85px, 0) scale(1) rotate(360deg); opacity: 1; }
+      50% { transform: translate(85px, 0) scale(1) rotate(360deg); opacity: 1; }
+      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Кіло 3 (Центр): збирається третім, розлітається третім */
-    .is-visible .item-3 { animation-name: gatherScatter_3; animation-delay: 0.6s; }
-    @keyframes gatherScatter_3 {
-      0% { transform: translate(0, 0) scale(0); opacity: 0; }
-      15% { transform: translate(0, 0) scale(1); opacity: 1; }
-      50% { transform: translate(0, 0) scale(1); opacity: 1; }
-      65% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    /* Коло 3 (Центр): ефектно прокручується на місці */
+    .is-visible .item-3 { animation-name: roll_3; animation-delay: 0.6s; }
+    @keyframes roll_3 {
+      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+      20% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 1; }
+      50% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 1; }
+      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Кіло 4: збирається четвертим, розлітається четвертим */
-    .is-visible .item-4 { animation-name: gatherScatter_4; animation-delay: 0.8s; }
-    @keyframes gatherScatter_4 {
-      0% { transform: translate(0, 0) scale(0); opacity: 0; }
-      15% { transform: translate(-85px, 0) scale(1); opacity: 1; }
-      50% { transform: translate(-85px, 0) scale(1); opacity: 1; }
-      65% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    /* Коло 4: котиться ліворуч до центру (-85px), крутиться проти годинникової (-360deg) */
+    .is-visible .item-4 { animation-name: roll_4; animation-delay: 0.8s; }
+    @keyframes roll_4 {
+      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+      20% { transform: translate(-85px, 0) scale(1) rotate(-360deg); opacity: 1; }
+      50% { transform: translate(-85px, 0) scale(1) rotate(-360deg); opacity: 1; }
+      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     }
 
-    /* Кіло 5: збирається п'ятим, розлітається п'ятим */
-    .is-visible .item-5 { animation-name: gatherScatter_5; animation-delay: 1.0s; }
-    @keyframes gatherScatter_5 {
-      0% { transform: translate(0, 0) scale(0); opacity: 0; }
-      15% { transform: translate(-170px, 0) scale(1); opacity: 1; }
-      50% { transform: translate(-170px, 0) scale(1); opacity: 1; }
-      65% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    /* Коло 5 (праве): котиться ліворуч до центру (-170px) */
+    .is-visible .item-5 { animation-name: roll_5; animation-delay: 1.0s; }
+    @keyframes roll_5 {
+      0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+      20% { transform: translate(-170px, 0) scale(1) rotate(-360deg); opacity: 1; }
+      50% { transform: translate(-170px, 0) scale(1) rotate(-360deg); opacity: 1; }
+      75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     }
 
     /* === Адаптивність для мобільних === */
@@ -702,34 +684,33 @@
       .dress-title { font-size: 32px; }
       .color-item { width: 60px; height: 60px; }
       
-      /* Перерахунок відстані для менших кіл (60px + 15px gap = 75px крок) */
-      @keyframes gatherScatter_1 {
-        0% { transform: translate(0, 0) scale(0); opacity: 0; }
-        15% { transform: translate(150px, 0) scale(1); opacity: 1; }
-        50% { transform: translate(150px, 0) scale(1); opacity: 1; }
-        65% { transform: translate(0, 0) scale(1); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      @keyframes roll_1 {
+        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+        20% { transform: translate(150px, 0) scale(1) rotate(360deg); opacity: 1; }
+        50% { transform: translate(150px, 0) scale(1) rotate(360deg); opacity: 1; }
+        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes gatherScatter_2 {
-        0% { transform: translate(0, 0) scale(0); opacity: 0; }
-        15% { transform: translate(75px, 0) scale(1); opacity: 1; }
-        50% { transform: translate(75px, 0) scale(1); opacity: 1; }
-        65% { transform: translate(0, 0) scale(1); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      @keyframes roll_2 {
+        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+        20% { transform: translate(75px, 0) scale(1) rotate(360deg); opacity: 1; }
+        50% { transform: translate(75px, 0) scale(1) rotate(360deg); opacity: 1; }
+        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes gatherScatter_4 {
-        0% { transform: translate(0, 0) scale(0); opacity: 0; }
-        15% { transform: translate(-75px, 0) scale(1); opacity: 1; }
-        50% { transform: translate(-75px, 0) scale(1); opacity: 1; }
-        65% { transform: translate(0, 0) scale(1); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      @keyframes roll_4 {
+        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+        20% { transform: translate(-75px, 0) scale(1) rotate(-360deg); opacity: 1; }
+        50% { transform: translate(-75px, 0) scale(1) rotate(-360deg); opacity: 1; }
+        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
       }
-      @keyframes gatherScatter_5 {
-        0% { transform: translate(0, 0) scale(0); opacity: 0; }
-        15% { transform: translate(-150px, 0) scale(1); opacity: 1; }
-        50% { transform: translate(-150px, 0) scale(1); opacity: 1; }
-        65% { transform: translate(0, 0) scale(1); opacity: 1; }
-        100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      @keyframes roll_5 {
+        0% { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+        20% { transform: translate(-150px, 0) scale(1) rotate(-360deg); opacity: 1; }
+        50% { transform: translate(-150px, 0) scale(1) rotate(-360deg); opacity: 1; }
+        75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
       }
     }
   </style>
