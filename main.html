@@ -906,7 +906,7 @@
   <div class="celebration-text-block">
     <p class="celebration-text-top">Святкуйте з нами</p>
     <p class="celebration-text-bottom">
-      Чекаємо на зворотній зв`язок <strong>до 30 березня</strong>
+      Чекаємо на зворотній зв`язок <strong></strong>
     </p>
   </div>
   
@@ -941,7 +941,7 @@
   z-index: 2;
   padding: 35px 50px;
   border-radius: 16px;
-  /* фон видалено */
+  background: rgba(0,0,0,0.25); /* легке напівпрозоре тло */
   color: #fff;
   text-align: center;
   max-width: 90%;
@@ -956,7 +956,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   letter-spacing: 3px;
-  text-shadow: 0 3px 12px rgba(0,0,0,0.8);
+  text-shadow: 0 3px 15px rgba(0,0,0,0.8);
 }
 
 /* підзаголовок */
@@ -964,20 +964,18 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 26px;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
 }
 
 /* адаптив */
 @media (max-width: 1024px) {
   .celebration-text-top { font-size: 50px; }
   .celebration-text-bottom { font-size: 22px; }
-  .celebration-text-block { transform: translateY(1.5cm); }
 }
 
 @media (max-width: 768px) {
   .celebration-text-block { 
     padding: 25px 30px;
-    transform: translateY(1cm);
   }
   .celebration-text-top { font-size: 38px; letter-spacing: 2px; }
   .celebration-text-bottom { font-size: 18px; }
@@ -986,7 +984,6 @@
 @media (max-width: 480px) {
   .celebration-text-block { 
     padding: 15px 20px;
-    transform: translateY(0.5cm);
   }
   .celebration-text-top { font-size: 28px; letter-spacing: 1px; }
   .celebration-text-bottom { font-size: 16px; }
