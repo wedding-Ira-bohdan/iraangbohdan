@@ -899,7 +899,6 @@
 </body>
   
 <!-- ================== CELEBRATION INVITE ================== -->
-
 <section class="celebration-invite">
 
   <div class="celebration-text-block">
@@ -925,52 +924,61 @@
   overflow: hidden;
 }
 
-/* 🔥 затемнення всього фону (без круга!) */
+/* затемнення */
 .celebration-invite::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* регулюй 0.25–0.5 */
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
-/* текст поверх затемнення */
+/* блок тексту */
 .celebration-text-block {
   position: relative;
   z-index: 2;
   padding: 25px 40px;
   border-radius: 14px;
-  background: transparent; /* без чорного блоку */
+  background: transparent;
   color: #fff;
   text-align: center;
+
+  transform: translateY(-110px); /* 🔥 підняли ~3 см */
 }
 
-/* текст */
+/* великий заголовок */
 .celebration-text-top {
   font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-size: 48px; /* 🔥 було 36 */
   font-weight: 600;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
 
+/* підзаголовок */
 .celebration-text-bottom {
   font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: 22px; /* 🔥 було 18 */
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
 
 /* адаптив */
 @media (max-width: 768px) {
-  .celebration-text-block { padding: 18px 30px; }
-  .celebration-text-top { font-size: 28px; }
-  .celebration-text-bottom { font-size: 16px; }
+  .celebration-text-block { 
+    padding: 18px 30px;
+    transform: translateY(-80px); /* трохи менше підняття */
+  }
+  .celebration-text-top { font-size: 34px; }
+  .celebration-text-bottom { font-size: 18px; }
 }
 
 @media (max-width: 480px) {
-  .celebration-text-block { padding: 15px 20px; }
-  .celebration-text-top { font-size: 24px; }
-  .celebration-text-bottom { font-size: 14px; }
+  .celebration-text-block { 
+    padding: 15px 20px;
+    transform: translateY(-60px);
+  }
+  .celebration-text-top { font-size: 28px; }
+  .celebration-text-bottom { font-size: 16px; }
 }
 </style>
