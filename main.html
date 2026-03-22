@@ -734,12 +734,7 @@
   </style>
 </section>
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Локації</title>
+<!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
 
 <style>
   body {
@@ -748,70 +743,66 @@
     background-color: #f4ece4;
   }
 
-  /* ===== Загальна секція локацій ===== */
   .location-section {
-    position: relative; /* для напівпрозорого шару */
-    padding: 120px 20px;
+    background-color: #f4ece4;
+    padding: 80px 20px;
     text-align: center;
-    color: #ffffff;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .location-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.35); /* півпрозорий шар для читабельності тексту */
-    z-index: 0;
   }
 
   .location-container {
     max-width: 900px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1; /* щоб текст був поверх шару */
   }
 
-  /* ===== Заголовки ===== */
+  /* ===== Заголовки під Dress Code ===== */
   .location-title {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
     font-weight: 500;
-    font-style: italic;
+    font-style: italic; /* курсив тільки для тексту */
     margin-bottom: 30px;
     text-align: center;
   }
 
   .location-section.church .location-title {
-    color: #ffe5d9;
+    color: #6b5c52;
   }
 
   .location-section.hotel .location-title {
-    color: #fff2e6;
+    color: #4a4038;
   }
 
+  /* ===== Смайлик без нахилу ===== */
   .location-icon {
     font-size: 32px;
     margin-left: 10px;
+    display: inline-block;
+    font-style: normal; /* прямий, не нахиляється */
+    vertical-align: middle;
   }
 
   .location-name {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #4a4038;
   }
 
   .location-address {
     font-size: 18px;
+    color: #7a6a60;
     margin-bottom: 25px;
   }
 
-  /* ===== Кнопка з пульсацією ===== */
+  .location-image {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 18px;
+    margin: 0 auto 30px;
+    display: block;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+
   .map-button {
     display: inline-block;
     padding: 14px 36px;
@@ -834,28 +825,16 @@
   }
 
   @keyframes pulse {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    50% {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    100% {
-      transform: scale(1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
   }
 
-  /* ===== Рвана лінія між секціями ===== */
   .ripped-white-line {
     width: 100%;
-    height: 60px;
-    position: relative;
-    margin-top: -30px; /* заходить на верхню секцію */
-    margin-bottom: -30px; /* заходить на нижню секцію */
-    z-index: 2; /* поверх фонів */
+    height: 50px;
+    background-color: #f4ece4;
+    overflow: hidden;
   }
 
   .ripped-white-line svg {
@@ -864,42 +843,24 @@
     height: 100%;
   }
 
-  /* ===== Фони секцій ===== */
-  .location-section.church {
-    background-image: url('images/photo15.jpg');
-  }
-
-  .location-section.hotel {
-    background-image: url('images/photo16.jpg');
-  }
-
-  /* ===== Мобільна адаптація ===== */
   @media (max-width: 600px) {
-    .location-title {
-      font-size: 32px;
-    }
-    .ripped-white-line {
-      height: 40px;
-      margin-top: -20px;
-      margin-bottom: -20px;
-    }
+    .location-title { font-size: 32px; }
+    .ripped-white-line { height: 40px; }
   }
-
 </style>
-</head>
-<body>
 
+<body>
   <!-- ================== CHURCH LOCATION ================== -->
   <section class="location-section church">
     <div class="location-container">
       <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
       <p class="location-name">Церква святих апостолів Петра і Павла</p>
       <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
       <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
     </div>
   </section>
 
-  <!-- ===== РВАНА ЛІНІЯ ===== -->
   <div class="ripped-white-line">
     <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
       <path d="
@@ -931,12 +892,11 @@
       <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
       <p class="location-name">Готельно-ресторанний комплекс «Айвенго»</p>
       <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
       <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
     </div>
   </section>
-
 </body>
-</html>
   
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite">
