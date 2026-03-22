@@ -389,144 +389,192 @@
 <!-- ================== EVENT ================== -->
 
 
-<section class="events-section" style="background-image: url('images/photo6.jpg');">
-  <div class="events-overlay"></div>
-  <div class="events-content">
-    <h2 class="events-title">Програма дня</h2>
-    
-    <div class="event-item left">
-      <span class="event-time">10:30</span>
-      <span class="event-name">Вінчання</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">13:30</span>
-      <span class="event-name">Збір гостей</span>
-    </div>
-    
-    <div class="event-item left">
-      <span class="event-time">16:00</span>
-      <span class="event-name">Перший танець</span>
-    </div>
-    
-    <div class="event-item right">
-      <span class="event-time">23:00</span>
-      <span class="event-name">Завершення свята</span>
-    </div>
-  </div>
-
-  <style>
-    .events-section { 
-      position: relative; 
-      background-size: cover; 
-      background-position: center; 
-      padding: 80px 20px; 
-      color: #fff; 
-      font-family: 'Montserrat', sans-serif; 
-      overflow: hidden; 
-    }
-    .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
-    .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
-    
-    /* Центральна лінія */
-    .events-content::before {
-      content: '';
-      position: absolute;
-      left: 50% !important;
-      transform: translateX(-50%);
-      top: 100px;
-      bottom: 0;
-      width: 1px;
-      background: rgba(255,255,255,0.8);
-      z-index: 1;
-    }
-    
-    .events-title { font-family: 'Playfair Display', serif; font-size: 40px; margin-bottom: 80px; text-align: center; font-style: italic; position: relative; z-index: 2; }
-    
-    .event-item {
-      position: relative;
-      width: 50%;
-      margin-bottom: 70px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-      z-index: 2;
-    }
-
-    /* ПЕРЛИНКИ (Фото) на лінії */
-    .event-item::after {
-      content: '';
-      position: absolute;
-      /* ОНОВЛЕНО: Опустили на 2мм (було top: 5px) */
-      top: 12px; 
-      width: 24px;
-      height: 24px;
-      background-image: url('images/photo14.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-      border: none !important;
-      z-index: 5;
-    }
-
-    /* Прив'язка до центральної лінії */
-    .event-item.left::after { right: -12px; } 
-    .event-item.right::after { left: -12px; }
-
-    .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
-    .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
-    
-    .event-time { display: block; font-size: 20px; letter-spacing: 1px; margin-bottom: 5px; font-weight: 300; }
-    .event-name { display: block; font-size: 18px; font-weight: 500; }
-    
-    .event-item.show { opacity: 1; transform: translateY(0); }
-
-    /* Мобільна адаптація */
-    @media (max-width: 768px) {
-      .events-section { 
-        padding-top: 50px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px; 
-      }
-      .events-title { font-size: 32px; margin-bottom: 50px; }
-      
-      .events-content::before { 
-        top: 80px; 
-        bottom: 40px; 
-      }
-      
-      .event-item { margin-bottom: 50px; }
-      
-      /* Мобільні перлинки */
-      .event-item::after { 
-        width: 20px; 
-        height: 20px; 
-        /* ОНОВЛЕНО: Опустили на 2мм (було top: 4px) */
-        top: 11px; 
-      }
-      
-      .event-item.left::after { right: -10px; }
-      .event-item.right::after { left: -10px; }
-      
-      .event-item.left { padding-right: 30px; }
-      .event-item.right { padding-left: 30px; }
-      
-      .event-time { font-size: 18px; }
-      .event-name { font-size: 16px; }
-    }
-  </style>
-
+<section class="dress-code-section">
+  <div class="dress-title">Dress Code</div>
+  <div class="divider"></div>
+  <p class="dress-text">
+    Ми будемо дуже вдячні, якщо ви підтримаєте кольорову гаму нашого свята у своїх образах. 
+    Це допоможе створити особливу гармонію нашої події.
+  </p>
+  
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver(entries => {
+    document.addEventListener("DOMContentLoaded", function() {
+      const palette = document.getElementById('palette-container');
+      
+      // Налаштування спостерігача
+      const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-          if(entry.isIntersecting){ entry.target.classList.add('show'); }
+          // Коли блок з'являється на екрані
+          if (entry.isIntersecting) {
+            // Додаємо клас, який запускає анімацію викочування
+            entry.target.classList.add('is-visible');
+            // Припиняємо спостереження
+            observer.unobserve(entry.target);
+          }
         });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.event-item').forEach(item => observer.observe(item));
+      }, { 
+        // Анімація почнеться, коли 30% блоку буде видно
+        threshold: 0.3 
+      });
+
+      if (palette) {
+        observer.observe(palette);
+      }
     });
   </script>
+
+  <div class="palette" id="palette-container">
+    <div class="color-item item-1"><img src="images/photo1.jpg" alt="Фото 1"></div>
+    <div class="color-item item-2"><img src="images/photo2.jpg" alt="Фото 2"></div>
+    <div class="color-item item-3"><img src="images/photo3.jpg" alt="Фото 3"></div>
+    <div class="color-item item-4"><img src="images/photo4.jpg" alt="Фото 4"></div>
+    <div class="color-item item-5"><img src="images/photo5.jpg" alt="Фото 5"></div>
+  </div>
+  
+  <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Стиль: Elegant</p>
+
+  <style>
+    .dress-code-section {
+      background: #E0DDD5;
+      padding: 100px 0;
+      text-align: center;
+      color: #2B160E;
+      /* overflow: hidden важливий, бо кола зсунуті вліво до початку анімації */
+      overflow: hidden; 
+    }
+    .dress-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 38px; 
+      font-weight: 500; 
+      margin-bottom: 20px; 
+      font-style: italic; 
+    }
+    .divider { 
+      width: 50px; 
+      height: 1px; 
+      background: #2B160E; 
+      margin: 0 auto 30px; 
+      opacity: 0.3; 
+    }
+    .dress-text { 
+      font-size: 15px; 
+      line-height: 1.8; 
+      max-width: 600px; 
+      margin: 0 auto 40px; 
+      font-weight: 300; 
+      padding: 0 20px; 
+    }
+    .palette { 
+      display: flex; 
+      /* Вирівнювання по лівому краю, щоб стопка формувалася правильно */
+      justify-content: flex-start; 
+      /* Центрування самої флекс-сітки на сторінці */
+      max-width: 410px; /* 5*70px + 4*15px gap */
+      margin: 0 auto 30px;
+      gap: 15px; 
+      position: relative; 
+    }
+    
+    .color-item { 
+      width: 70px; 
+      height: 70px; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      border: 1px solid rgba(0,0,0,0.05); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+      flex-shrink: 0;
+      
+      /* НОВЕ: Вони відразу видимі */
+      opacity: 1; 
+      transform: scale(1);
+      
+      /* Налаштування анімації */
+      animation-duration: 2s; /* Швидше викочування */
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); /* Ефект пружини в кінці */
+      animation-fill-mode: forwards; 
+    }
+    
+    .color-item img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; 
+    }
+
+    /* === ПОЧАТКОВИЙ СТАН (СТОПКА ПІД ПЕРШИМ ФОТО) === */
+    /* Ширина 70px + gap 15px = крок 85px. */
+
+    .item-1 { z-index: 5; /* Найвище в стопці */ }
+    
+    /* Зсуваємо кола вліво, щоб вони стали точно під item-1 */
+    .item-2 { transform: translateX(-85px); z-index: 4; }
+    .item-3 { transform: translateX(-170px); z-index: 3; }
+    .item-4 { transform: translateX(-255px); z-index: 2; }
+    .item-5 { transform: translateX(-340px); z-index: 1; /* Найнижче */ }
+
+    /* === АНІМАЦІЯ ВИКОЧУВАННЯ (запускається класом .is-visible) === */
+    
+    /* Перше фото просто залишається */
+    .is-visible .item-1 { animation: none; transform: translateX(0); }
+
+    /* Кола викочуються на свої нульові позиції у флекс-сітці */
+    .is-visible .item-2 { animation-name: rollout_2; animation-delay: 0.1s; }
+    @keyframes rollout_2 {
+      0% { transform: translateX(-85px) rotate(-180deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    .is-visible .item-3 { animation-name: rollout_3; animation-delay: 0.2s; }
+    @keyframes rollout_3 {
+      0% { transform: translateX(-170px) rotate(-360deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    .is-visible .item-4 { animation-name: rollout_4; animation-delay: 0.3s; }
+    @keyframes rollout_4 {
+      0% { transform: translateX(-255px) rotate(-540deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    .is-visible .item-5 { animation-name: rollout_5; animation-delay: 0.4s; }
+    @keyframes rollout_5 {
+      0% { transform: translateX(-340px) rotate(-720deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    /* === Адаптивність для мобільних === */
+    @media (max-width: 768px) {
+      .dress-title { font-size: 32px; }
+      .color-item { width: 60px; height: 60px; }
+      .palette { 
+        max-width: 360px; /* 5*60px + 4*15px gap */
+      }
+      
+      /* Перерахунок зсуву для стопки на мобільних (60px + 15px gap = 75px крок) */
+      .item-2 { transform: translateX(-75px); }
+      .item-3 { transform: translateX(-150px); }
+      .item-4 { transform: translateX(-225px); }
+      .item-5 { transform: translateX(-300px); }
+      
+      /* Мобільні анімації викочування */
+      @keyframes rollout_2 {
+        0% { transform: translateX(-75px) rotate(-180deg); }
+        100% { transform: translateX(0) rotate(0deg); }
+      }
+      @keyframes rollout_3 {
+        0% { transform: translateX(-150px) rotate(-360deg); }
+        100% { transform: translateX(0) rotate(0deg); }
+      }
+      @keyframes rollout_4 {
+        0% { transform: translateX(-225px) rotate(-540deg); }
+        100% { transform: translateX(0) rotate(0deg); }
+      }
+      @keyframes rollout_5 {
+        0% { transform: translateX(-300px) rotate(-720deg); }
+        100% { transform: translateX(0) rotate(0deg); }
+      }
+    }
+  </style>
 </section>
 
 <!-- ================== DRESS CODE SECTION ================== -->
