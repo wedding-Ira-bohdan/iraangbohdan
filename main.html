@@ -736,12 +736,6 @@
 
 <!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Локації Вінчання та Святкування</title>
 <style>
   body {
     margin: 0;
@@ -753,7 +747,6 @@
     background-color: #f4ece4;
     padding: 80px 20px;
     text-align: center;
-    position: relative;
   }
 
   .location-container {
@@ -761,23 +754,30 @@
     margin: 0 auto;
   }
 
+  /* ===== Заголовки під Dress Code ===== */
   .location-title {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
     font-weight: 500;
-    font-style: italic;
+    font-style: italic; /* курсив тільки для тексту */
     margin-bottom: 30px;
     text-align: center;
   }
 
-  .location-section.church .location-title { color: #6b5c52; }
-  .location-section.hotel .location-title { color: #4a4038; }
+  .location-section.church .location-title {
+    color: #6b5c52;
+  }
 
+  .location-section.hotel .location-title {
+    color: #4a4038;
+  }
+
+  /* ===== Смайлик без нахилу ===== */
   .location-icon {
     font-size: 32px;
     margin-left: 10px;
     display: inline-block;
-    font-style: normal;
+    font-style: normal; /* прямий, не нахиляється */
     vertical-align: middle;
   }
 
@@ -811,7 +811,7 @@
     font-size: 16px;
     text-decoration: none;
     border-radius: 40px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
     animation: pulse 2s infinite;
@@ -833,6 +833,7 @@
   .ripped-white-line {
     width: 100%;
     height: 50px;
+    background-color: #f4ece4;
     overflow: hidden;
   }
 
@@ -842,63 +843,60 @@
     height: 100%;
   }
 
-  .ripped-white-line.top { margin-bottom: -30px; }
-  .ripped-white-line.middle { margin: -25px 0; }
-  .ripped-white-line.bottom { margin-top: -30px; }
-
   @media (max-width: 600px) {
     .location-title { font-size: 32px; }
     .ripped-white-line { height: 40px; }
   }
 </style>
-</head>
+
 <body>
+  <!-- ================== CHURCH LOCATION ================== -->
+  <section class="location-section church">
+    <div class="location-container">
+      <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
+      <p class="location-name">ЦЕРКВА СВЯТИХ АПОСТОЛІВ ПЕТРА І ПАВЛА</p>
+      <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
+      <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+    </div>
+  </section>
 
-<!-- ================== TOP RIP ================== -->
-<div class="ripped-white-line top">
-  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path d="M0,40 C80,10 150,70 220,30 C300,60 360,5 420,40 C480,70 540,20 600,50 C660,10 720,60 780,30 C840,70 900,20 1000,40 L1000,0 L0,0 Z" fill="#ffffff"/>
-  </svg>
-</div>
-
-<!-- ================== CHURCH LOCATION ================== -->
-<section class="location-section church">
-  <div class="location-container">
-    <h2 class="location-title">Вінчання <span class="location-icon">⛪</span></h2>
-    <p class="location-name">ЦЕРКВА СВЯТИХ АПОСТОЛІВ ПЕТРА І ПАВЛА</p>
-    <p class="location-address">Адреса: вулиця Паркова, 21, смт Клевань, Рівненська область</p>
-    <img src="images/photo9.jpg" alt="Церква Петра і Павла" class="location-image">
-    <a href="https://www.google.com/maps/search/?api=1&query=Церква+Петра+і+Павла+ПЦУ+Клевань" target="_blank" rel="noopener" class="map-button">Місце проведення церемонії</a>
+  <div class="ripped-white-line">
+    <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+      <path d="
+        M0,38
+        C60,5 90,65 140,32
+        C190,60 230,10 280,40
+        C310,20 360,75 420,35
+        C470,5 520,55 560,30
+        C610,70 650,15 700,45
+        C760,20 820,80 860,35
+        C910,15 960,60 1000,40
+        L1000,85
+        C950,110 920,45 870,80
+        C820,50 780,115 720,70
+        C680,105 630,40 590,95
+        C540,45 500,115 450,70
+        C410,105 360,40 310,95
+        C260,50 220,115 170,70
+        C120,105 80,45 40,80
+        C20,90 0,70 0,80
+        Z
+      " fill="#ffffff"/>
+    </svg>
   </div>
-</section>
 
-<!-- ================== MIDDLE RIP ================== -->
-<div class="ripped-white-line middle">
-  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path d="M0,38 C60,5 90,65 140,32 C190,60 230,10 280,40 C310,20 360,75 420,35 C470,5 520,55 560,30 C610,70 650,15 700,45 C760,20 820,80 860,35 C910,15 960,60 1000,40 L1000,85 C950,110 920,45 870,80 C820,50 780,115 720,70 C680,105 630,40 590,95 C540,45 500,115 450,70 C410,105 360,40 310,95 C260,50 220,115 170,70 C120,105 80,45 40,80 C20,90 0,70 0,80 Z" fill="#ffffff"/>
-  </svg>
-</div>
-
-<!-- ================== HOTEL LOCATION ================== -->
-<section class="location-section hotel">
-  <div class="location-container">
-    <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
-    <p class="location-name">ГОТЕЛЬНО-РЕСТОРАННИЙ КОМПЛЕКС «АЙВЕНГО»</p>
-    <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
-    <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
-    <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
-  </div>
-</section>
-
-<!-- ================== BOTTOM RIP ================== -->
-<div class="ripped-white-line bottom">
-  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path d="M0,0 L1000,0 L1000,40 C900,10 840,70 780,30 C720,60 660,10 600,50 C540,20 480,70 420,40 C360,5 300,60 220,30 C150,70 80,10 0,40 Z" fill="#ffffff"/>
-  </svg>
-</div>
-
+  <!-- ================== HOTEL LOCATION ================== -->
+  <section class="location-section hotel">
+    <div class="location-container">
+      <h2 class="location-title">Локація <span class="location-icon">🏛️</span></h2>
+      <p class="location-name">ГОТЕЛЬНО-РЕСТОРАННИЙ КОМПЛЕКС «АЙВЕНГО»</p>
+      <p class="location-address">Адреса: вулиця Зелена, 53, Колоденка, Рівненська область</p>
+      <img src="images/photo10.jpg" alt="Готель Айвенго" class="location-image">
+      <a href="https://www.google.com/maps/search/?api=1&query=Готель+Айвенго,+Колоденка" target="_blank" rel="noopener" class="map-button">Місце проведення святкування</a>
+    </div>
+  </section>
 </body>
-</html>
   
 <!-- ================== CELEBRATION INVITE ================== -->
 <section class="celebration-invite">
