@@ -392,12 +392,36 @@
   <div class="events-overlay"></div>
   <div class="events-content">
     <h2 class="events-title">Програма дня</h2>
-    <div class="event-item right"><span class="event-time">10:30</span><span class="event-name">Початок вінчальної церемонії</span></div>
-    <div class="event-item left"><span class="event-time">13:30</span><span class="event-name">Збвр гостей</span></div>
-    <div class="event-item right"><span class="event-time">14:30</span><span class="event-name">Початок банкету</span></div>
-    <div class="event-item left"><span class="event-time">16:00</span><span class="event-name">Перший танець</span></div>
-    <div class="event-item right"><span class="event-time">20:00</span><span class="event-name">Весільний торт</span></div>
-    <div class="event-item left"><span class="event-time">22:00</span><span class="event-name">Завершення свята</span></div>
+    
+    <div class="event-item right">
+      <span class="event-time">10:30</span>
+      <span class="event-name">Початок вінчальної церемонії</span>
+    </div>
+    
+    <div class="event-item left">
+      <span class="event-time">13:30</span>
+      <span class="event-name">Збвр гостей</span>
+    </div>
+    
+    <div class="event-item right">
+      <span class="event-time">14:30</span>
+      <span class="event-name">Початок банкету</span>
+    </div>
+    
+    <div class="event-item left">
+      <span class="event-time">16:00</span>
+      <span class="event-name">Перший танець</span>
+    </div>
+    
+    <div class="event-item right">
+      <span class="event-time">20:00</span>
+      <span class="event-name">Весільний торт</span>
+    </div>
+    
+    <div class="event-item left">
+      <span class="event-time">22:00</span>
+      <span class="event-name">Завершення свята</span>
+    </div>
   </div>
 
   <style>
@@ -405,20 +429,39 @@
       position: relative;
       background-size: cover;
       background-position: center;
-      padding: 120px 20px;
+      padding: 100px 20px;
       color: #fff;
+      overflow: hidden;
+      font-family: sans-serif;
     }
+    
     .events-overlay {
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.45);
     }
+    
     .events-content {
       position: relative;
       z-index: 2;
       max-width: 800px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
     }
+    
+    /* Біла лінія по центру */
+    .events-content::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 100px;
+      bottom: 0;
+      width: 1px;
+      background: white;
+      transform: translateX(-50%);
+    }
+    
     .events-title {
       font-family: 'Playfair Display', serif;
       font-size: 40px;
@@ -426,34 +469,91 @@
       text-align: center;
       font-style: italic;
     }
+    
     .event-item {
-      display: flex;
-      justify-content: flex-start;
-      gap: 25px;
-      margin-bottom: 50px;
-      font-size: 18px;
-      opacity: 0;               /* початково невидимі */
-      transform: translateY(30px); /* початкове зміщення вниз */
+      position: relative;
+      width: 50%;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
       transition: all 0.8s ease;
+      box-sizing: border-box;
     }
-    .event-item.left { justify-content: flex-start; text-align: left; }
-    .event-item.right { justify-content: flex-end; text-align: right; }
-    .event-time { letter-spacing: 2px; opacity: 0.8; }
-    .event-name { font-weight: 500; }
+    
+    /* Контент зліва */
+    .event-item.left {
+      align-self: flex-start;
+      text-align: right;
+      padding-right: 40px;
+    }
+    
+    /* Контент справа */
+    .event-item.right {
+      align-self: flex-end;
+      text-align: left;
+      padding-left: 40px;
+    }
+    
+    .event-time {
+      display: block;
+      font-size: 20px;
+      letter-spacing: 2px;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+    
+    .event-name {
+      display: block;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    /* Клас для анімації */
     .event-item.show {
-      opacity: 1;               /* при додаванні класу show – видно */
-      transform: translateY(0); /* повертаємо на своє місце */
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Адаптивність */
+    /* Адаптивність для мобільних */
     @media (max-width: 768px) {
-      .event-item { flex-direction: column; align-items: center; text-align: center; }
-      .event-item.right, .event-item.left { justify-content: center; }
       .events-title { font-size: 32px; margin-bottom: 60px; }
+      
+      .event-item {
+        margin-bottom: 40px;
+      }
+      
+      .event-item.left {
+        padding-right: 25px;
+      }
+      
+      .event-item.right {
+        padding-left: 25px;
+      }
+      
+      .event-time { font-size: 18px; }
+      .event-name { font-size: 16px; }
     }
   </style>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, observerOptions);
+
+      const eventItems = document.querySelectorAll('.event-item');
+      eventItems.forEach(item => observer.observe(item));
+    });
+  </script>
+</section>
     
     // ================== EVENTS FADE IN ON SCROLL ==================
     const eventItems = document.querySelectorAll('.event-item');
