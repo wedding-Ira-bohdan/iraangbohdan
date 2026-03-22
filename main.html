@@ -389,6 +389,9 @@
   
 <!-- ================== EVENT ================== -->
 
+<!-- ПІДКЛЮЧЕННЯ ШРИФТУ -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
   <div class="events-overlay"></div>
   <div class="events-content">
@@ -428,7 +431,6 @@
     .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
     .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
     
-    /* Центральна лінія */
     .events-content::before {
       content: '';
       position: absolute;
@@ -441,7 +443,15 @@
       z-index: 1;
     }
     
-    .events-title { font-family: 'Montserrat', sans-serif; font-size: 32px; margin-bottom: 80px; text-align: center; font-style: normal; position: relative; z-index: 2; }
+    .events-title { 
+      font-family: 'Great Vibes', cursive; 
+      font-size: 42px; 
+      margin-bottom: 80px; 
+      text-align: center; 
+      font-style: normal; 
+      position: relative; 
+      z-index: 2; 
+    }
     
     .event-item {
       position: relative;
@@ -453,7 +463,6 @@
       z-index: 2;
     }
 
-    /* ПЕРЛИНКИ (Фото) на лінії */
     .event-item::after {
       content: '';
       position: absolute;
@@ -468,7 +477,6 @@
       z-index: 5;
     }
 
-    /* Прив'язка до центральної лінії */
     .event-item.left::after { right: -12px; } 
     .event-item.right::after { left: -12px; }
 
@@ -480,7 +488,6 @@
     
     .event-item.show { opacity: 1; transform: translateY(0); }
 
-    /* Мобільна адаптація */
     @media (max-width: 768px) {
       .events-section { 
         padding-top: 50px;
@@ -488,7 +495,7 @@
         padding-right: 10px;
         padding-bottom: 10px; 
       }
-      .events-title { font-size: 26px; margin-bottom: 50px; }
+      .events-title { font-size: 32px; margin-bottom: 50px; }
       
       .events-content::before { 
         top: 80px; 
@@ -497,7 +504,6 @@
       
       .event-item { margin-bottom: 50px; }
       
-      /* Мобільні перлинки */
       .event-item::after { 
         width: 20px; 
         height: 20px; 
