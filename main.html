@@ -429,7 +429,7 @@
       position: relative;
       background-size: cover;
       background-position: center;
-      padding: 100px 20px;
+      padding: 75px 20px; /* Відступи для ПК (~2 см) */
       color: #fff;
       overflow: hidden;
     }
@@ -454,7 +454,7 @@
       content: '';
       position: absolute;
       left: 50%;
-      top: 100px; /* Початок лінії під заголовком */
+      top: 100px;
       bottom: 0;
       width: 1px;
       background: white;
@@ -479,11 +479,11 @@
       box-sizing: border-box;
     }
 
-    /* --- Додано: Стилі для кружечків --- */
+    /* Кружечки на лінії */
     .event-item::after {
       content: '';
       position: absolute;
-      top: 5px; /* Вирівнювання по висоті часу */
+      top: 5px;
       width: 12px;
       height: 12px;
       background-color: white;
@@ -491,28 +491,23 @@
       z-index: 3;
     }
     
-    /* Контент зліва від лінії */
     .event-item.left {
       align-self: flex-start;
       text-align: right;
       padding-right: 40px;
     }
-    /* Кружечок для лівого елемента (зміщено вправо до лінії) */
     .event-item.left::after {
-      right: -6px; /* половина ширини кружечка */
+      right: -6px;
     }
     
-    /* Контент справа від лінії */
     .event-item.right {
       align-self: flex-end;
       text-align: left;
       padding-left: 40px;
     }
-    /* Кружечок для правого елемента (зміщено вліво до лінії) */
     .event-item.right::after {
-      left: -6px; /* половина ширини кружечка */
+      left: -6px;
     }
-    /* ---------------------------------- */
     
     .event-time {
       display: block;
@@ -528,7 +523,6 @@
       font-weight: 500;
     }
     
-    /* Клас для анімації появи */
     .event-item.show {
       opacity: 1;
       transform: translateY(0);
@@ -536,7 +530,14 @@
 
     /* Адаптивність для мобільних пристроїв */
     @media (max-width: 768px) {
-      .events-title { font-size: 32px; margin-bottom: 60px; }
+      .events-section {
+        padding: 40px 20px; /* Зменшений фон для мобілки */
+      }
+
+      .events-title { 
+        font-size: 32px; 
+        margin-bottom: 40px; 
+      }
       
       .event-item {
         margin-bottom: 40px;
@@ -557,13 +558,12 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // ================== EVENTS FADE IN ON SCROLL ==================
       const eventItems = document.querySelectorAll('.event-item');
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
-            entry.target.classList.add('show'); // додаємо клас, щоб елемент з’явився
-            observer.unobserve(entry.target); // один раз показати
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.1 });
