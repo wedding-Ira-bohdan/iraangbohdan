@@ -442,6 +442,7 @@
   </div>
 
   <style>
+    /* ================== СЕКЦІЯ ================== */
     .events-section { 
       position: relative; 
       background-size: cover; 
@@ -453,7 +454,7 @@
     }
     .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
     .events-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
-    
+
     .events-content::before {
       content: '';
       position: absolute;
@@ -465,17 +466,21 @@
       background: rgba(255,255,255,0.8);
       z-index: 1;
     }
-    
+
+    /* ================== ЗАГОЛОВОК ================== */
     .events-title { 
-      font-family: 'Playfair Display', serif; 
-      font-size: 42px; 
-      margin-bottom: 80px; 
-      text-align: center; 
-      font-style: normal; 
+      font-family: 'Playfair Display', serif;  /* як у Dress Code */
+      font-size: 38px;                          /* як у Dress Code */
+      font-weight: 500;                         /* як у Dress Code */
+      font-style: italic;                       /* курсив як у Dress Code */
+      margin-bottom: 80px;                      /* відступ нижче заголовка */
+      text-align: center;                       /* вирівнювання по центру */
+      color: inherit;                           /* залишає поточний білий колір */
       position: relative; 
       z-index: 2; 
     }
-    
+
+    /* ================== ПОДІЇ ================== */
     .event-item {
       position: relative;
       width: 50%;
@@ -505,12 +510,13 @@
 
     .event-item.left { align-self: flex-start; text-align: right; padding-right: 45px; }
     .event-item.right { align-self: flex-end; text-align: left; padding-left: 45px; }
-    
+
     .event-time { display: block; font-size: 20px; letter-spacing: 1px; margin-bottom: 5px; font-weight: 300; }
     .event-name { display: block; font-size: 18px; font-weight: 500; }
-    
+
     .event-item.show { opacity: 1; transform: translateY(0); }
 
+    /* ================== АДАПТИВНІСТЬ ================== */
     @media (max-width: 768px) {
       .events-section { 
         padding-top: 50px;
