@@ -393,32 +393,32 @@
   <div class="events-content">
     <h2 class="events-title">Програма дня</h2>
     
-    <div class="event-item right">
+    <div class="event-item left">
       <span class="event-time">10:30</span>
-      <span class="event-name">Початок вінчальної церемонії</span>
+      <span class="event-name">Вінчання</span>
+    </div>
+    
+    <div class="event-item right">
+      <span class="event-time">13:30</span>
+      <span class="event-name">Збір гостей</span>
     </div>
     
     <div class="event-item left">
-      <span class="event-time">13:30</span>
-      <span class="event-name">Збвр гостей</span>
-    </div>
-    
-    <div class="event-item right">
       <span class="event-time">14:30</span>
       <span class="event-name">Початок банкету</span>
     </div>
     
-    <div class="event-item left">
+    <div class="event-item right">
       <span class="event-time">16:00</span>
       <span class="event-name">Перший танець</span>
     </div>
     
-    <div class="event-item right">
+    <div class="event-item left">
       <span class="event-time">20:00</span>
       <span class="event-name">Весільний торт</span>
     </div>
     
-    <div class="event-item left">
+    <div class="event-item right">
       <span class="event-time">22:00</span>
       <span class="event-name">Завершення свята</span>
     </div>
@@ -454,7 +454,7 @@
       content: '';
       position: absolute;
       left: 50%;
-      top: 100px;
+      top: 100px; /* Початок лінії під заголовком */
       bottom: 0;
       width: 1px;
       background: white;
@@ -478,12 +478,28 @@
       transition: all 0.8s ease;
       box-sizing: border-box;
     }
+
+    /* --- Додано: Стилі для кружечків --- */
+    .event-item::after {
+      content: '';
+      position: absolute;
+      top: 5px; /* Вирівнювання по висоті часу */
+      width: 12px;
+      height: 12px;
+      background-color: white;
+      border-radius: 50%;
+      z-index: 3;
+    }
     
     /* Контент зліва від лінії */
     .event-item.left {
       align-self: flex-start;
       text-align: right;
       padding-right: 40px;
+    }
+    /* Кружечок для лівого елемента (зміщено вправо до лінії) */
+    .event-item.left::after {
+      right: -6px; /* половина ширини кружечка */
     }
     
     /* Контент справа від лінії */
@@ -492,6 +508,11 @@
       text-align: left;
       padding-left: 40px;
     }
+    /* Кружечок для правого елемента (зміщено вліво до лінії) */
+    .event-item.right::after {
+      left: -6px; /* половина ширини кружечка */
+    }
+    /* ---------------------------------- */
     
     .event-time {
       display: block;
