@@ -745,20 +745,32 @@
 
 
 <style>
-    /* Основний блок календаря з твоїм фоном */
-    .wedding-calendar {
-        /* Додаємо фото і напівпрозорий білий фільтр для читабельності тексту (0.75 - це 75% непрозорості білого) */
-        background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('images/photo17.jpg');
-        background-size: cover; /* Фото розтягується на весь блок */
-        background-position: center; /* Фото центрується */
+    /* 1. Блок-обгортка: тут лежить твоє фото ПІД календарем */
+    .calendar-wrapper {
+        background-image: url('images/photo17.jpg');
+        background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
         
+        /* Відступи, щоб фото було видно навколо календаря */
+        padding: 60px 20px; 
+        
+        /* Центруємо календар всередині цього фону */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px; /* Якщо цей блок вставляється в інший контейнер, краї фото будуть закруглені */
+    }
+
+    /* 2. Сам календар: чистий, світлий, поверх фото */
+    .wedding-calendar {
+        background-color: #f6f3ef; /* Колір твого фону зі скріншота */
         padding: 30px 20px;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Трохи виразніша тінь */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Тінь, щоб календар гарно виділявся на фотографії */
         text-align: center;
         max-width: 300px;
-        margin: 0 auto;
+        width: 100%; /* Календар не вилізе за межі екрану на телефонах */
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         box-sizing: border-box;
     }
@@ -768,7 +780,7 @@
         margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 4px;
-        color: #333; /* Трохи темніший текст для кращого контрасту з фоном */
+        color: #555;
         font-weight: bold;
     }
 
@@ -778,7 +790,7 @@
         font-weight: normal;
         margin-bottom: 20px;
         font-size: 14px;
-        color: #555;
+        color: #777;
     }
 
     .wedding-calendar .days {
@@ -796,7 +808,7 @@
         font-size: 16px;
         position: relative;
         z-index: 1;
-        color: #222; /* Темніші цифри */
+        color: #333;
         margin: 0;
         padding: 0;
         line-height: 1; 
@@ -822,6 +834,7 @@
         animation: pulse-heart 2.0s infinite ease-in-out; 
     }
 
+    /* Прибираємо можливі артефакти або тіні з цифр */
     .wedding-calendar .days div::after {
         display: none;
     }
@@ -833,27 +846,25 @@
     }
 </style>
 
-<div class="wedding-calendar">
-    <div class="month">Липень 2026</div>
-    
-    <div class="weekdays">
-        <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
-    </div>
-    
-    <div class="days">
-        <div class="empty"></div>
-        <div class="empty"></div>
-        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-        <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
-        <div>13</div><div>14</div><div>15</div><div>16</div>
+<div class="calendar-wrapper">
+    <div class="wedding-calendar">
+        <div class="month">Липень 2026</div>
         
-        <div class="special-day">17</div>
+        <div class="weekdays">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
+        </div>
         
-        <div>18</div><div>19</div>
-        <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
-        <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
-    </div>
-</div>
+        <div class="days">
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+            <div>13</div><div>14</div><div>15</div><div>16</div>
+            
+            <div class="special-day">17</div>
+            
+            <div>18</div><div>19</div>
+            <div>20</div><div>2
 
 <!-- ================== CHURCH & HOTEL LOCATIONS ================== -->
 
