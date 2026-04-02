@@ -412,7 +412,6 @@
   
 <!-- ================== EVENT ================== -->
 
-<!-- ПІДКЛЮЧЕННЯ ШРИФТІВ -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <section class="events-section" style="background-image: url('images/photo6.jpg');">
@@ -437,12 +436,11 @@
   </div>
 
   <style>
-    /* ================== СЕКЦІЯ ================== */
     .events-section { 
       position: relative; 
       background-size: cover; 
       background-position: center; 
-      padding: 80px 20px 269px 20px; /* 🔥 додано 5см (≈189px) вниз */
+      padding: 80px 20px 218px 20px; /* 🔥 зменшено на 2 см */
       color: #fff; 
       font-family: 'Montserrat', sans-serif; 
       overflow: hidden; 
@@ -466,13 +464,12 @@
       left: 50% !important;
       transform: translateX(-50%);
       top: 100px;
-      bottom: -219px; /* 🔥 подовжено на 5см вниз */
+      bottom: -106px; /* 🔥 закінчується на пару см раніше */
       width: 1px;
       background: rgba(255,255,255,0.8);
       z-index: 1;
     }
 
-    /* ================== ЗАГОЛОВОК ================== */
     .events-title { 
       font-family: 'Playfair Display', serif;
       font-size: 38px;
@@ -485,7 +482,6 @@
       z-index: 2; 
     }
 
-    /* ================== ПОДІЇ ================== */
     .event-item {
       position: relative;
       width: 50%;
@@ -520,13 +516,12 @@
 
     .event-item.show { opacity: 1; transform: translateY(0); }
 
-    /* ================== АДАПТИВНІСТЬ ================== */
     @media (max-width: 768px) {
       .events-section { 
         padding-top: 50px;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 199px; /* 🔥 мобільна версія з доданими 5см */
+        padding-bottom: 128px; /* мобільна версія */
       }
 
       .events-content {
@@ -537,7 +532,7 @@
       
       .events-content::before { 
         top: 80px; 
-        bottom: -199px; /* 🔥 мобільна версія лінії */
+        bottom: -128px; /* мобільна версія лінії */
       }
       
       .event-item::after { 
