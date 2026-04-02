@@ -449,7 +449,6 @@
     }
     .events-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
 
-    /* 🔥 ГОЛОВНА ЗМІНА ТУТ */
     .events-content { 
       position: relative; 
       z-index: 2; 
@@ -457,8 +456,8 @@
       margin: 0 auto; 
       display: flex; 
       flex-direction: column;
-      height: 500px; /* фіксуємо висоту */
-      justify-content: space-between; /* розтягує події */
+      height: 500px;
+      justify-content: space-between;
     }
 
     .events-content::before {
@@ -467,7 +466,7 @@
       left: 50% !important;
       transform: translateX(-50%);
       top: 100px;
-      bottom: 0;
+      bottom: -30px; /* 🔥 подовжена лінія */
       width: 1px;
       background: rgba(255,255,255,0.8);
       z-index: 1;
@@ -531,14 +530,14 @@
       }
 
       .events-content {
-        height: 400px; /* трохи менше для моб */
+        height: 400px;
       }
 
       .events-title { font-size: 32px; }
       
       .events-content::before { 
         top: 80px; 
-        bottom: 40px; 
+        bottom: 10px; /* 🔥 довша лінія на моб */
       }
       
       .event-item::after { 
