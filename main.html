@@ -745,21 +745,35 @@
 
 
 <style>
-    /* Увесь дизайн і фон зібрані тільки в одному цьому блоці */
-    .wedding-calendar {
-        /* Фон-фотографія з легким білим фільтром (0.8), щоб цифри добре читалися */
-        background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('images/photo17.jpg');
-        background-size: cover; 
-        background-position: center; 
+    /* 1. Блок-обгортка, яка тримає фотографію */
+    .calendar-section-wrapper {
+        background-image: url('images/photo17.jpg'); 
+        background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
+        padding: 60px 20px; /* Відступи зверху і знизу, щоб було видно фон */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px; /* Закруглені краї самої секції (можеш прибрати, якщо фон має бути на всю ширину екрану) */
+        overflow: hidden;
+    }
+
+    /* 2. Сама картка календаря з ефектом скла */
+    .wedding-calendar {
+        background: rgba(255, 255, 255, 0.6); /* Напівпрозорий білий */
+        backdrop-filter: blur(12px); /* Ефект розмиття фону */
+        -webkit-backdrop-filter: blur(12px); /* Для Safari */
+        border: 1px solid rgba(255, 255, 255, 0.5); /* Легка біла рамка */
         
         padding: 30px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        
         text-align: center;
-        max-width: 300px;
-        margin: 0 auto;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        max-width: 320px;
+        width: 100%;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Або inherit, щоб взяти шрифт сайту */
         box-sizing: border-box;
     }
 
@@ -768,17 +782,17 @@
         margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 4px;
-        color: #333; /* Темний колір для контрасту з фоном */
+        color: #222;
         font-weight: bold;
     }
 
     .wedding-calendar .weekdays {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        font-weight: normal;
+        font-weight: bold;
         margin-bottom: 20px;
         font-size: 14px;
-        color: #555;
+        color: #444; 
     }
 
     .wedding-calendar .days {
@@ -796,12 +810,14 @@
         font-size: 16px;
         position: relative;
         z-index: 1;
-        color: #222; 
+        color: #111; 
         margin: 0;
         padding: 0;
         line-height: 1; 
+        font-weight: 500;
     }
 
+    /* Виділене 17-те число */
     .wedding-calendar .special-day {
         font-weight: bold;
         color: #c0392b; 
@@ -814,8 +830,8 @@
         top: 50%; 
         left: 50%; 
         transform: translate(-50%, -50%); 
-        width: 46px; 
-        height: 46px;
+        width: 48px; 
+        height: 48px;
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') no-repeat center;
         background-size: contain;
         z-index: -1; 
@@ -833,25 +849,27 @@
     }
 </style>
 
-<div class="wedding-calendar">
-    <div class="month">Липень 2026</div>
-    
-    <div class="weekdays">
-        <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
-    </div>
-    
-    <div class="days">
-        <div class="empty"></div>
-        <div class="empty"></div>
-        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-        <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
-        <div>13</div><div>14</div><div>15</div><div>16</div>
+<div class="calendar-section-wrapper">
+    <div class="wedding-calendar">
+        <div class="month">Липень 2026</div>
         
-        <div class="special-day">17</div>
+        <div class="weekdays">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
+        </div>
         
-        <div>18</div><div>19</div>
-        <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
-        <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
+        <div class="days">
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+            <div>13</div><div>14</div><div>15</div><div>16</div>
+            
+            <div class="special-day">17</div>
+            
+            <div>18</div><div>19</div>
+            <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+            <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
+        </div>
     </div>
 </div>
 
