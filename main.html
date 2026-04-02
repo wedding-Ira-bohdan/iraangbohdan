@@ -431,11 +431,6 @@
     </div>
     
     <div class="event-item left">
-      <span class="event-time">16:00</span>
-      <span class="event-name">Перший танець</span>
-    </div>
-    
-    <div class="event-item right">
       <span class="event-time">23:00</span>
       <span class="event-name">Завершення свята</span>
     </div>
@@ -469,13 +464,13 @@
 
     /* ================== ЗАГОЛОВОК ================== */
     .events-title { 
-      font-family: 'Playfair Display', serif;  /* як у Dress Code */
-      font-size: 38px;                          /* як у Dress Code */
-      font-weight: 500;                         /* як у Dress Code */
-      font-style: italic;                       /* курсив як у Dress Code */
-      margin-bottom: 80px;                      /* відступ нижче заголовка */
-      text-align: center;                       /* вирівнювання по центру */
-      color: inherit;                           /* залишає поточний білий колір */
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: 80px;
+      text-align: center;
+      color: inherit;
       position: relative; 
       z-index: 2; 
     }
@@ -484,11 +479,15 @@
     .event-item {
       position: relative;
       width: 50%;
-      margin-bottom: 70px;
+      margin-bottom: 60px; /* рівномірніше */
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.8s ease;
       z-index: 2;
+    }
+
+    .event-item:last-child {
+      margin-bottom: 0; /* прибирає зайвий відступ */
     }
 
     .event-item::after {
@@ -531,7 +530,11 @@
         bottom: 40px; 
       }
       
-      .event-item { margin-bottom: 50px; }
+      .event-item { margin-bottom: 40px; }
+      
+      .event-item:last-child {
+        margin-bottom: 0;
+      }
       
       .event-item::after { 
         width: 20px; 
