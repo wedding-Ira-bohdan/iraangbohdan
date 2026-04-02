@@ -745,16 +745,21 @@
 
 
 <style>
-    /* Основний блок календаря */
+    /* Основний блок календаря з твоїм фоном */
     .wedding-calendar {
-        background-color: #f6f3ef; /* Трохи тепліший колір фону, як на скріншоті */
+        /* Додаємо фото і напівпрозорий білий фільтр для читабельності тексту (0.75 - це 75% непрозорості білого) */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('images/photo17.jpg');
+        background-size: cover; /* Фото розтягується на весь блок */
+        background-position: center; /* Фото центрується */
+        background-repeat: no-repeat;
+        
         padding: 30px 20px;
         border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Легка тінь */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Трохи виразніша тінь */
         text-align: center;
         max-width: 300px;
         margin: 0 auto;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Більш сучасний шрифт, як на скріншоті */
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         box-sizing: border-box;
     }
 
@@ -763,7 +768,7 @@
         margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 4px;
-        color: #555;
+        color: #333; /* Трохи темніший текст для кращого контрасту з фоном */
         font-weight: bold;
     }
 
@@ -773,63 +778,57 @@
         font-weight: normal;
         margin-bottom: 20px;
         font-size: 14px;
-        color: #777;
+        color: #555;
     }
 
     .wedding-calendar .days {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 12px 6px; /* Трохи більше, щоб було чіткіше */
+        gap: 12px 6px; 
     }
 
-    /* Кожна клітинка дня: тут ми фіксуємо розміри для ідеального центрування */
     .wedding-calendar .days div {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 38px; /* Фіксована висота */
-        width: 100%; /* На всю ширину колонки grid */
+        height: 38px; 
+        width: 100%; 
         font-size: 16px;
         position: relative;
         z-index: 1;
-        color: #333;
+        color: #222; /* Темніші цифри */
         margin: 0;
         padding: 0;
-        line-height: 1; /* Гарантує центрування тексту по вертикалі */
+        line-height: 1; 
     }
 
-    /* Наше виділене 17-те число */
     .wedding-calendar .special-day {
         font-weight: bold;
-        color: #c0392b; /* Червоний колір для самої цифри */
+        color: #c0392b; 
     }
 
-    /* *Тут* ми малюємо чистий червоний контур сердечка навколо 17-го */
+    /* Сердечко навколо 17-го */
     .wedding-calendar .special-day::before {
         content: '';
         position: absolute;
-        top: 50%; /* Центр по вертикалі */
-        left: 50%; /* Центр по горизонталі */
-        /* Ідеальне центрування завдяки зміщенню */
+        top: 50%; 
+        left: 50%; 
         transform: translate(-50%, -50%); 
-        width: 46px; /* Оптимальний розмір сердечка для обведення */
+        width: 46px; 
         height: 46px;
-        /* *Чистий* червоний контур SVG сердечка (stroke="%23c0392b") */
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23c0392b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') no-repeat center;
         background-size: contain;
-        z-index: -1; /* Щоб цифра була ПОВЕРХ сердечка */
-        animation: pulse-heart 2.0s infinite ease-in-out; /* Трохи швидша анімація пульсації */
+        z-index: -1; 
+        animation: pulse-heart 2.0s infinite ease-in-out; 
     }
 
-    /* Усунення будь-яких тіней, які могли б заважати, з батьківського елемента */
     .wedding-calendar .days div::after {
         display: none;
     }
 
-    /* Анімація пульсації */
     @keyframes pulse-heart {
         0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.10); } /* Трохи більша пульсація */
+        50% { transform: translate(-50%, -50%) scale(1.10); } 
         100% { transform: translate(-50%, -50%) scale(1); }
     }
 </style>
